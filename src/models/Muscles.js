@@ -1,8 +1,8 @@
 const { Datatypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('routines', {
-        muscle: {
+    sequelize.define('muscle', {
+        name: {
             type: Datatypes.STRING,
             allowNull: false,
         },
