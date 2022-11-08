@@ -12,6 +12,7 @@ module.exports = (sequelize) => {
         },
         duration: {
             type: Datatypes.INTEGER,
+            allowNull: false,
             get(){
                 return this.getDataValue('duration') + ' minutos'
             }
