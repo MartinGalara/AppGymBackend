@@ -13,9 +13,12 @@ module.exports = (sequelize) => {
         duration: {
             type: Datatypes.INTEGER,
             allowNull: false,
+            get(){
+                return this.getDataValue('duration') + ' minutos'
+            }
         },
         difficulty: {
-            type: DataTypes.INTEGER,
+            type: Datatypes.INTEGER,
             validate: { min: 1, max: 5 },
             allowNull: false,
         },

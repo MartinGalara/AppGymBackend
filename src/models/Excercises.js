@@ -7,11 +7,11 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         series: {
-            type: DataTypes.INTEGER,
+            type: Datatypes.INTEGER,
             allowNull: false,
         },
         repetitions: {
-            type: DataTypes.INTEGER,
+            type: Datatypes.INTEGER,
         },
     },
         {
