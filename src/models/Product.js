@@ -1,17 +1,22 @@
-const { Datatypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('excercises', {
+    sequelize.define('product', {
         name: {
-            type: Datatypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
         },
-        series: {
+        price: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        repetitions: {
+        stock: {
             type: DataTypes.INTEGER,
+            allowNull: false,
+            validate: { min: 0 },
+        },
+        category: {
+            type: DataTypes.STRING,
         },
     },
         {

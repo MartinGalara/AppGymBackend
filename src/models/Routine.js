@@ -1,17 +1,17 @@
-const { Datatypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('routines', {
+    sequelize.define('routine', {
         name: {
-            type: Datatypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         staff: {
-            type: Datatypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         duration: {
-            type: Datatypes.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         difficulty: {
@@ -20,11 +20,11 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         category: {
-            type: Datatypes.ENUM('Cardio/Resistencia', 'Masa Muscular', 'Postura', 'Bajada de Peso', 'Definición'),
+            type: DataTypes.ENUM('Cardio/Resistencia', 'Masa Muscular', 'Postura', 'Bajada de Peso', 'Definición'),
             allowNull: false,
         },
         day: {
-            type: Datatypes.INTEGER,
+            type: DataTypes.INTEGER,
             validate: { min: 1, max: 7 },
             allowNull: false,
         },
