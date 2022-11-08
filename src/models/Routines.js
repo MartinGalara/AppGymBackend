@@ -25,7 +25,7 @@ module.exports = (sequelize) => {
         },
         day: {
             type: Datatypes.INTEGER,
-            validate: { min: 1, max: 5 },
+            validate: { min: 1, max: 7 },
             allowNull: false,
         },
     },

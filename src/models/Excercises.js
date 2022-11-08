@@ -12,7 +12,6 @@ module.exports = (sequelize) => {
         },
         repetitions: {
             type: DataTypes.INTEGER,
-            allowNull: false,
         },
     },
         {
