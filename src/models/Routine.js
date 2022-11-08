@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
             }
         },
         difficulty: {
-            type: Datatypes.INTEGER,
+            type: DataTypes.INTEGER,
             validate: { min: 1, max: 5 },
             allowNull: false,
         },
