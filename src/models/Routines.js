@@ -20,10 +20,14 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         category: {
-            type: Datatypes.ENUM('Hamstrings', 'Calves', 'Chest', 'Back', 'Shoulders', 'Triceps', 'Biceps','Forearms','Trapezius','Abs'),
+            type: Datatypes.ENUM('Cardio/Resistencia', 'Masa Muscular', 'Postura', 'Bajada de Peso', 'Definición'),
             allowNull: false,
         },
-
+        day: {
+            type: Datatypes.INTEGER,
+            validate: { min: 1, max: 5 },
+            allowNull: false,
+        },
     },
         {
             timestamps: false,
