@@ -36,23 +36,23 @@ const { Excercise , Muscle, Product, Routine, User, Class, Membresy, Day } = seq
 // Product.hasMany(Reviews);
 
 
-User.belongsToMany(Routine, {through: 'User_Routine'});
-Routine.belongsToMany(User, {through: 'User_Routine'});
+User.belongsToMany(Routine, {through: 'User_Routine', timestamps: false});
+Routine.belongsToMany(User, {through: 'User_Routine', timestamps: false});
 
-Routine.belongsToMany(Day, {through: 'Routine_Day'});
-Day.belongsToMany(Routine, {through: 'Routine_Day'});
+Routine.belongsToMany(Day, {through: 'Routine_Day', timestamps: false});
+Day.belongsToMany(Routine, {through: 'Routine_Day', timestamps: false});
 
-Day.belongsToMany(Excercise, {through: 'Day_Excercise'})
-Excercise.belongsToMany(Day, {through: 'Day_Excercise'})
+Day.belongsToMany(Excercise, {through: 'Day_Excercise', timestamps: false})
+Excercise.belongsToMany(Day, {through: 'Day_Excercise', timestamps: false})
 
-Excercise.belongsTo(Muscle);
-Muscle.hasMany(Excercise);
+Excercise.belongsTo(Muscle, {timestamps: false});
+Muscle.hasMany(Excercise, {timestamps: false});
 
-User.belongsToMany(Product, {through: 'User_Product'});
-Product.belongsToMany(User, {through: 'User_Product'});
+User.belongsToMany(Product, {through: 'User_Product', timestamps: false});
+Product.belongsToMany(User, {through: 'User_Product', timestamps: false});
 
-Class.belongsTo(User);
-User.hasMany(Class);
+Class.belongsTo(User, {timestamps: false});
+User.hasMany(Class, {timestamps: false});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
