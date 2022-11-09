@@ -10,16 +10,12 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        password: {
+        hashPassword: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        nickname: {
-            type: DataTypes.STRING,
-        },
         role: { 
             type: DataTypes.STRING,
-            defaultValue: "User",
             allowNull: false,
         }
     },

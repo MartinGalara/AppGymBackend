@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        staff: {
+        createdBy: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -24,11 +24,6 @@ module.exports = (sequelize) => {
         },
         category: {
             type: DataTypes.ENUM('Cardio/Resistencia', 'Masa Muscular', 'Postura', 'Bajada de Peso', 'Definición'),
-            allowNull: false,
-        },
-        day: {
-            type: DataTypes.INTEGER,
-            validate: { min: 1, max: 7 },
             allowNull: false,
         },
     },
