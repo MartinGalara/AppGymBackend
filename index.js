@@ -20,10 +20,12 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 const { User , Routine , Day, Excercise, Muscle, Product, Membresy, Class} = require('./src/db.js')
+require('dotenv').config();
+const { PORT } = process.env;
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(process.env.PORT, () => {
+  server.listen(PORT, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
     const users = [
       {name: "Martin Galara", email: "mgalara@gmail.com", hashPassword: "$2b$08$/DFujLqVmZYc2qHWRdf.EuXZTLOlf2NzuL5ihfcJ0xkR/5vH7Fk/e",role: "User"},      //123
