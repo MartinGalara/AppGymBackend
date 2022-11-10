@@ -61,7 +61,7 @@ router.get('/', async (req,res) => {
     await excercise3.setMuscle(3)
     await excercise4.setMuscle(4)
 
-   /* const todo = await User.findByPk(1,{
+   const todo = await User.findByPk(1,{
         attributes:['name','email','hashPassword','role'],
         include: [{
             model: Routine,
@@ -81,7 +81,7 @@ router.get('/', async (req,res) => {
         }]
     })
 
-    res.json(todo)*/
+    res.json(todo)
 
     /*
     Character.hasMany(Ability);
