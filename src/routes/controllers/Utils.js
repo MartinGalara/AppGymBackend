@@ -1,5 +1,6 @@
 // const axios = require('axios');
-const { Class, Routine, Membresy } = require('../../db.js')
+const { Class, Routine, Membresy, User } = require('../../db.js')
+
 
 const getClass = async () => {
     const classes = await Class.findAll({
@@ -54,4 +55,22 @@ const getRoutines = async () => {
     return routines;
 }
 
-module.exports = { getClass, getRoutines, getMembresies }
+
+const getUsers = async () => {
+    const users = await User.findAll({
+        attributes: ["name", "email", "hashPassword", "role"],
+        // include: [
+        //     {
+        //         model: Country,
+        //         attributes: [
+        //             "id",
+        //             "name"
+        //         ],
+        //     }
+        // ]
+    })
+    return users;
+}
+
+
+module.exports = { getClass, getRoutines, getMembresies, getUsers }
