@@ -39,7 +39,7 @@ const getMembresies = async () => {
 
 const getRoutines = async () => {
     const routines = await Routine.findAll({
-        attributes: ["name", "staff", "duration", "difficulty", "category", "day"],
+        attributes: ["name", "createdBy", "duration", "difficulty", "category"],
         // include: [
         //     {
         //         model: Country,

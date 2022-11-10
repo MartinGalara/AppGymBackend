@@ -13,17 +13,16 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        let { name, staff, duration, difficulty, category, day } = req.body;
-        if (!name || !staff || !duration || !difficulty || !category || !day) {
+        let { name, createdBy, duration, difficulty, category } = req.body;
+        if (!name || !createdBy || !duration || !difficulty || !category ) {
             return res.status(400).json('Missing inputs')
         } else {
             let newRoutine = await Routine.create({
                 name,
-                staff,
+                createdBy,
                 duration,
                 difficulty,
                 category,
-                day
             });
             // const countries_activities = await Country.findAll({
             //     where: {
