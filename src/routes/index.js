@@ -4,7 +4,7 @@ const { Op } = require("sequelize");
 const classes = require ('./controllers/classes.js')
 const routines = require ('./controllers/routines.js')
 const membresies = require ('./controllers/membresies.js')
-const login = require("./controllers/login.js")
+const login = require("./controllers/Login.js")
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
