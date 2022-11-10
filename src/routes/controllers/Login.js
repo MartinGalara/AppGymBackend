@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 //
 const router = Router();
 
-router.post('/', async (req,res) => {
+router.get('/', async (req,res) => {
 
     const { email , password} = req.body;
 
@@ -34,7 +34,28 @@ router.post('/', async (req,res) => {
     })
 })
 
-router.get('/', async (req,res) => {
+//"google-oauth2|104240256115839630283"
+
+router.post('/', async (req,res) => {
+
+    let { email, password, name , imgUrl} = req.body;
+
+    if(!imgUrl){
+        imgUrl = "https://wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg";
+    }
+
+    const newUser = await User.create({
+        email,
+        hashPassword : await bcrypt.hash(password,8),
+        name,
+        imgUrl
+    })
+
+    res.status(200).json(newUser);
+
+})
+
+router.put('/', async (req,res) => {
 
     const user1 = await User.findByPk(1);
     await user1.addRoutine(1);
