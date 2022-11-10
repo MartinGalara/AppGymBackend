@@ -2,7 +2,7 @@ const { Router } = require("express");
 const bcrypt = require('bcrypt');
 const { User , Routine , Day, Excercise, Muscle, Product, Membresy, Class } = require('../../db.js')
 const jwt = require('jsonwebtoken')
-
+//
 const router = Router();
 
 router.post('/', async (req,res) => {
