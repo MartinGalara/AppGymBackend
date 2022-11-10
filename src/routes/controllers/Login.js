@@ -13,7 +13,7 @@ router.post('/', async (req,res) => {
 
     const passwordCorrect = email === null
     ? false
-    : await bcrypt.compare(password, user.password)
+    : await bcrypt.compare(password, user.hashPassword)
 
     if (!(email && passwordCorrect)){
         res.status(401).json({
@@ -29,7 +29,7 @@ router.post('/', async (req,res) => {
     const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: 60 * 60 * 24 * 7})
 
     res.send({
-        email: user.email,
+        id: user.id,
         token
     })
 })
@@ -61,7 +61,7 @@ router.get('/', async (req,res) => {
     await excercise3.setMuscle(3)
     await excercise4.setMuscle(4)
 
-    const todo = await User.findByPk(1,{
+   /* const todo = await User.findByPk(1,{
         attributes:['name','email','hashPassword','role'],
         include: [{
             model: Routine,
@@ -81,7 +81,7 @@ router.get('/', async (req,res) => {
         }]
     })
 
-    res.json(todo)
+    res.json(todo)*/
 
     /*
     Character.hasMany(Ability);
