@@ -16,8 +16,12 @@ module.exports = (sequelize) => {
         },
         role: { 
             type: DataTypes.STRING,
-            allowNull: false,
-        }
+            defaultValue: "User",
+        },
+        imgUrl:{
+            type: DataTypes.STRING,
+            defaultValue: "asd",
+        },
     },
         {
             timestamps: false,
