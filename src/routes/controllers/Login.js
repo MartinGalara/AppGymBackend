@@ -2,10 +2,20 @@ const { Router } = require("express");
 const bcrypt = require('bcrypt');
 const { User , Routine, Excercise, Muscle, Product, Membresy, Class } = require('../../db.js')
 const jwt = require('jsonwebtoken')
+const userExtractor = require('../middleware/userExtractor.js')
 //
 const router = Router();
 
-router.get('/', async (req,res) => {
+router.get('/',  async (req,res,next) => {
+
+    const authorization = req.get('authorization')
+
+    if(authorization){
+        userExtractor(req,res,next);
+        return res.send({
+            id: req.body.id,
+        })
+    }
 
     const { email , password} = req.body;
 
@@ -65,7 +75,7 @@ router.post('/', async (req,res) => {
 
 })
 
-router.put('/', async (req,res) => {
+router.put('/', userExtractor, async (req,res) => {
 
     const user1 = await User.findByPk(1);
     await user1.addRoutine(1);
