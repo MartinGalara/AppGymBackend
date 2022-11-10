@@ -5,6 +5,7 @@ const path = require('path');
 const {
   DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT
 } = process.env;
+const { DataTypes } = require('sequelize');
 
 let sequelize = process.env.NODE_ENV === 'production'
   ? new Sequelize({
@@ -52,14 +53,13 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Excercise , Muscle, Product, Routine, User, Class, Membresy, Day } = sequelize.models;
+const { Excercise , Muscle, Product, Routine, User, Class, Membresy, Day, User_Routine } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
-
-User.belongsToMany(Routine, {through: 'User_Routine', timestamps: false});
-Routine.belongsToMany(User, {through: 'User_Routine', timestamps: false});
+User.belongsToMany(Routine, {through: User_Routine, timestamps: false});
+Routine.belongsToMany(User, {through: User_Routine, timestamps: false});
 
 Routine.belongsToMany(Excercise, {through: 'Routine_Excercise', timestamps: false})
 Excercise.belongsToMany(Routine, {through: 'Routine_Excercise', timestamps: false})
