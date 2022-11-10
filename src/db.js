@@ -61,11 +61,8 @@ const { Excercise , Muscle, Product, Routine, User, Class, Membresy, Day } = seq
 User.belongsToMany(Routine, {through: 'User_Routine', timestamps: false});
 Routine.belongsToMany(User, {through: 'User_Routine', timestamps: false});
 
-Routine.belongsToMany(Day, {through: 'Routine_Day', timestamps: false});
-Day.belongsToMany(Routine, {through: 'Routine_Day', timestamps: false});
-
-Day.belongsToMany(Excercise, {through: 'Day_Excercise', timestamps: false})
-Excercise.belongsToMany(Day, {through: 'Day_Excercise', timestamps: false})
+Routine.belongsToMany(Excercise, {through: 'Routine_Excercise', timestamps: false})
+Excercise.belongsToMany(Routine, {through: 'Routine_Excercise', timestamps: false})
 
 Excercise.belongsTo(Muscle, {timestamps: false});
 Muscle.hasMany(Excercise, {timestamps: false});

@@ -40,23 +40,13 @@ conn.sync({ force: true }).then(() => {
       {name: "Intensivo piernas" , createdBy: "Gaston Schmitz" , duration: 30, difficulty: 4, category: "Postura"},
     ]
 
-    const days = [
-      {dayOfWeek: 1},
-      {dayOfWeek: 2},
-      {dayOfWeek: 3},
-      {dayOfWeek: 4},
-      {dayOfWeek: 5},
-      {dayOfWeek: 6},
-      {dayOfWeek: 7},
-    ]
-
     const excercises = [
-      {name: "Press de banca", series: 4, repetitions:10},
-      {name: "Apertura sobre banco", series: 4, repetitions:12},
-      {name: "Flexiones de suelo", series: 4, repetitions:10},
-      {name: "Patada trasera mancuerna", series: 4, repetitions:10},
-      {name: "Fondo sobre banco", series: 3, repetitions:10},
-      {name: "Peso muerto", series: 4, repetitions:15},
+      {day: 1, name: "Press de banca", series: 4, repetitions:10},
+      {day: 1, name: "Apertura sobre banco", series: 4, repetitions:12},
+      {day: 2, name: "Flexiones de suelo", series: 4, repetitions:10},
+      {day: 2, name: "Patada trasera mancuerna", series: 4, repetitions:10},
+      {day: 2, name: "Fondo sobre banco", series: 3, repetitions:10},
+      {day: 2, name: "Peso muerto", series: 4, repetitions:15},
     ]
 
     const muscles = [
@@ -85,7 +75,6 @@ conn.sync({ force: true }).then(() => {
 
     User.bulkCreate(users).then(() => console.log("Users cargados"))
     Routine.bulkCreate(routines).then(() => console.log("Routines cargadas"))
-    Day.bulkCreate(days).then(() => console.log("Days cargados"))
     Excercise.bulkCreate(excercises).then(() => console.log("Excercises cargados"))
     Muscle.bulkCreate(muscles).then(() => console.log("Muscles cargados"))
     Product.bulkCreate(products).then(() => console.log("Products cargados"))

@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const bcrypt = require('bcrypt');
-const { User , Routine , Day, Excercise, Muscle, Product, Membresy, Class } = require('../../db.js')
+const { User , Routine, Excercise, Muscle, Product, Membresy, Class } = require('../../db.js')
 const jwt = require('jsonwebtoken')
 //
 const router = Router();
@@ -40,16 +40,11 @@ router.get('/', async (req,res) => {
     await user1.addRoutine(1);
 
     const routine1 = await Routine.findByPk(1);
-    await routine1.addDay(1);
-    await routine1.addDay(2);
 
-    const day1 = await Day.findByPk(1);
-    const day2 = await Day.findByPk(2);
-
-    await day1.addExcercise(1)
-    await day1.addExcercise(2)
-    await day2.addExcercise(3)
-    await day2.addExcercise(4)
+    await routine1.addExcercise(1)
+    await routine1.addExcercise(2)
+    await routine1.addExcercise(3)
+    await routine1.addExcercise(4)
 
     const excercise1 = await Excercise.findByPk(1);
     const excercise2 = await Excercise.findByPk(2);
@@ -65,16 +60,11 @@ router.get('/', async (req,res) => {
     await user2.addRoutine(2);
 
     const routine2 = await Routine.findByPk(2);
-    await routine2.addDay(1);
-    await routine2.addDay(2);
 
-    const day8 = await Day.findByPk(1);
-    const day9 = await Day.findByPk(2);
-
-    await day8.addExcercise(3)
-    await day8.addExcercise(4)
-    await day9.addExcercise(5)
-    await day9.addExcercise(6)
+    await routine2.addExcercise(1)
+    await routine2.addExcercise(2)
+    await routine2.addExcercise(5)
+    await routine2.addExcercise(6)
 
     const excercisec = await Excercise.findByPk(5);
     const excercised = await Excercise.findByPk(6);
@@ -90,18 +80,14 @@ router.get('/', async (req,res) => {
             model: Routine,
             attributes:['name','createdBy','duration','difficulty','category'],
             include:[{
-                model: Day,
-                attributes:['dayOfWeek'],
-                include:[{
                     model: Excercise,
-                    attributes:['name','series','repetitions'],
+                    attributes:['day','name','series','repetitions'],
                     include:[{
                         model: Muscle,
                         attributes:['name'],
                     }]
                 }]
             }]
-        }]
     })
 
 
