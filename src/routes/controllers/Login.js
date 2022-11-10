@@ -61,7 +61,30 @@ router.get('/', async (req,res) => {
     await excercise3.setMuscle(3)
     await excercise4.setMuscle(4)
 
-   const todo = await User.findByPk(1,{
+    const user2 = await User.findByPk(2);
+    await user2.addRoutine(2);
+
+    const routine2 = await Routine.findByPk(2);
+    await routine2.addDay(1);
+    await routine2.addDay(2);
+
+    const day8 = await Day.findByPk(1);
+    const day9 = await Day.findByPk(2);
+
+    await day8.addExcercise(3)
+    await day8.addExcercise(4)
+    await day9.addExcercise(5)
+    await day9.addExcercise(6)
+
+    const excercisec = await Excercise.findByPk(5);
+    const excercised = await Excercise.findByPk(6);
+
+    await excercisec.setMuscle(3)
+    await excercised.setMuscle(4)
+
+
+
+   const todo = await User.findAll({
         attributes:['name','email','hashPassword','role'],
         include: [{
             model: Routine,
@@ -80,6 +103,8 @@ router.get('/', async (req,res) => {
             }]
         }]
     })
+
+
 
     res.json(todo)
 
