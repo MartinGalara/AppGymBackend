@@ -51,7 +51,17 @@ router.post('/', async (req,res) => {
         imgUrl
     })
 
-    res.status(200).json(newUser);
+    const userForToken = {
+        id: newUser.id,
+        email: newUser.email,
+    }
+
+    const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: 60 * 60 * 24 * 7})
+
+    res.status(200).send({
+        id: newUser.id,
+        token
+    })
 
 })
 
