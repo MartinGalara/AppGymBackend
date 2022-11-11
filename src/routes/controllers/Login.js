@@ -1,11 +1,21 @@
 const { Router } = require("express");
 const bcrypt = require('bcrypt');
-const { User , Routine, Excercise, Muscle, Product, Membresy, Class } = require('../../db.js')
+const { User , Routine, Excercise, Muscle, Product, Membresy, Class, User_Routine } = require('../../db.js')
 const jwt = require('jsonwebtoken')
+const userExtractor = require('../middleware/userExtractor.js')
 //
 const router = Router();
 
-router.get('/', async (req,res) => {
+router.get('/',  async (req,res,next) => {
+
+    const authorization = req.get('authorization')
+
+    if(authorization){
+        userExtractor(req,res,next);
+        return res.send({
+            id: req.body.id,
+        })
+    }
 
     const { email , password} = req.body;
 
@@ -51,7 +61,17 @@ router.post('/', async (req,res) => {
         imgUrl
     })
 
-    res.status(200).json(newUser);
+    const userForToken = {
+        id: newUser.id,
+        email: newUser.email,
+    }
+
+    const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: 60 * 60 * 24 * 7})
+
+    res.status(200).send({
+        id: newUser.id,
+        token
+    })
 
 })
 
@@ -59,6 +79,7 @@ router.put('/', async (req,res) => {
 
     const user1 = await User.findByPk(1);
     await user1.addRoutine(1);
+    await user1.addRoutine(2);
 
     const routine1 = await Routine.findByPk(1);
 
@@ -93,9 +114,32 @@ router.put('/', async (req,res) => {
     await excercisec.setMuscle(3)
     await excercised.setMuscle(4)
 
+    console.log(User_Routine)
+
+    const usuario = await User_Routine.findOne({where:{userId:1}})
+
+    await usuario.update({
+        favourite:true,
+    })
+
+    /*const usuario = await User.findByPk(1,{
+        include: [{model:Routine}]
+    })
+
+    
+    await usuario.update({
+        favourite: true,
+    },{
+        where:{
+            id:1
+        }
+    })*/
+
+    res.json(usuario)
 
 
-   const todo = await User.findAll({
+
+   /*const todo = await User.findAll({
         attributes:['name','email','hashPassword','role'],
         include: [{
             model: Routine,
@@ -113,7 +157,7 @@ router.put('/', async (req,res) => {
 
 
 
-    res.json(todo)
+    res.json(todo)*/
 
     /*
     Character.hasMany(Ability);
