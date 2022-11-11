@@ -37,8 +37,8 @@ conn.sync({ force: true }).then(() => {
 
     const routines = [
       {name: "Intensivo piernas" , createdBy: "Aaron Fraga" , duration: 60, difficulty: 5, category: "Cardio/Resistencia"},
-      {name: "Intensivo piernas" , createdBy: "Gaston Schmitz" , duration: 45, difficulty: 3, category: "Masa Muscular"},
-      {name: "Intensivo piernas" , createdBy: "Gaston Schmitz" , duration: 30, difficulty: 4, category: "Postura"},
+      {name: "Intensivo piernas2" , createdBy: "Gaston Schmitz" , duration: 45, difficulty: 3, category: "Masa Muscular"},
+      {name: "Intensivo piernas3" , createdBy: "Gaston Schmitz" , duration: 30, difficulty: 4, category: "Postura"},
     ]
 
     const excercises = [
@@ -70,7 +70,7 @@ conn.sync({ force: true }).then(() => {
 
     const classes = [
       {name: "Yoga", instructor: "Aaron Fraga" , date: 2020-15-11 },
-      {name: "Yoga", instructor: "Aaron Fraga" , date: 2020-18-11 },
+      {name: "Yoga2", instructor: "Aaron Fraga" , date: 2020-18-11 },
       {name: "Spinning", instructor: "Gaston Schmitz" , date: 2020-20-11 },
     ]
 

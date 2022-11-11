@@ -46,16 +46,12 @@ const getUsers = async () => {
 
 
 const getFeedbacks = async () => {
-    const allFeedbacks = await Feedback.findAll({
-        attributes: ["title", "description", "disabled"],
-    })
+    const allFeedbacks = await Feedback.findAll();
     return allFeedbacks;
 }
 
 const getMuscles = async () => {
-    const muscles = await Muscle.findAll({
-        attributes:[ "name" ]
-    })
+    const muscles = await Muscle.findAll()
     return muscles;
 }
 
@@ -87,4 +83,28 @@ const findUserRoutinesById = async (id, name, category, duration, difficulty) =>
   };
 
 
-module.exports = { getClass, getRoutines, getMembresies, getUsers ,findUserRoutinesById, getMuscles, getFeedbacks}
+  const filterData = (userData, filters) => {
+    
+    let filtered = userData;
+
+    if(filters.muscles)
+    {
+    filtered.map(e=>{
+        for(i=0;i<e.excercises.length;i++){
+            if(filters.muscles.includes(e.excercises[i].muscle.name)) e.flag = true;
+        }
+    })
+    filtered = filtered.filter(e => e.flag === true)
+    }
+
+    if(filters.duration) filtered = filtered.filter(e => filters.duration.includes(e.duration))
+
+    if(filters.difficulty) filtered = filtered.filter(e => filters.difficulty.includes(e.difficulty))
+
+    if(filters.favourite) filtered = filtered.filter(e => e.User_Routine.favourite === true)
+
+    return filtered;
+    
+  }
+
+module.exports = { getClass, getRoutines, getMembresies, getUsers ,findUserRoutinesById, getMuscles, getFeedbacks, filterData}

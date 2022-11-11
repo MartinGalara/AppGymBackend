@@ -1,22 +1,15 @@
 const { Router } = require('express');
-const { Routine } = require('../../db.js');
-const { getRoutines , findUserRoutinesById } = require('./Utils.js');
+const { Routine , User, Excercise, Muscle} = require('../../db.js');
+const { filterData, getRoutines , findUserRoutinesById } = require('./Utils.js');
+const userExtractor = require('../middleware/userExtractor.js')
 
 const router = Router();
-
-// router.get('/', async (req, res) => {
-//     let allRoutines = await getRoutines();
-//         allRoutines.length ?
-//         res.status(200).send(allRoutines) :
-//         res.status(404).send('Routine not found');
-// })
 
 router.post('/', async (req, res) => {
     try {
         let { name, createdBy, duration, difficulty, category } = req.body;
-        if (!name || !createdBy || !duration || !difficulty || !category ) {
-            return res.status(400).json('Missing inputs')
-        } else {
+        if (!name || !createdBy || !duration || !difficulty || !category ) return res.status(400).json('Missing inputs')
+
             let newRoutine = await Routine.create({
                 name,
                 createdBy,
@@ -24,46 +17,104 @@ router.post('/', async (req, res) => {
                 difficulty,
                 category,
             });
-            // const countries_activities = await Country.findAll({
-            //     where: {
-            //         name: countries,
-            //     },
-            // });
-            // newActivity.addCountry(countries_activities);
             res.status(200).json(newRoutine);
-        }
+
     } catch (error) {
         res.status(400).send(error.message)
     }
 })
 
-router.get('/:id', async (req, res) => {
-    const { id } = req.params;
-    const routineSelected = await Routine.findByPk(id);    
-    res.status(200).send(routineSelected);
-})
-
-router.get('/', async (req, res) => {
-    
+router.get('/:idRoutine', async (req, res) => {
     try {
-        const {id, name, category, duration, difficulty} = req.body;
-
-           // aca tengo todas las rutinas unicas
-    const allRoutines = await getRoutines();
-    const allRoutinesName = allRoutines.map(e=>e.name)
-    const uniqueRoutines = allRoutinesName.filter((item,index) =>{
-        return allRoutinesName.indexOf(item) === index
-    })
-
-    //empezamos la logica
-    if(!id) return res.status(404).send('We need an id'); // esto por si no hay id, muere
-    const userRoutineById = await findUserRoutinesById(id, name, category, duration, difficulty); // aca junto todo y meto todos los filtros juntos
-    res.status(200).send(userRoutineById) 
-        
+        const { idRoutine } = req.params;
+        const routineSelected = await Routine.findByPk(idRoutine);    
+        res.status(200).send(routineSelected);
     } catch (error) {
-        res.status(404).send(error.message);
+        res.status(400).send(error.message)
     }
     
+})
+
+router.get('/', userExtractor, async (req, res) => {
+
+    const { id , filters } = req.body;
+
+    const { favourite } = req.query;
+
+    console.log(favourite)
+
+    let userData;
+
+    let dataFiltered;
+
+    if(favourite) {
+        console.log("aca entre")
+        try {
+            userData = await User.findByPk(1, {
+                include:{
+                    model: Routine,
+                    include:{
+                        model: Excercise,
+                        include:{
+                            model: Muscle
+                        }
+                    }
+                }
+            })
+        } catch (error) {
+            res.status(400).send(error.message)
+        }
+
+        dataFiltered = filterData(userData.routines,{owned:true,favourite:true})
+
+        return res.status(200).json(dataFiltered)
+    }
+
+    if(!filters.owned){
+        try {
+            userData = await Routine.findAll({
+                include:{
+                    model: Excercise,
+                    include:{
+                        model: Muscle
+                    }
+                }
+            })
+        } catch (error) {
+            res.status(400).send(error.message)
+        }
+        
+
+    if(Object.entries(filters).length === 0) return res.status(200).json(userData)
+
+    dataFiltered = filterData(userData,filters)
+
+    }
+    else{
+        try {
+            userData = await User.findByPk(1, {
+                include:{
+                    model: Routine,
+                    include:{
+                        model: Excercise,
+                        include:{
+                            model: Muscle
+                        }
+                    }
+                }
+            })
+        } catch (error) {
+            res.status(400).send(error.message)
+        }
+
+    if(Object.entries(filters).length === 1) return res.status(200).json(userData.routines)
+
+    dataFiltered = filterData(userData.routines,filters)
+
+    }
+
+    res.status(200).json(dataFiltered)
+
 })
 
 module.exports = router;

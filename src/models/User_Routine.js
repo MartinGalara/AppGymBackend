@@ -6,6 +6,10 @@ module.exports = (sequelize) => {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
+        owned:{
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        }
     },
         {
             timestamps: false,

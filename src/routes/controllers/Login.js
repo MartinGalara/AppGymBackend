@@ -6,7 +6,7 @@ const userExtractor = require('../middleware/userExtractor.js')
 //
 const router = Router();
 
-router.get('/',  async (req,res,next) => {
+router.get('/', async (req,res,next) => {
 
     const authorization = req.get('authorization')
 
@@ -18,6 +18,8 @@ router.get('/',  async (req,res,next) => {
     }
 
     const { email , password} = req.body;
+
+    if(!email || !password) return res.status(400).send("Faltan datos")
 
     const user = await User.findOne({ where: { email: email } });
 
@@ -49,6 +51,8 @@ router.get('/',  async (req,res,next) => {
 router.post('/', async (req,res) => {
 
     let { email, password, name , imgUrl} = req.body;
+
+    if(!email || !password || !name) return res.status(400).send("Faltan datos")
 
     if(!imgUrl){
         imgUrl = "https://wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg";
@@ -111,8 +115,8 @@ router.put('/', async (req,res) => {
     const excercisec = await Excercise.findByPk(5);
     const excercised = await Excercise.findByPk(6);
 
-    await excercisec.setMuscle(3)
-    await excercised.setMuscle(4)
+    await excercisec.setMuscle(5)
+    await excercised.setMuscle(6)
 
     console.log(User_Routine)
 
@@ -122,65 +126,8 @@ router.put('/', async (req,res) => {
         favourite:true,
     })
 
-    /*const usuario = await User.findByPk(1,{
-        include: [{model:Routine}]
-    })
-
-    
-    await usuario.update({
-        favourite: true,
-    },{
-        where:{
-            id:1
-        }
-    })*/
-
     res.json(usuario)
-
-
-
-   /*const todo = await User.findAll({
-        attributes:['name','email','hashPassword','role'],
-        include: [{
-            model: Routine,
-            attributes:['name','createdBy','duration','difficulty','category'],
-            include:[{
-                    model: Excercise,
-                    attributes:['day','name','series','repetitions'],
-                    include:[{
-                        model: Muscle,
-                        attributes:['name'],
-                    }]
-                }]
-            }]
-    })
-
-
-
-    res.json(todo)*/
-
-    /*
-    Character.hasMany(Ability);
-    Ability.belongsTo(Character);
-    await ability.setCharacter(codeCharacter);
-    */
 
 })
 
 module.exports = router;
-
-//para chequear si el token es de un usuario en los otros endpoints, como middleware UserExtractor (final del video en slack)
-/*let token = null;
-
-const authorization = request.get('authorization')
-if(authorization && authorization.toLowerCase().startsWith('bearer')){
-    token = authorization.substring(7);
-}
-
-const decodedToken = jwt.verify(token, process.env.SECRET)
-
-if(!token || !decodedToken.id){
-    return res.status(401).json({ error: 'Token invalido o faltante'})
-}
-*/
-

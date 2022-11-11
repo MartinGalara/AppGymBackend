@@ -5,6 +5,7 @@ module.exports = (sequelize) => {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique:true,
         },
         instructor: {
             type: DataTypes.STRING,
@@ -12,7 +13,7 @@ module.exports = (sequelize) => {
         },
         date: {
             type: DataTypes.DATEONLY,
-            defaultValue: DataTypes.NOW,
+            allowNull: false,
         },
     },
         {
