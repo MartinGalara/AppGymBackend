@@ -1,40 +1,14 @@
 // const axios = require('axios');
-const { Class, Routine, Membresy, User, Feedback } = require('../../db.js');
 
+const { Class, Routine, Membresy, User, Muscle, Feedback } = require('../../db.js')
 
 const getClass = async () => {
-    const classes = await Class.findAll({
-        attributes: ["name", "instructor", "date"],
-        // include: [
-        //     {
-        //         model: Country,
-        //         attributes: [
-        //             "id",
-        //             "name",
-        //             "flag",
-        //             "capital",
-        //         ],
-        //     }
-        // ]
-    })
+    const classes = await Class.findAll()
     return classes;
 }
 
 const getMembresies = async () => {
-    const membresies = await Membresy.findAll({
-        attributes: ["name", "cost", "expiration"],
-        // include: [
-        //     {
-        //         model: Country,
-        //         attributes: [
-        //             "id",
-        //             "name",
-        //             "flag",
-        //             "capital",
-        //         ],
-        //     }
-        // ]
-    })
+    const membresies = await Membresy.findAll()
     return membresies;
 }
 
@@ -46,8 +20,6 @@ const getRoutines = async () => {
         //         model: Country,
         //         attributes: [
         //             "id",
-        //             "name",
-        //             "flag",
         //         ],
         //     }
         // ]
@@ -58,7 +30,7 @@ const getRoutines = async () => {
 
 const getUsers = async () => {
     const users = await User.findAll({
-        attributes: ["name", "email", "hashPassword", "role"],
+        attributes: ["name", "email", "hashPassword", "role", "imgUrl"],
         // include: [
         //     {
         //         model: Country,
@@ -72,6 +44,7 @@ const getUsers = async () => {
     return users;
 }
 
+
 const getFeedbacks = async () => {
     const allFeedbacks = await Feedback.findAll({
         attributes: ["title", "description", "disabled"],
@@ -79,5 +52,39 @@ const getFeedbacks = async () => {
     return allFeedbacks;
 }
 
+const getMuscles = async () => {
+    const muscles = await Muscle.findAll({
+        attributes:[ "name" ]
+    })
+    return muscles;
+}
 
-module.exports = { getClass, getRoutines, getMembresies, getUsers, getFeedbacks }
+const findUserRoutinesById = async (id, name, category, duration, difficulty) => {
+    const usersModel = await User.findAll({
+      include: [
+        {
+          model: Routine,
+          attributes: ["name", "createdBy", "duration", "difficulty","category"],
+          where:{
+            id:id,
+            name:{
+                [Sequelize.Op.in]: name
+            },
+            category:{
+                [Sequelize.Op.in]: category
+            },
+            duration:{
+                [Sequelize.Op.in]: duration
+            },
+            difficulty:{
+                [Sequelize.Op.in]: difficulty
+            },
+          }
+        },
+      ],
+    });
+    return usersModel;
+  };
+
+
+module.exports = { getClass, getRoutines, getMembresies, getUsers ,findUserRoutinesById, getMuscles, getFeedbacks}

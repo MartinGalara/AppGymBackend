@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const bcrypt = require('bcrypt');
-const { User , Routine, Excercise, Muscle, Product, Membresy, Class } = require('../../db.js')
+const { User , Routine, Excercise, Muscle, Product, Membresy, Class, User_Routine } = require('../../db.js')
 const jwt = require('jsonwebtoken')
 const userExtractor = require('../middleware/userExtractor.js')
 //
@@ -75,10 +75,11 @@ router.post('/', async (req,res) => {
 
 })
 
-router.put('/', userExtractor, async (req,res) => {
+router.put('/', async (req,res) => {
 
     const user1 = await User.findByPk(1);
     await user1.addRoutine(1);
+    await user1.addRoutine(2);
 
     const routine1 = await Routine.findByPk(1);
 
@@ -113,9 +114,32 @@ router.put('/', userExtractor, async (req,res) => {
     await excercisec.setMuscle(3)
     await excercised.setMuscle(4)
 
+    console.log(User_Routine)
+
+    const usuario = await User_Routine.findOne({where:{userId:1}})
+
+    await usuario.update({
+        favourite:true,
+    })
+
+    /*const usuario = await User.findByPk(1,{
+        include: [{model:Routine}]
+    })
+
+    
+    await usuario.update({
+        favourite: true,
+    },{
+        where:{
+            id:1
+        }
+    })*/
+
+    res.json(usuario)
 
 
-   const todo = await User.findAll({
+
+   /*const todo = await User.findAll({
         attributes:['name','email','hashPassword','role'],
         include: [{
             model: Routine,
@@ -133,7 +157,7 @@ router.put('/', userExtractor, async (req,res) => {
 
 
 
-    res.json(todo)
+    res.json(todo)*/
 
     /*
     Character.hasMany(Ability);

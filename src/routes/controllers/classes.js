@@ -6,10 +6,14 @@ const router = Router();
 
 
 router.get('/', async (req, res) => {
-    let allClasses = await getClass();
-    allClasses.length ?
+    try {
+        let allClasses = await getClass();
+        allClasses.length ?
         res.status(200).send(allClasses) :
         res.status(404).send('Classes not found');
+    } catch (error) {
+        res.status(400).send(error.message) 
+    }
 })
 
 router.post('/', async (req, res) => {
@@ -38,8 +42,14 @@ router.post('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
-    const classSelected = await Class.findByPk(id);    
-    res.status(200).send(classSelected);
+    try {
+        const classSelected = await Class.findByPk(id);    
+        !classSelected?
+        res.status(400).send("Class ID not found"):
+        res.status(200).send(classSelected)
+    } catch (error) {
+        res.status(400).send(error.message)
+    }
 })
 
 module.exports = router;
