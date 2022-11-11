@@ -3,38 +3,12 @@ const { Class, Routine, Membresy, User, Muscle } = require('../../db.js')
 
 
 const getClass = async () => {
-    const classes = await Class.findAll({
-        attributes: ["name", "instructor", "date"],
-        // include: [
-        //     {
-        //         model: Country,
-        //         attributes: [
-        //             "id",
-        //             "name",
-        //             "flag",
-        //             "capital",
-        //         ],
-        //     }
-        // ]
-    })
+    const classes = await Class.findAll()
     return classes;
 }
 
 const getMembresies = async () => {
-    const membresies = await Membresy.findAll({
-        attributes: ["name", "cost", "expiration"],
-        // include: [
-        //     {
-        //         model: Country,
-        //         attributes: [
-        //             "id",
-        //             "name",
-        //             "flag",
-        //             "capital",
-        //         ],
-        //     }
-        // ]
-    })
+    const membresies = await Membresy.findAll()
     return membresies;
 }
 
@@ -46,8 +20,6 @@ const getRoutines = async () => {
         //         model: Country,
         //         attributes: [
         //             "id",
-        //             "name",
-        //             "flag",
         //         ],
         //     }
         // ]
