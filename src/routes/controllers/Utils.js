@@ -79,4 +79,32 @@ const getMuscles = async () => {
     return muscles;
 }
 
-module.exports = { getClass, getRoutines, getMembresies, getUsers, getMuscles }
+const findUserRoutinesById = async (id, name, category, duration, difficulty) => {
+    const usersModel = await User.findAll({
+      include: [
+        {
+          model: Routine,
+          attributes: ["name", "createdBy", "duration", "difficulty","category"],
+          where:{
+            id:id,
+            name:{
+                [Sequelize.Op.in]: name
+            },
+            category:{
+                [Sequelize.Op.in]: category
+            },
+            duration:{
+                [Sequelize.Op.in]: duration
+            },
+            difficulty:{
+                [Sequelize.Op.in]: difficulty
+            },
+          }
+        },
+      ],
+    });
+    return usersModel;
+  };
+
+
+module.exports = { getClass, getRoutines, getMembresies, getUsers ,findUserRoutinesById, getMuscles}
