@@ -1,5 +1,5 @@
 // const axios = require('axios');
-const { Class, Routine, Membresy, User } = require('../../db.js')
+const { Class, Routine, Membresy, User, Feedback } = require('../../db.js');
 
 
 const getClass = async () => {
@@ -72,5 +72,12 @@ const getUsers = async () => {
     return users;
 }
 
+const getFeedbacks = async () => {
+    const allFeedbacks = await Feedback.findAll({
+        attributes: ["title", "description", "disabled"],
+    })
+    return allFeedbacks;
+}
 
-module.exports = { getClass, getRoutines, getMembresies, getUsers }
+
+module.exports = { getClass, getRoutines, getMembresies, getUsers, getFeedbacks }
