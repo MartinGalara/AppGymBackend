@@ -13,9 +13,6 @@ module.exports = (sequelize) => {
         duration: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            get(){
-                return this.getDataValue('duration') + ' minutos'
-            }
         },
         difficulty: {
             type: DataTypes.INTEGER,
@@ -26,6 +23,10 @@ module.exports = (sequelize) => {
             type: DataTypes.ENUM('Cardio/Resistencia', 'Masa Muscular', 'Postura', 'Bajada de Peso', 'Definición'),
             allowNull: false,
         },
+        flag:{
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+        }
     },
         {
             timestamps: false,
