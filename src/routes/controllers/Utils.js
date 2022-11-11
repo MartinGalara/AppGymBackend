@@ -1,6 +1,6 @@
 // const axios = require('axios');
-const { Class, Routine, Membresy, User, Muscle } = require('../../db.js')
 
+const { Class, Routine, Membresy, User, Muscle, Feedback } = require('../../db.js')
 
 const getClass = async () => {
     const classes = await Class.findAll()
@@ -44,6 +44,14 @@ const getUsers = async () => {
     return users;
 }
 
+
+const getFeedbacks = async () => {
+    const allFeedbacks = await Feedback.findAll({
+        attributes: ["title", "description", "disabled"],
+    })
+    return allFeedbacks;
+}
+
 const getMuscles = async () => {
     const muscles = await Muscle.findAll({
         attributes:[ "name" ]
@@ -79,4 +87,4 @@ const findUserRoutinesById = async (id, name, category, duration, difficulty) =>
   };
 
 
-module.exports = { getClass, getRoutines, getMembresies, getUsers ,findUserRoutinesById, getMuscles}
+module.exports = { getClass, getRoutines, getMembresies, getUsers ,findUserRoutinesById, getMuscles, getFeedbacks}
