@@ -18,8 +18,14 @@ router.get('/', async (req, res) => {
 
 
 router.post('/', async (req, res) => {
+
+    const { title, description, score } = req.body;
+
+    console.log(title)
+
     try {
-        let { title, description, score } = req.body;
+      
+        
         if (!description || !title || !score) return res.status(404).json('Missing input')
 
             let newFeedback = await Feedback.create({
