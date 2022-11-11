@@ -58,7 +58,7 @@ const getRoutines = async () => {
 
 const getUsers = async () => {
     const users = await User.findAll({
-        attributes: ["name", "email", "hashPassword", "role"],
+        attributes: ["name", "email", "hashPassword", "role", "imgUrl"],
         // include: [
         //     {
         //         model: Country,

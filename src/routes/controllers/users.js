@@ -1,15 +1,30 @@
 const { Router } = require('express');
 const { User } = require('../../db.js');
 const { getUsers } = require('./Utils.js');
+const { Op } = require("sequelize");
 
 const router = Router();
 
 router.get('/', async (req, res) => {
+    let { role } = req.query;
     let allUsers = await getUsers();
     try {
-        res.status(200).send(allUsers)
+        if (role){
+            let staff = await User.findAll({
+                where: ({
+                    role:{[Op.iLike]: role}
+                })
+            })
+            staff.length?
+            res.status(200).send(staff):
+            res.status(404).send('Role not found');
+        } else {
+            allUsers.length?
+            res.status(200).send(allUsers):
+            res.status(404).send('Users not found');
+        }
     } catch {
-        res.status(404).send('Users not found');
+        res.status(404).send(error.message);
     }
 })
 
