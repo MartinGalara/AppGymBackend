@@ -1,11 +1,12 @@
 const {Router} = require('express')
 const { getMembresies } = require('./Utils.js');
 const Membresy = require('../../db.js')
+const userExtractor = require('../middleware/userExtractor.js');
 
 const router = Router();
 
 
-router.get('/', async (req, res) => {
+router.get('/', userExtractor, async (req, res) => {
     try {
         let allMembresies = await getMembresies();
         allMembresies.length?

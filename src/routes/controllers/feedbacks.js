@@ -1,11 +1,12 @@
 const { Router } = require('express');
 const { getFeedbacks } = require('./Utils.js');
 const { Feedback } = require('../../db.js');
+const userExtractor = require('../middleware/userExtractor.js');
 
 const router = Router();
 
 
-router.get('/', async (req, res) => {
+router.get('/', userExtractor, async (req, res) => {
     try {
         const allFeedbacks = await getFeedbacks();
         allFeedbacks.length ?
@@ -17,7 +18,7 @@ router.get('/', async (req, res) => {
 })
 
 
-router.post('/', async (req, res) => {
+router.post('/', userExtractor, async (req, res) => {
 
     const { title, description, score } = req.body;
 
