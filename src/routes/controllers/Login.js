@@ -119,16 +119,12 @@ router.put('/', async (req,res) => {
     await excercised.setMuscle(6)
 
     const usuario = await User_Routine.findOne({where:{userId:1}})
-
-    console.log(usuario)
     
     await usuario.update({
         favourite:true,
     })
 
-    console.log(usuario)
-
-    res.json(usuario)
+    res.json("Relaciones cargadas")
 
 })
 
