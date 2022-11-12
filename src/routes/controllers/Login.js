@@ -118,13 +118,15 @@ router.put('/', async (req,res) => {
     await excercisec.setMuscle(5)
     await excercised.setMuscle(6)
 
-    console.log(User_Routine)
-
     const usuario = await User_Routine.findOne({where:{userId:1}})
 
+    console.log(usuario)
+    
     await usuario.update({
         favourite:true,
     })
+
+    console.log(usuario)
 
     res.json(usuario)
 

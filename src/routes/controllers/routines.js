@@ -1,11 +1,12 @@
 const { Router } = require('express');
-const { Routine , User, Excercise, Muscle} = require('../../db.js');
+const { User , Routine, Excercise, Muscle, Product, Membresy, Class, User_Routine} = require('../../db.js');
 const { filterData, getRoutines , findUserRoutinesById } = require('./Utils.js');
 const userExtractor = require('../middleware/userExtractor.js')
+const { Op } = require("sequelize");
 
 const router = Router();
 
-router.post('/', async (req, res) => {
+router.post('/', userExtractor, async (req, res) => {
     try {
         let { name, createdBy, duration, difficulty, category } = req.body;
         if (!name || !createdBy || !duration || !difficulty || !category ) return res.status(400).json('Missing inputs')
@@ -24,7 +25,7 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.get('/:idRoutine', async (req, res) => {
+router.get('/:idRoutine', userExtractor, async (req, res) => {
     try {
         const { idRoutine } = req.params;
         const routineSelected = await Routine.findByPk(idRoutine);    
@@ -114,6 +115,30 @@ router.get('/', userExtractor, async (req, res) => {
     }
 
     res.status(200).json(dataFiltered)
+
+})
+
+router.patch('/', userExtractor, async (req, res) => {
+
+    const { id } = req.body;
+    const { idRoutine } = req.params;
+
+    if(!id || !idRoutine) return res.status(400).send("Faltan datos");
+
+    const routine = await User_Routine.findOne({
+        where:{
+            [Op.and]: [{ userId: id }, { routineId: idRoutine }],
+        }
+    })
+
+    const aux = routine.favourite
+    
+    await routine.update({
+        favourite:!aux,
+    })
+    
+
+    res.status(200).json(routine)
 
 })
 

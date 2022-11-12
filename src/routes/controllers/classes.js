@@ -1,10 +1,11 @@
 const { Router } = require('express');
 const { getClass } = require('./Utils.js');
 const { Class } = require('../../db.js');
+const userExtractor = require('../middleware/userExtractor.js');
 
 const router = Router();
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', userExtractor, async (req, res) => {
     const { id } = req.params;
     try {
         const classSelected = await Class.findByPk(id);    
@@ -16,7 +17,7 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-router.get('/', async (req, res) => {
+router.get('/', userExtractor, async (req, res) => {
     try {
         let allClasses = await getClass();
         allClasses.length ?
@@ -27,7 +28,7 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.post('/', async (req, res) => {
+router.post('/', userExtractor, async (req, res) => {
     try {
         let { name, instructor, date } = req.body;
         if (!name || !instructor || !date) return res.status(400).json('Missing inputs')

@@ -2,10 +2,11 @@ const { Router } = require('express');
 const { User } = require('../../db.js');
 const { getUsers } = require('./Utils.js');
 const { Op } = require("sequelize");
+const userExtractor = require('../middleware/userExtractor.js');
 
 const router = Router();
 
-router.get('/', async (req, res) => {
+router.get('/', userExtractor, async (req, res) => {
     let { role } = req.query;
     let allUsers = await getUsers();
     try {
@@ -28,7 +29,7 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', userExtractor, async (req, res) => {
     try {
         const { id } = req.params;
         const selectedUser = await User.findByPk(id)

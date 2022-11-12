@@ -1,9 +1,10 @@
 const { Router } = require('express');
 const { getMuscles } = require('./Utils.js');
+const userExtractor = require('../middleware/userExtractor.js');
 
 const router = Router();
 
-router.get('/', async (req, res) => {
+router.get('/', userExtractor, async (req, res) => {
     const allMuscles = await getMuscles();
     try {
         allMuscles.length?
