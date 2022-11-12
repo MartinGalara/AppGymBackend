@@ -118,7 +118,7 @@ router.get('/', userExtractor, async (req, res) => {
 
 })
 
-router.patch('/', userExtractor, async (req, res) => {
+router.patch('/:idRoutine', userExtractor, async (req, res) => {
 
     const { id } = req.body;
     const { idRoutine } = req.params;
