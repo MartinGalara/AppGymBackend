@@ -48,18 +48,18 @@ router.get('/', userExtractor, async (req, res) => {
 
     const { id , filters } = req.body;
 
-    const { favourite } = req.query;
+    console.log(id)
 
-    console.log(favourite)
+    const { favourite } = req.query;
 
     let userData;
 
     let dataFiltered;
 
     if(favourite) {
-        console.log("aca entre")
+
         try {
-            userData = await User.findByPk(1, {
+            userData = await User.findByPk(id, {
                 include:{
                     model: Routine,
                     include:{
@@ -101,7 +101,7 @@ router.get('/', userExtractor, async (req, res) => {
     }
     else{
         try {
-            userData = await User.findByPk(1, {
+            userData = await User.findByPk(id, {
                 include:{
                     model: Routine,
                     include:{
