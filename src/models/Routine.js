@@ -26,6 +26,10 @@ module.exports = (sequelize) => {
         flag:{
             type: DataTypes.BOOLEAN,
             defaultValue: false,
+        },
+        favByUser:{
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
         }
     },
         {

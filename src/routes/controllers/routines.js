@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { User , Routine, Excercise, Muscle, Product, Membresy, Class, User_Routine} = require('../../db.js');
-const { filterData, getRoutines , findUserRoutinesById } = require('./Utils.js');
+const { filterData, getRoutines , findUserRoutinesById, checkFavs } = require('./Utils.js');
 const userExtractor = require('../middleware/userExtractor.js')
 const { Op } = require("sequelize");
 
@@ -104,17 +104,19 @@ router.post('/filter', userExtractor, async (req, res) => {
                 include:{
                     model: Excercise,
                     include:{
-                        model: Muscle
+                        model: Muscle,
                     }
                 }
             })
         } catch (error) {
             res.status(400).send(error.message)
         }
-        
-    if(Object.entries(filters).length === 0) return res.status(200).json(userData)
 
-    dataFiltered = filterData(userData,filters)
+    const newUserData = await checkFavs(userData,id);
+        
+    if(Object.entries(filters).length === 0) return res.status(200).json(newUserData)
+
+    dataFiltered = filterData(newUserData,filters)
 
     }
 
