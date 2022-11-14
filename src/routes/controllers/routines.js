@@ -209,21 +209,33 @@ router.patch('/:idRoutine', userExtractor, async (req, res) => {
 
     if(!id || !idRoutine) return res.status(400).send("Faltan datos");
 
-    const routine = await User_Routine.findOne({
-        where:{
-            [Op.and]: [{ userId: id }, { routineId: idRoutine }],
-        }
-    })
+    try {
+        const routine = await User_Routine.findOne({
+            where:{
+                [Op.and]: [{ userId: id }, { routineId: idRoutine }],
+            }
+        })
 
-    const aux = routine.favourite
+        const aux = routine.favourite
     
     await routine.update({
         favourite:!aux,
     })
-    
 
     res.status(200).json(routine)
 
+    } catch (error) {
+
+        const newLink = await User_Routine.create({
+            favourite: true,
+            userId: id,
+            routineId: idRoutine
+        })
+
+        res.status(200).json(newLink)
+        
+    }
+    
 })
 
 module.exports = router;
