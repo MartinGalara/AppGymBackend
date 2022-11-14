@@ -44,11 +44,87 @@ router.get('/:idRoutine', userExtractor, async (req, res) => {
     
 })
 
-router.get('/', userExtractor, async (req, res) => {
+router.post('/filter', userExtractor, async (req, res) => {
 
     const { id , filters } = req.body;
 
-    console.log(id)
+    const { favourite } = req.query;
+
+    let userData;
+
+    let dataFiltered;
+
+    if(favourite) {
+
+        try {
+            userData = await User.findByPk(id, {
+                include:{
+                    model: Routine,
+                    include:{
+                        model: Excercise,
+                        include:{
+                            model: Muscle
+                        }
+                    }
+                }
+            })
+        } catch (error) {
+            res.status(400).send(error.message)
+        }
+
+        dataFiltered = filterData(userData.routines,{owned:true,favourite:true})
+
+        return res.status(200).json(dataFiltered)
+    }
+
+    if(filters.favourite){
+
+        try {
+            userData = await User.findByPk(id, {
+                include:{
+                    model: Routine,
+                    include:{
+                        model: Excercise,
+                        include:{
+                            model: Muscle
+                        }
+                    }
+                }
+            })
+        } catch (error) {
+            res.status(400).send(error.message)
+        }
+
+    dataFiltered = filterData(userData.routines,filters)
+
+    }else{
+
+        try {
+            userData = await Routine.findAll({
+                include:{
+                    model: Excercise,
+                    include:{
+                        model: Muscle
+                    }
+                }
+            })
+        } catch (error) {
+            res.status(400).send(error.message)
+        }
+        
+    if(Object.entries(filters).length === 0) return res.status(200).json(userData)
+
+    dataFiltered = filterData(userData,filters)
+
+    }
+
+    res.status(200).json(dataFiltered)
+
+})
+
+/*router.post('/filter', userExtractor, async (req, res) => {
+
+    const { id , filters } = req.body;
 
     const { favourite } = req.query;
 
@@ -124,7 +200,7 @@ router.get('/', userExtractor, async (req, res) => {
 
     res.status(200).json(dataFiltered)
 
-})
+})*/
 
 router.patch('/:idRoutine', userExtractor, async (req, res) => {
 
