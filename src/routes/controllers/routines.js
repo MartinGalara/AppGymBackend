@@ -28,7 +28,6 @@ router.post('/', userExtractor, async (req, res) => {
 router.get('/:idRoutine', userExtractor, async (req, res) => {
     try {
         const { idRoutine } = req.params;
-        console.log(idRoutine)
         const routineSelected = await Routine.findByPk(idRoutine,{
             include:{
                 model: Excercise,
