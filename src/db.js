@@ -54,7 +54,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
 
-const { Excercise , Muscle, Product, Routine, User, Class, Membresy, Day, User_Routine, Feedback } = sequelize.models;
+const { Excercise , Muscle, Product, Routine, User, Class, Membresy, Day, User_Routine, Feedback, Routine_Excercise } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -62,8 +62,8 @@ const { Excercise , Muscle, Product, Routine, User, Class, Membresy, Day, User_R
 User.belongsToMany(Routine, {through: User_Routine, timestamps: false});
 Routine.belongsToMany(User, {through: User_Routine, timestamps: false});
 
-Routine.belongsToMany(Excercise, {through: 'Routine_Excercise', timestamps: false})
-Excercise.belongsToMany(Routine, {through: 'Routine_Excercise', timestamps: false})
+Routine.belongsToMany(Excercise, {through: Routine_Excercise})
+Excercise.belongsToMany(Routine, {through: Routine_Excercise})
 
 Excercise.belongsTo(Muscle);
 Muscle.hasMany(Excercise);
@@ -71,8 +71,8 @@ Muscle.hasMany(Excercise);
 User.belongsToMany(Product, {through: 'User_Product', timestamps: false});
 Product.belongsToMany(User, {through: 'User_Product', timestamps: false});
 
-Class.belongsTo(User, {timestamps: false});
-User.hasMany(Class, {timestamps: false});
+Class.belongsTo(User);
+User.hasMany(Class);
 
 Feedback.belongsTo(User);
 User.hasMany(Feedback);

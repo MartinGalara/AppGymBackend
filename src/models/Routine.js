@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         category: {
-            type: DataTypes.ENUM('Cardio/Resistencia', 'Masa Muscular', 'Postura', 'Bajada de Peso', 'Definición'),
+            type: DataTypes.STRING,
             allowNull: false,
         },
         flag:{

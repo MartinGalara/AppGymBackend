@@ -59,7 +59,7 @@ router.post('/', async (req,res) => {
 
 })
 
-router.put('/', async (req,res) => {
+/*router.put('/', async (req,res) => {
 
     const user1 = await User.findByPk(1);
     await user1.addRoutine(1);
@@ -106,6 +106,6 @@ router.put('/', async (req,res) => {
 
     res.json("Relaciones cargadas")
 
-})
+})*/
 
 module.exports = router;
