@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const { getClass } = require('./Utils.js');
-const { Class } = require('../../db.js');
+const { getClass,createClass } = require('./Utils.js');
+const { Class,User } = require('../../db.js');
 const userExtractor = require('../middleware/userExtractor.js');
 
 const router = Router();
@@ -30,19 +30,17 @@ router.get('/', userExtractor, async (req, res) => {
 
 router.post('/', userExtractor, async (req, res) => {
     try {
-        let { name, instructor, date } = req.body;
+        let { name, instructor, date , id } = req.body;
         if (!name || !instructor || !date) return res.status(400).json('Missing inputs')
-        let newClass = await Class.create({
-                name,
-                instructor,
-                date,
-            });
-            res.status(200).json(newClass);
+        const newClasss = await createClass(name, instructor, date , id);
+        res.status(200).send('todo ok');
 
     } catch (error) {
         res.status(400).send(error.message)
     }
 })
+
+
 
 
 

@@ -1,5 +1,5 @@
 // const axios = require('axios');
-
+const { Op } = require("sequelize");
 const { Class, Routine, Membresy, User, Muscle, Feedback , Excercise, User_Routine} = require('../../db.js')
 
 const getClass = async () => {
@@ -173,4 +173,19 @@ const findUserRoutinesById = async (id, name, category, duration, difficulty) =>
     await ej22.setMuscle(5)
 }
 
-module.exports = { getClass, getRoutines, getMembresies, getUsers ,findUserRoutinesById, getMuscles, getFeedbacks, filterData, relaciones, checkFavs}
+// esta harcodeado porque no hay usuario 11, mirar si se vincula en las tablas...
+const createClass = async (name, instructor, date , id ) => {
+    let newClass = await Class.create({
+      name,
+      instructor,
+      date,
+    });
+    const userAll = await User.findOne({
+      where: {
+        id: id,
+      },
+    });    
+    newClass.setUser(userAll);
+  };
+
+module.exports = { getClass, getRoutines, getMembresies, getUsers ,findUserRoutinesById, getMuscles, getFeedbacks, filterData, relaciones, checkFavs,createClass}
