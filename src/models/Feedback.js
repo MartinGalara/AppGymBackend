@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         score:{
-            type: DataTypes.INTEGER,
+            type: DataTypes.DECIMAL,
             allowNull: false,
         },
         disabled: {
