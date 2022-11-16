@@ -53,9 +53,12 @@ const getUsers = async () => {
     return users;
 }
 
-
 const getFeedbacks = async () => {
-    const allFeedbacks = await Feedback.findAll();
+    const allFeedbacks = await Feedback.findAll({
+        include: [{
+            model: User,
+        }]
+    });
     return allFeedbacks;
 }
 

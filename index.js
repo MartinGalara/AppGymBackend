@@ -20,7 +20,8 @@
 const {relaciones} = require('./src/routes/controllers/Utils.js')
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const { User , Routine , Excercise, Muscle, Product, Membresy, Class, User_Routine, Routine_Excercise} = require('./src/db.js')
+const { User , Routine , Excercise, Muscle, Product, Membresy, Class, Feedback, User_Routine, Routine_Excercise} = require('./src/db.js')
+
 require('dotenv').config();
 const { PORT } = process.env;
 
@@ -40,6 +41,7 @@ conn.sync({ force: true }).then(() => {
       {name: "Jose Manuel Manrique", email: "jmm@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",role: "Staff",imgUrl:"https://media.gettyimages.com/id/909416522/es/foto/hombre-mayor-activo-teniendo-fuerza-ejercicios-con-barra-en-un-gimnasio.jpg?s=1024x1024&w=gi&k=20&c=Ryxs9wzbVTy35mYc77vrZclg7GgccFO8fn2SRxQf13k="},    //auth0|636d38848ad399282c11fafa
       {name: "Gaston Schmitz", email: "gaston@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",role: "Staff",imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa      
       {name: "Gaston Schmitz", email: "1@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",role: "Staff",imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa      
+
     ]
 
     const routines = [
@@ -100,6 +102,17 @@ conn.sync({ force: true }).then(() => {
       {name: "Yoga", date: 2020-15-11 },
       {name: "Yoga2", date: 2020-18-11 },
       {name: "Spinning", date: 2020-20-11 },
+    ]
+
+    const feedbacks = [
+      {title:"Vuestro gym huele",
+      description:"Me comunico con ustedes para elevar la sieguiente queja: su gimnasio tiene aromas humanos en cantidades superiores a las tolerables.",
+      score:"3",
+      userId:1},
+      {title:"Tralari tralari",
+      description:"Holis. Zoi feliz.",
+      score:"5",
+      userId:2}
     ]
 
     User.bulkCreate(users).then(() => console.log("Users cargados"))
@@ -179,6 +192,6 @@ conn.sync({ force: true }).then(() => {
     Muscle.bulkCreate(muscles).then(() => console.log("Muscles cargados"))
     Product.bulkCreate(products).then(() => console.log("Products cargados"))
     Class.bulkCreate(classes).then(() => console.log("Classes cargados"))
-
+    Feedback.bulkCreate(feedbacks).then(() => console.log("Feedbacks cargados"))
   });
 });
