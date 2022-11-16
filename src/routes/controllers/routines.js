@@ -25,6 +25,25 @@ router.post('/', userExtractor, async (req, res) => {
     }
 })
 
+router.delete('/:idRoutine', userExtractor, async (req, res) => {
+
+    const {idRoutine} = req.params;
+
+    if (!idRoutine) return res.status(400).send("Faltan datos")
+
+    try {
+
+    const routineToDelete = await Routine.findByPk(idRoutine);
+
+    await routineToDelete.destroy()
+
+    return res.status(200).send("Rutina eliminada correctamente")
+
+    } catch (error) {
+        res.status(400).send(error.message)
+    } 
+})
+
 router.get('/:idRoutine', userExtractor, async (req, res) => {
     try {
         const { idRoutine } = req.params;
