@@ -32,8 +32,6 @@ router.get('/', userExtractor, async (req, res) => {
 router.post('/', userExtractor, async (req, res) => {
     try {
         let { name, date, id } = req.body;
-        console.log(name);
-        id = 1; // ID HARCODEADO
         if (!name || !date) return res.status(400).json('Missing inputs')
 
         const newClass = await Class.create({

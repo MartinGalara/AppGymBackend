@@ -13,6 +13,20 @@ const getClass = async () => {
     return classes;
 }
 
+const getExcercises = async () => {
+    const excercises = await Excercise.findAll({
+        include: [
+            {
+                model: Muscle,
+            },
+            {
+                model: Routine,
+            },
+        ]
+    })
+    return excercises;
+}
+
 const getMembresies = async () => {
     const membresies = await Membresy.findAll()
     return membresies;
@@ -35,9 +49,7 @@ const getRoutines = async () => {
 
 
 const getUsers = async () => {
-    const users = await User.findAll({
-        attributes: ["name", "email", "hashPassword", "role", "imgUrl"],
-    })
+    const users = await User.findAll()
     return users;
 }
 
@@ -172,4 +184,4 @@ const relaciones = async () => {
     await ej22.setMuscle(5)
 }
 
-module.exports = { getClass, getRoutines, getMembresies, getUsers, findUserRoutinesById, getMuscles, getFeedbacks, filterData, relaciones, checkFavs }
+module.exports = { getClass, getExcercises, getRoutines, getMembresies, getUsers, findUserRoutinesById, getMuscles, getFeedbacks, filterData, relaciones, checkFavs }
