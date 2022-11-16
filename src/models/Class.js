@@ -5,11 +5,6 @@ module.exports = (sequelize) => {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique:true,
-        },
-        instructor: {
-            type: DataTypes.STRING,
-            allowNull: false,
         },
         date: {
             type: DataTypes.DATEONLY,

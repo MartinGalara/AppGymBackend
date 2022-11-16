@@ -7,11 +7,11 @@ module.exports = (sequelize) => {
             allowNull: true,
         },
         description: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false,
         },
         score:{
-            type: DataTypes.INTEGER,
+            type: DataTypes.DECIMAL,
             allowNull: false,
         },
         disabled: {

@@ -6,6 +6,44 @@ const { Op } = require("sequelize");
 
 const router = Router();
 
+router.post('/', userExtractor, async (req, res) => {
+    try {
+        let { name, createdBy, duration, difficulty, category } = req.body;
+        if (!name || !createdBy || !duration || !difficulty || !category ) return res.status(400).json('Missing inputs')
+
+            let newRoutine = await Routine.create({
+                name,
+                createdBy,
+                duration,
+                difficulty,
+                category,
+            });
+            res.status(200).json(newRoutine);
+
+    } catch (error) {
+        res.status(400).send(error.message)
+    }
+})
+
+router.delete('/:idRoutine', userExtractor, async (req, res) => {
+
+    const {idRoutine} = req.params;
+
+    if (!idRoutine) return res.status(400).send("Faltan datos")
+
+    try {
+
+    const routineToDelete = await Routine.findByPk(idRoutine);
+
+    await routineToDelete.destroy()
+
+    return res.status(200).send("Rutina eliminada correctamente")
+
+    } catch (error) {
+        res.status(400).send(error.message)
+    } 
+})
+
 router.get('/:idRoutine', userExtractor, async (req, res) => {
     try {
         const { idRoutine } = req.params;

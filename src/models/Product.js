@@ -18,6 +18,13 @@ module.exports = (sequelize) => {
         category: {
             type: DataTypes.STRING,
         },
+        description: {
+            type: DataTypes.STRING,
+        },
+        imgUrl:{
+            type: DataTypes.STRING,
+            defaultValue: "https://wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg",
+        },
     },
         {
             timestamps: false,
