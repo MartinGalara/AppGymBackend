@@ -31,22 +31,16 @@ const getRoutines = async () => {
 const getUsers = async () => {
     const users = await User.findAll({
         attributes: ["name", "email", "hashPassword", "role", "imgUrl"],
-        // include: [
-        //     {
-        //         model: Country,
-        //         attributes: [
-        //             "id",
-        //             "name"
-        //         ],
-        //     }
-        // ]
     })
     return users;
 }
 
-
 const getFeedbacks = async () => {
-    const allFeedbacks = await Feedback.findAll();
+    const allFeedbacks = await Feedback.findAll({
+        include: [{
+            model: User,
+        }]
+    });
     return allFeedbacks;
 }
 
