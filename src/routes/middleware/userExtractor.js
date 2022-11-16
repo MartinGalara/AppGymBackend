@@ -17,8 +17,12 @@ module.exports = (req , res , next) => {
     }
 
     const { id } = decodedToken;
+    const {userRole} = decodedToken
+    const {userName} = decodedToken
 
     req.body.id = id;
+    req.body.userRole = userRole
+    req.body.userName = userName
 
     next()
 

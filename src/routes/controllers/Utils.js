@@ -1,6 +1,6 @@
 // const axios = require('axios');
 
-const { Class, Routine, Membresy, User, Muscle, Feedback , Excercise, User_Routine} = require('../../db.js')
+const { Class, Routine, Membresy, User, Muscle, Feedback , Excercise, User_Routine, Routine_Excercise} = require('../../db.js')
 
 const getClass = async () => {
     const classes = await Class.findAll()
@@ -125,6 +125,49 @@ const findUserRoutinesById = async (id, name, category, duration, difficulty) =>
 
   }
 
+  const createExcercises = async (excercises,routineId) => {
+
+    for(i=0;i<excercises.length;i++){
+        const { day, name , series, repetitions, muscleId} = excercises[i]
+
+        if ( !day || !name || !series || !repetitions || !muscleId) return false
+
+        const newExcercise = await Excercise.create({
+            day: day,
+            name: name,
+            series: series,
+            repetitions: repetitions,
+            muscleId: muscleId
+        })
+
+        await Routine_Excercise.create({routineId: routineId,excerciseId: newExcercise.id})
+
+    }
+
+    return true
+
+  }
+
+  const updateExcercises = async (excercises) => {
+
+    for(i=0;i<excercises.length;i++){
+
+        const { excerciseId } = excercises[i]
+
+        if ( !excerciseId || !excercises[i].excerciseChanges) return false
+
+        const excerciseToUpdate = await Excercise.findByPk(excerciseId)
+
+        await excerciseToUpdate.update(excercises[i].excerciseChanges)
+
+        }
+
+        return true
+    }
+
+   
+
+
   const relaciones = async () => {
 
     const ej1 = await Excercise.findByPk(1)
@@ -173,4 +216,4 @@ const findUserRoutinesById = async (id, name, category, duration, difficulty) =>
     await ej22.setMuscle(5)
 }
 
-module.exports = { getClass, getRoutines, getMembresies, getUsers ,findUserRoutinesById, getMuscles, getFeedbacks, filterData, relaciones, checkFavs}
+module.exports = { getClass, getRoutines, getMembresies, getUsers ,findUserRoutinesById, getMuscles, getFeedbacks, filterData, relaciones, checkFavs, createExcercises, updateExcercises}

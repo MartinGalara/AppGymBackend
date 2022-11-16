@@ -8,7 +8,7 @@ const router = Router();
 
 router.get('/', userExtractor, async (req,res) => {
 
-   return res.status(200).json({id: req.body.id})
+   return res.status(200).json({id: req.body.id, userRole: req.body.userRole})
 
 })
 
@@ -30,12 +30,15 @@ router.post('/', async (req,res) => {
 
         const userForToken = {
             id: checkingUser.id,
+            userRole: checkingUser.role,
+            userName: checkingUser.name,
         }
     
         const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: 60 * 60 * 24 * 7})
     
         return res.status(200).send({
-            token
+            token,
+            userRole: checkingUser.role
         })
 
     } catch (error) {
@@ -48,12 +51,15 @@ router.post('/', async (req,res) => {
     
         const userForToken = {
             id: newUser.id,
+            userRole: newUser.role,
+            userName: newUser.name,
         }
     
         const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: 60 * 60 * 24 * 7})
     
         return res.status(200).send({
-            token
+            token,
+            userRole: newUser.role
         })
     }
 

@@ -1,29 +1,10 @@
 const { Router } = require('express');
 const { User , Routine, Excercise, Muscle, Product, Membresy, Class, User_Routine} = require('../../db.js');
-const { filterData, getRoutines , findUserRoutinesById, checkFavs } = require('./Utils.js');
+const { filterData, getRoutines , findUserRoutinesById, checkFavs , createExcercises, updateExcercises} = require('./Utils.js');
 const userExtractor = require('../middleware/userExtractor.js')
 const { Op } = require("sequelize");
 
 const router = Router();
-
-router.post('/', userExtractor, async (req, res) => {
-    try {
-        let { name, createdBy, duration, difficulty, category } = req.body;
-        if (!name || !createdBy || !duration || !difficulty || !category ) return res.status(400).json('Missing inputs')
-
-            let newRoutine = await Routine.create({
-                name,
-                createdBy,
-                duration,
-                difficulty,
-                category,
-            });
-            res.status(200).json(newRoutine);
-
-    } catch (error) {
-        res.status(400).send(error.message)
-    }
-})
 
 router.get('/:idRoutine', userExtractor, async (req, res) => {
     try {
@@ -121,6 +102,77 @@ router.post('/filter', userExtractor, async (req, res) => {
 
     res.status(200).json(dataFiltered)
 
+})
+
+router.post('/', userExtractor, async (req, res) => {
+
+    const { name, duration, difficulty, category , userName, excercises} = req.body;
+
+    if (!name || !duration || !difficulty || !category || !userName || !excercises || excercises.length === 0) return res.status(400).json('Faltan datos')
+
+    try {
+        
+        const newRoutine = await Routine.create({
+            name,
+            createdBy: userName,
+            duration,
+            difficulty,
+            category,
+        });
+            
+        const validator = await createExcercises(excercises,newRoutine.id)
+
+        if(!validator) return res.status(400).json('Faltan datos')
+
+        const rutinaCompleta = await Routine.findByPk(newRoutine.id,{
+            include:{
+                model: Excercise,
+                include:{
+                    model: Muscle
+                }
+            }
+        })
+
+        return res.status(200).json(rutinaCompleta);
+
+    } catch (error) {
+        return res.status(400).send(error.message)
+    }
+})
+
+router.put('/', userExtractor, async (req, res) => {
+
+    const { routineId, routineChanges, excercises} = req.body;
+
+    if (!routineId || !routineChanges) return res.status(400).json('Faltan datos')
+
+    try {
+        
+        const routineToUpdate = await Routine.findByPk(routineId)
+
+        if(routineToUpdate) await routineToUpdate.update(routineChanges)
+        else return res.status(404).send("No se encontro esa rutina")
+
+        let validator = true;
+            
+        if(excercises.length !==0) validator = await updateExcercises(excercises) 
+
+        if(!validator) return res.status(400).json('Faltan datos')
+
+        const rutinaCompleta = await Routine.findByPk(routineId,{
+            include:{
+                model: Excercise,
+                include:{
+                    model: Muscle
+                }
+            }
+        })
+
+        return res.status(200).json(rutinaCompleta);
+
+    } catch (error) {
+        return res.status(400).send(error.message)
+    }
 })
 
 /*router.post('/filter', userExtractor, async (req, res) => {
