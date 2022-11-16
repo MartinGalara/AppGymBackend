@@ -35,9 +35,7 @@ const getRoutines = async () => {
 
 
 const getUsers = async () => {
-    const users = await User.findAll({
-        attributes: ["name", "email", "hashPassword", "role", "imgUrl"],
-    })
+    const users = await User.findAll()
     return users;
 }
 
