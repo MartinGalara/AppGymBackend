@@ -71,8 +71,8 @@ Muscle.hasMany(Excercise);
 User.belongsToMany(Product, {through: 'User_Product', timestamps: false});
 Product.belongsToMany(User, {through: 'User_Product', timestamps: false});
 
-Class.belongsTo(User);
 User.hasMany(Class);
+Class.belongsTo(User);
 
 Feedback.belongsTo(User);
 User.hasMany(Feedback);

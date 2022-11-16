@@ -1,9 +1,15 @@
 // const axios = require('axios');
 
-const { Class, Routine, Membresy, User, Muscle, Feedback , Excercise, User_Routine} = require('../../db.js')
+const { Class, Routine, Membresy, User, Muscle, Feedback, Excercise, User_Routine } = require('../../db.js')
 
 const getClass = async () => {
-    const classes = await Class.findAll()
+    const classes = await Class.findAll({
+        include: [{
+            model: User,
+            // atributes: ["id","name", "role"],
+            // where: { userId: userId }
+        }]
+    })
     return classes;
 }
 
@@ -51,75 +57,74 @@ const getMuscles = async () => {
 
 const findUserRoutinesById = async (id, name, category, duration, difficulty) => {
     const usersModel = await User.findAll({
-      include: [
-        {
-          model: Routine,
-          attributes: ["name", "createdBy", "duration", "difficulty","category"],
-          where:{
-            id:id,
-            name:{
-                [Sequelize.Op.in]: name
+        include: [
+            {
+                model: Routine,
+                attributes: ["name", "createdBy", "duration", "difficulty", "category"],
+                where: {
+                    id: id,
+                    name: {
+                        [Sequelize.Op.in]: name
+                    },
+                    category: {
+                        [Sequelize.Op.in]: category
+                    },
+                    duration: {
+                        [Sequelize.Op.in]: duration
+                    },
+                    difficulty: {
+                        [Sequelize.Op.in]: difficulty
+                    },
+                }
             },
-            category:{
-                [Sequelize.Op.in]: category
-            },
-            duration:{
-                [Sequelize.Op.in]: duration
-            },
-            difficulty:{
-                [Sequelize.Op.in]: difficulty
-            },
-          }
-        },
-      ],
+        ],
     });
     return usersModel;
-  };
+};
 
 
-  const filterData = (userData, filters) => {
-    
+const filterData = (userData, filters) => {
+
     let filtered = userData;
 
-    if(filters.muscles)
-    {
-    filtered.map(e=>{
-        for(i=0;i<e.excercises.length;i++){
-            if(filters.muscles.includes(e.excercises[i].muscle.name)) e.flag = true;
-        }
-    })
-    filtered = filtered.filter(e => e.flag === true)
+    if (filters.muscles) {
+        filtered.map(e => {
+            for (i = 0; i < e.excercises.length; i++) {
+                if (filters.muscles.includes(e.excercises[i].muscle.name)) e.flag = true;
+            }
+        })
+        filtered = filtered.filter(e => e.flag === true)
     }
 
-    if(filters.duration) filtered = filtered.filter(e => filters.duration.includes(e.duration))
+    if (filters.duration) filtered = filtered.filter(e => filters.duration.includes(e.duration))
 
-    if(filters.difficulty) filtered = filtered.filter(e => filters.difficulty.includes(e.difficulty))
+    if (filters.difficulty) filtered = filtered.filter(e => filters.difficulty.includes(e.difficulty))
 
-    if(filters.favourite) filtered = filtered.filter(e => e.User_Routine.favourite === true)
+    if (filters.favourite) filtered = filtered.filter(e => e.User_Routine.favourite === true)
 
     return filtered;
-    
-  }
 
-  const checkFavs = async (userData, id) => {
+}
 
-   const tabla = await User_Routine.findAll({where: {userId:id}})
+const checkFavs = async (userData, id) => {
 
-   const favsIds = [];
+    const tabla = await User_Routine.findAll({ where: { userId: id } })
 
-   tabla.map(e => {
-    if(e.favourite) favsIds.push(e.routineId)
-   })
+    const favsIds = [];
 
-   userData.map(e=> {
-    if(favsIds.includes(e.id)) e.favByUser = true;
-   })
+    tabla.map(e => {
+        if (e.favourite) favsIds.push(e.routineId)
+    })
 
-   return userData
+    userData.map(e => {
+        if (favsIds.includes(e.id)) e.favByUser = true;
+    })
 
-  }
+    return userData
 
-  const relaciones = async () => {
+}
+
+const relaciones = async () => {
 
     const ej1 = await Excercise.findByPk(1)
     await ej1.setMuscle(1)
@@ -167,4 +172,4 @@ const findUserRoutinesById = async (id, name, category, duration, difficulty) =>
     await ej22.setMuscle(5)
 }
 
-module.exports = { getClass, getRoutines, getMembresies, getUsers ,findUserRoutinesById, getMuscles, getFeedbacks, filterData, relaciones, checkFavs}
+module.exports = { getClass, getRoutines, getMembresies, getUsers, findUserRoutinesById, getMuscles, getFeedbacks, filterData, relaciones, checkFavs }
