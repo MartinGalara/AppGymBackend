@@ -20,7 +20,7 @@
 const {relaciones} = require('./src/routes/controllers/Utils.js')
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const { User , Routine , Day, Excercise, Muscle, Product, Membresy, Class, User_Routine, Routine_Excercise} = require('./src/db.js')
+const { User , Routine , Excercise, Muscle, Product, Membresy, Class, User_Routine, Routine_Excercise} = require('./src/db.js')
 require('dotenv').config();
 const { PORT } = process.env;
 
@@ -96,9 +96,9 @@ conn.sync({ force: true }).then(() => {
     ]
 
     const classes = [
-      {name: "Yoga", instructor: "Aaron Fraga" , date: 2020-15-11 },
-      {name: "Yoga2", instructor: "Aaron Fraga" , date: 2020-18-11 },
-      {name: "Spinning", instructor: "Gaston Schmitz" , date: 2020-20-11 },
+      {name: "Yoga", date: 2020-15-11 },
+      {name: "Yoga2", date: 2020-18-11 },
+      {name: "Spinning", date: 2020-20-11 },
     ]
 
     User.bulkCreate(users).then(() => console.log("Users cargados"))
