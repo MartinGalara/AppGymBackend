@@ -1,6 +1,6 @@
 // const axios = require('axios');
 
-const { Class, Routine, Membresy, User, Muscle, Feedback , Excercise, User_Routine, Routine_Excercise} = require('../../db.js')
+const { Class, Routine, Membresy, User, Muscle, Feedback , Excercise, User_Routine, Routine_Excercise, Product} = require('../../db.js')
 
 
 const getClass = async () => {
@@ -52,6 +52,11 @@ const getRoutines = async () => {
 const getUsers = async () => {
     const users = await User.findAll()
     return users;
+}
+
+const getAllProducts = async () => {
+    const products = await Product.findAll()
+    return products
 }
 
 const getFeedbacks = async () => {
@@ -228,5 +233,17 @@ const checkFavs = async (userData, id) => {
     await ej22.setMuscle(5)
 }
 
-module.exports = { getClass, getRoutines, getMembresies, getUsers ,findUserRoutinesById, getMuscles, getFeedbacks, filterData, relaciones, checkFavs, createExcercises, updateExcercises}
+const filterProducts = (productData,filters) => {
+
+    let productFilter = productData;
+
+    if (filters.category) productFilter = productFilter.filter(e => filters.category.includes(e.category))
+
+    if (filters.price) productFilter = productFilter.filter(e => filters.price <= (e.price))
+
+    return productFilter;
+
+}
+
+module.exports = { getClass, getRoutines, getMembresies, getUsers ,findUserRoutinesById, getMuscles, getFeedbacks, filterData, relaciones, checkFavs, createExcercises, updateExcercises, getAllProducts,filterProducts}
 

@@ -10,7 +10,7 @@ const feedbacks = require("./controllers/feedbacks.js")
 const muscles = require("./controllers/muscles.js")
 const pasarelaDePagos = require("./controllers/pasarelaDePagos.js")
 const excercises = require("./controllers/excercises.js")
-
+const products = require("./controllers/products.js")
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -26,5 +26,6 @@ router.use('/feedbacks', feedbacks);
 router.use('/muscles', muscles);
 router.use('/', pasarelaDePagos);
 router.use('/excercises', excercises);
+router.use('/products', products);
 
 module.exports = router;
