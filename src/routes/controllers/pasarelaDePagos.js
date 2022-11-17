@@ -6,16 +6,16 @@ const PaymentService = require("../services/PaymentService");
 
 const PaymentInstance = new PaymentController(new PaymentService());
 
-router.get("/payment", function (req, res, next) {
+router.post("/payment", function (req, res, next) {
   const data = req.body;
   PaymentInstance.getPaymentLink(data,req, res);
 });
 
-router.get("/subscription", function (req, res, next) {
+router.post("/subscription", function (req, res, next) {
   PaymentInstance.getSubscriptionLink(req, res);
 });
 
-router.get("/payment/perro", function (req, res, next) {
+router.post("/payment/perro", function (req, res, next) {
  console.log('hola');
 });
 
