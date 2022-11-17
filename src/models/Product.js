@@ -2,15 +2,15 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
     sequelize.define('product', {
-        name: {
+        title: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        price: {
+        unit_price: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        stock: {
+        quantity: {
             type: DataTypes.INTEGER,
             allowNull: false,
             validate: { min: 0 },
