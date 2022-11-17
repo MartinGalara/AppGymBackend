@@ -41,6 +41,25 @@ router.get('/:id', userExtractor, async (req, res) => {
 
 router.patch('/', userExtractor, async (req, res) => {
 
+    const { id , newImage } = req.body;
+
+    if(newImage){
+
+        try {
+            const user = await User.findByPk(id)
+        
+        await user.update({
+            imgUrl: newImage
+        })
+    
+        return res.status(200).json(user)
+    
+        } catch (error) {
+            return res.status(404).send(error.message)
+        }
+
+    }
+
     const { idUser , newRole } = req.query;
 
     if(!idUser || !newRole) return res.status(400).send("Faltan datos");
