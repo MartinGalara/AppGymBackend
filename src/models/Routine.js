@@ -19,10 +19,6 @@ module.exports = (sequelize) => {
             validate: { min: 1, max: 5 },
             allowNull: false,
         },
-        category: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         flag:{
             type: DataTypes.BOOLEAN,
             defaultValue: false,
