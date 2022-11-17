@@ -20,7 +20,7 @@
 const {relaciones} = require('./src/routes/controllers/Utils.js')
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const { User , Routine , Excercise, Muscle, Product, Membresy, Class, Feedback, User_Routine, Routine_Excercise} = require('./src/db.js')
+const { User , Routine , Excercise, Muscle, Product, Membresy, Class, Feedback, User_Routine, Routine_Excercise, Category} = require('./src/db.js')
 
 require('dotenv').config();
 const { PORT } = process.env;
@@ -45,14 +45,24 @@ conn.sync({ force: true }).then(() => {
     ]
 
     const routines = [
-      {name: "Intensivo piernas" , createdBy: "Martin Galara" , duration: 30, difficulty: 5, category: "Cardio/Resistencia"},
-      {name: "Intensivo brazos" , createdBy: "Agustin Reynoso" , duration: 120, difficulty: 3, category: "Masa Muscular"},
-      {name: "Intensivo espalda" , createdBy: "Aron Fraga" , duration: 60, difficulty: 4, category: "Postura"},
-      {name: "Alto rendimiento" , createdBy: "Gaston Schmitz" , duration: 90, difficulty: 1, category: "Fuerza"},
-      {name: "Cardio" , createdBy: "Manuel Casanueva" , duration: 30, difficulty: 2, category: "Potencia"},
-      {name: "Masa muscular" , createdBy: "Pablo Lospennato" , duration: 120, difficulty: 1, category: "Velocidad"},
-      {name: "Tonificacion" , createdBy: "Alexsandro Gomez" , duration: 90, difficulty: 5, category: "Cardio/Resistencia"},
-      {name: "Bajar de peso" , createdBy: "Jose Manuel Manrique" , duration: 60, difficulty: 3, category: "Postura"},
+      {name: "Intensivo piernas" , createdBy: "Martin Galara" , duration: 30, difficulty: 5,categoryId: 1},
+      {name: "Intensivo brazos" , createdBy: "Agustin Reynoso" , duration: 120, difficulty: 3,categoryId: 2},
+      {name: "Intensivo espalda" , createdBy: "Aron Fraga" , duration: 60, difficulty: 4,categoryId: 3},
+      {name: "Alto rendimiento" , createdBy: "Gaston Schmitz" , duration: 90, difficulty: 1,categoryId: 4},
+      {name: "Cardio" , createdBy: "Manuel Casanueva" , duration: 30, difficulty: 2,categoryId: 5},
+      {name: "Masa muscular" , createdBy: "Pablo Lospennato" , duration: 120, difficulty: 1,categoryId: 6},
+      {name: "Tonificacion" , createdBy: "Alexsandro Gomez" , duration: 90, difficulty: 5,categoryId: 7},
+      {name: "Bajar de peso" , createdBy: "Jose Manuel Manrique" , duration: 60, difficulty: 3,categoryId: 1},
+    ]
+
+    const category = [
+      {name: "Cardio"},
+      {name: "Masa Muscular"},
+      {name: "Postura"},
+      {name: "Fuerza"},
+      {name: "Potencia"},
+      {name: "Velocidad"},
+      {name: "Resistencia"},
     ]
 
     const excercises = [
@@ -118,6 +128,7 @@ conn.sync({ force: true }).then(() => {
     ]
 
     User.bulkCreate(users).then(() => console.log("Users cargados"))
+    Category.bulkCreate(category).then(() => console.log("Categorias cargadas"))
     User_Routine.create({userId: 1,routineId:1})
     User_Routine.create({userId: 1,routineId:3})
     User_Routine.create({userId: 1,routineId:7})
