@@ -15,7 +15,7 @@ router.post("/subscription", function (req, res, next) {
   PaymentInstance.getSubscriptionLink(req, res);
 });
 
-router.post("/payment/perro", function (req, res, next) {
+router.get("/payment/perro", function (req, res, next) {
  console.log('hola');
 });
 
