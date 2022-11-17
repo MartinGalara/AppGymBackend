@@ -6,13 +6,6 @@ const PaymentService = require("../services/PaymentService");
 
 const PaymentInstance = new PaymentController(new PaymentService());
 
-router.get("/", function (req, res, next) {
-  return res.json({
-    "/payment": "generates a payment link",
-    "/subscription": "generates a subscription link"
-  });
-});
-
 router.get("/payment", function (req, res, next) {
   const data = req.body;
   PaymentInstance.getPaymentLink(data,req, res);
@@ -23,7 +16,7 @@ router.get("/subscription", function (req, res, next) {
 });
 
 router.get("/payment/perro", function (req, res, next) {
-  PaymentInstance.getSubscriptionLink(req, res);
+ console.log('hola');
 });
 
 module.exports = router;
