@@ -74,6 +74,9 @@ Product.belongsToMany(User, {through: 'User_Product', timestamps: false});
 User.hasMany(Class);
 Class.belongsTo(User);
 
+// Membresy.hasMany(User);
+// User.belongsTo(Membresy);
+
 Feedback.belongsTo(User);
 User.hasMany(Feedback);
 

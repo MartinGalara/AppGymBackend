@@ -7,8 +7,8 @@ const userExtractor = require('../middleware/userExtractor.js');
 const router = Router();
 
 router.get('/', userExtractor, async (req, res) => {
-    let { role } = req.query;
-    let allUsers = await getUsers();
+    const { role } = req.query;
+    const allUsers = await getUsers();
     try {
         if (role){
             let staff = await User.findAll({

@@ -19,13 +19,14 @@ router.get('/', userExtractor, async (req, res) => {
 
 router.post('/', userExtractor, async (req, res) => {
 
-    let { title, description, score, id } = req.body;
+    let { title, staff, description, score, id } = req.body;
 
     try {
-        if (!title || !description || !score) return res.status(404).json('Missing input')
+        if (!title || !staff || !description || !score) return res.status(404).json('Missing input')
 
         let newFeedback = await Feedback.create({
             title,
+            staff,
             description,
             score,
         });

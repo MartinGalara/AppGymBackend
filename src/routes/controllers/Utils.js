@@ -29,7 +29,12 @@ const getExcercises = async () => {
 }
 
 const getMembresies = async () => {
-    const membresies = await Membresy.findAll()
+    const membresies = await Membresy.findAll({
+        // include: [{
+        //     model: User,
+        //     atributes: ["id","name", "role"],
+        // }]
+    })
     return membresies;
 }
 

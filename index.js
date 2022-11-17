@@ -41,7 +41,6 @@ conn.sync({ force: true }).then(() => {
       {name: "Jose Manuel Manrique", email: "jmm@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",role: "Staff",imgUrl:"https://media.gettyimages.com/id/909416522/es/foto/hombre-mayor-activo-teniendo-fuerza-ejercicios-con-barra-en-un-gimnasio.jpg?s=1024x1024&w=gi&k=20&c=Ryxs9wzbVTy35mYc77vrZclg7GgccFO8fn2SRxQf13k="},    //auth0|636d38848ad399282c11fafa
       {name: "Gaston Schmitz", email: "gaston@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",role: "Staff",imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa      
       {name: "Gaston Schmitz", email: "1@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",role: "Staff",imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa      
-
     ]
 
     const routines = [
@@ -98,6 +97,13 @@ conn.sync({ force: true }).then(() => {
       {name: "Soga", price: 2200, stock: 3, description: "Soga de saltar antideslizante", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_753381-MLA45466380079_042021-O.webp", category:"Accesorios"},
       {name: "Bolsa Boxeo Guantin Vendas Cadena Soporte", price: 2200, stock: 3, description: "KIT BOXEO - BOLSA + GUANTINES + VENDAS + CADENAS + SOGA + SOPORTE", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_840990-MLA47292531552_082021-O.webp", category:"Accesorios"},
       {name: "Suplemento proteico", price: 5000, stock: 2,description: "Suplemento en polvo ENA Sport True Made proteínas sabor vanilla ice cream en pote de 930g", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_957539-MLA50144895276_052022-O.webp", category:"Suplementos"},
+    ]
+
+    const membresies = [
+      {name: "Plan 6 meses", totalCost: 9899.99 , saving: 899.85, expiration: 1},
+      {name: "Plan 3 meses", totalCost: 4999.99 , saving: 400.97, expiration: 1},
+      {name: "Plan 1 mes", totalCost: 1799.99 , saving: 0, expiration: 1},
+      {name: "Trial", totalCost: 0 , expiration: 1},
     ]
 
     const classes = [
@@ -195,5 +201,6 @@ conn.sync({ force: true }).then(() => {
     Product.bulkCreate(products).then(() => console.log("Products cargados"))
     Class.bulkCreate(classes).then(() => console.log("Classes cargados"))
     Feedback.bulkCreate(feedbacks).then(() => console.log("Feedbacks cargados"))
+    Membresy.bulkCreate(membresies).then(() => console.log("Membresies cargadas"))
   });
 });
