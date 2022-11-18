@@ -145,7 +145,8 @@ router.post('/filter', userExtractor, async (req, res) => {
 
 router.post('/', userExtractor, async (req, res) => {
 
-    const { name, duration, difficulty , userName, excercises, categoryId} = req.body;
+    const { name, duration, difficulty, category, imgUrl, userName, excercises} = req.body;
+
 
     if (!name || !duration || !difficulty || !userName || !excercises || excercises.length === 0 || !categoryId) return res.status(400).json('Faltan datos')
 
@@ -156,6 +157,7 @@ router.post('/', userExtractor, async (req, res) => {
             createdBy: userName,
             duration,
             difficulty,
+            imgUrl,
             categoryId,
         });
             

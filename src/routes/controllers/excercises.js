@@ -40,14 +40,15 @@ router.get('/', userExtractor, async (req, res) => {
 
 router.post('/', userExtractor, async (req, res) => {
     try {
-        let { day, name, series, repetitions, muscleId, id } = req.body; // ID:11 del userExtractor
-        if (!name || !day || !series || !repetitions) return res.status(400).json('Missing inputs')
+        let { day, name, series, repetitions, gifUrl, muscleId, id } = req.body; // ID:11 del userExtractor
+        if (!name || !day || !series || !repetitions ) return res.status(400).json('Missing inputs')
 
         const newExcersise = await Excercise.create({
             day,
             name,
             series,
             repetitions,
+            gifUrl,
         });
 
         const muscle = await Muscle.findOne({
@@ -66,7 +67,7 @@ router.post('/', userExtractor, async (req, res) => {
 router.put('/:id', userExtractor, async (req, res) => {
     try {
         let { id } = req.params;
-        const { day, name, series, repetitions, muscleId } = req.body
+        const { day, name, series, repetitions, gifUrl, muscleId } = req.body
         let updated = await Excercise.findByPk(id);
         if (updated) {
             const updateExcercise = await updated.update({
@@ -74,6 +75,7 @@ router.put('/:id', userExtractor, async (req, res) => {
                 name,
                 series,
                 repetitions,
+                gifUrl, 
                 muscleId,
             });
             return res.status(200).send({ updateExcercise });
