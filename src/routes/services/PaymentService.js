@@ -5,38 +5,12 @@ class PaymentService {
     const body = info;
     const url = "https://api.mercadopago.com/checkout/preferences";
 
-    // const body = {
-    //   payer_email:"test_user_dishjdi@testuser.com",
-    //   items: [
-    //     {
-    //       title: "Dummy Title",
-    //       description: "Dummy description",
-    //       picture_url: "http://www.myapp.com/myimage.jpg",
-    //       category_id: "category123",
-    //       quantity: 1,
-    //       unit_price: 10,
-    //       currency_id: "ARS"
-    //     },
-    //     {
-    //       title: "pol y su computadora Title",
-    //       description: "Dummy description",
-    //       picture_url: "http://www.myapp.com/myimage.jpg",
-    //       category_id: "category123",
-    //       quantity: 1,
-    //       unit_price: 10,
-    //       currency_id: "ARS"
-    //     }
-    //   ],
-    // };
-
-
     const payment = await axios.post(url, body, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${process.env.ACCESS_TOKEN}`
       }
     });
-    console.log(payment.data);
     return payment.data;
   }
 

@@ -19,10 +19,6 @@ module.exports = (sequelize) => {
             validate: { min: 1, max: 5 },
             allowNull: false,
         },
-        category: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         imgUrl: {
             type: DataTypes.STRING,
             defaultValue: "https://wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg",
