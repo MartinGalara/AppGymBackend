@@ -1,6 +1,6 @@
 // const axios = require('axios');
 
-const { Class, Routine, Membresy, User, Muscle, Feedback , Excercise, User_Routine, Routine_Excercise, Product} = require('../../db.js')
+const { Class, Routine, Membresy, User, Muscle, Feedback , Excercise, User_Routine, Routine_Excercise} = require('../../db.js')
 
 
 const getClass = async () => {
@@ -29,26 +29,13 @@ const getExcercises = async () => {
 }
 
 const getMembresies = async () => {
-    const membresies = await Membresy.findAll({
-        // include: [{
-        //     model: User,
-        //     atributes: ["id","name", "role"],
-        // }]
-    })
+    const membresies = await Membresy.findAll()
     return membresies;
 }
 
 const getRoutines = async () => {
     const routines = await Routine.findAll({
-        attributes: ["name", "createdBy", "duration", "difficulty", "category"],
-        // include: [
-        //     {
-        //         model: Country,
-        //         attributes: [
-        //             "id",
-        //         ],
-        //     }
-        // ]
+        attributes: ["name", "createdBy", "duration", "difficulty", "category", "imgUrl"],
     })
     return routines;
 }
@@ -78,12 +65,12 @@ const getMuscles = async () => {
     return muscles;
 }
 
-const findUserRoutinesById = async (id, name, category, duration, difficulty) => {
+const findUserRoutinesById = async (id, name, category, duration, difficulty, imgUrl) => {
     const usersModel = await User.findAll({
         include: [
             {
                 model: Routine,
-                attributes: ["name", "createdBy", "duration", "difficulty", "category"],
+                attributes: ["name", "createdBy", "duration", "difficulty", "category", "imgUrl"],
                 where: {
                     id: id,
                     name: {
@@ -150,7 +137,7 @@ const checkFavs = async (userData, id) => {
   const createExcercises = async (excercises,routineId) => {
 
     for(i=0;i<excercises.length;i++){
-        const { day, name , series, repetitions, muscleId} = excercises[i]
+        const { day, name , series, repetitions, gifUrl, muscleId} = excercises[i]
 
         if ( !day || !name || !series || !repetitions || !muscleId) return false
 
@@ -159,6 +146,7 @@ const checkFavs = async (userData, id) => {
             name: name,
             series: series,
             repetitions: repetitions,
+            gifUrl: gifUrl,
             muscleId: muscleId
         })
 
@@ -250,5 +238,5 @@ const filterProducts = (productData,filters) => {
 
 }
 
-module.exports = { getClass, getRoutines, getMembresies, getUsers ,findUserRoutinesById, getMuscles, getFeedbacks, filterData, relaciones, checkFavs, createExcercises, updateExcercises, getAllProducts,filterProducts}
+module.exports = { getClass, getRoutines, getMembresies, getUsers ,findUserRoutinesById, getMuscles, getFeedbacks, filterData, relaciones, checkFavs, getExcercises, createExcercises, updateExcercises, getAllProducts,filterProducts}
 

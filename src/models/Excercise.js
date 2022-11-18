@@ -18,6 +18,10 @@ module.exports = (sequelize) => {
         repetitions: {
             type: DataTypes.INTEGER,
         },
+        gifUrl: {
+            type: DataTypes.STRING,
+            defaultValue: "https://wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg",
+        },
     },
         {
             timestamps: false,

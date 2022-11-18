@@ -23,6 +23,10 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        imgUrl: {
+            type: DataTypes.STRING,
+            defaultValue: "https://wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg",
+        },
         flag:{
             type: DataTypes.BOOLEAN,
             defaultValue: false,
