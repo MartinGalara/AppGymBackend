@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { User , Routine, Excercise, Muscle, Product, Membresy, Class, User_Routine} = require('../../db.js');
+const { User , Routine, Excercise, Muscle, Product, Membresy, Class, User_Routine, Category} = require('../../db.js');
 const { filterData, getRoutines , findUserRoutinesById, checkFavs , createExcercises, updateExcercises} = require('./Utils.js');
 const userExtractor = require('../middleware/userExtractor.js')
 const { Op } = require("sequelize");
@@ -29,12 +29,17 @@ router.get('/:idRoutine', userExtractor, async (req, res) => {
     try {
         const { idRoutine } = req.params;
         const routineSelected = await Routine.findByPk(idRoutine,{
-            include:{
-                model: Excercise,
-                include:{
-                    model: Muscle
-                }
-            }
+            include:[
+                {
+                    model: Category,
+                },
+                {
+                    model: Excercise,
+                    include:{
+                        model: Muscle
+                    }
+                },
+            ]
         });    
         res.status(200).send(routineSelected);
     } catch (error) {
@@ -59,12 +64,17 @@ router.post('/filter', userExtractor, async (req, res) => {
             userData = await User.findByPk(id, {
                 include:{
                     model: Routine,
-                    include:{
-                        model: Excercise,
-                        include:{
-                            model: Muscle
-                        }
-                    }
+                    include:[
+                        {
+                            model: Category,
+                        },
+                        {
+                            model: Excercise,
+                            include:{
+                                model: Muscle
+                            }
+                        },
+                    ]
                 }
             })
         } catch (error) {
@@ -82,12 +92,17 @@ router.post('/filter', userExtractor, async (req, res) => {
             userData = await User.findByPk(id, {
                 include:{
                     model: Routine,
-                    include:{
-                        model: Excercise,
-                        include:{
-                            model: Muscle
-                        }
-                    }
+                    include:[
+                        {
+                            model: Category,
+                        },
+                        {
+                            model: Excercise,
+                            include:{
+                                model: Muscle
+                            }
+                        },
+                    ]
                 }
             })
         } catch (error) {
@@ -100,12 +115,17 @@ router.post('/filter', userExtractor, async (req, res) => {
 
         try {
             userData = await Routine.findAll({
-                include:{
-                    model: Excercise,
-                    include:{
-                        model: Muscle,
-                    }
-                }
+                include:[
+                    {
+                        model: Category,
+                    },
+                    {
+                        model: Excercise,
+                        include:{
+                            model: Muscle
+                        }
+                    },
+                ]
             })
         } catch (error) {
             res.status(400).send(error.message)
@@ -127,7 +147,8 @@ router.post('/', userExtractor, async (req, res) => {
 
     const { name, duration, difficulty, category, imgUrl, userName, excercises} = req.body;
 
-    if (!name || !duration || !difficulty || !category || !userName || !excercises || excercises.length === 0) return res.status(400).json('Faltan datos')
+
+    if (!name || !duration || !difficulty || !userName || !excercises || excercises.length === 0 || !categoryId) return res.status(400).json('Faltan datos')
 
     try {
         
@@ -136,8 +157,8 @@ router.post('/', userExtractor, async (req, res) => {
             createdBy: userName,
             duration,
             difficulty,
-            category,
             imgUrl,
+            categoryId,
         });
             
         const validator = await createExcercises(excercises,newRoutine.id)
@@ -145,12 +166,17 @@ router.post('/', userExtractor, async (req, res) => {
         if(!validator) return res.status(400).json('Faltan datos')
 
         const rutinaCompleta = await Routine.findByPk(newRoutine.id,{
-            include:{
-                model: Excercise,
-                include:{
-                    model: Muscle
-                }
-            }
+            include:[
+                {
+                    model: Category,
+                },
+                {
+                    model: Excercise,
+                    include:{
+                        model: Muscle
+                    }
+                },
+            ]
         })
 
         return res.status(200).json(rutinaCompleta);
@@ -180,12 +206,17 @@ router.put('/', userExtractor, async (req, res) => {
         if(!validator) return res.status(400).json('Faltan datos')
 
         const rutinaCompleta = await Routine.findByPk(routineId,{
-            include:{
-                model: Excercise,
-                include:{
-                    model: Muscle
-                }
-            }
+            include:[
+                {
+                    model: Category,
+                },
+                {
+                    model: Excercise,
+                    include:{
+                        model: Muscle
+                    }
+                },
+            ]
         })
 
         return res.status(200).json(rutinaCompleta);

@@ -34,9 +34,7 @@ const getMembresies = async () => {
 }
 
 const getRoutines = async () => {
-    const routines = await Routine.findAll({
-        attributes: ["name", "createdBy", "duration", "difficulty", "category", "imgUrl"],
-    })
+    const routines = await Routine.findAll()
     return routines;
 }
 

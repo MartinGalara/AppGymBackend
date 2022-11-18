@@ -20,7 +20,7 @@
 const {relaciones} = require('./src/routes/controllers/Utils.js')
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const { User , Routine , Excercise, Muscle, Product, Membresy, Class, Feedback, User_Routine, Routine_Excercise} = require('./src/db.js')
+const { User , Routine , Excercise, Muscle, Product, Membresy, Class, Feedback, User_Routine, Routine_Excercise, Category} = require('./src/db.js')
 
 require('dotenv').config();
 const { PORT } = process.env;
@@ -44,6 +44,7 @@ conn.sync({ force: true }).then(() => {
     ]
 
     const routines = [
+
       {name: "Intensivo piernas" , createdBy: "Martin Galara" , duration: 30, difficulty: 5, category: "Cardio/Resistencia", imgUrl:"https://media.revistagq.com/photos/5ca5f0c64c7adb774d00d229/3:2/w_2118,h_1412,c_limit/como_usar_maquina_de_cardio__5188.jpg"},
       {name: "Intensivo brazos" , createdBy: "Agustin Reynoso" , duration: 120, difficulty: 3, category: "Masa Muscular", imgUrl:"https://i.blogs.es/782fb9/exercise/1366_2000.jpg"},
       {name: "Intensivo espalda" , createdBy: "Aron Fraga" , duration: 60, difficulty: 4, category: "Postura", imgUrl:"https://pilarfitness.com.ar/wp-content/uploads/2022/06/back-fitness-gym-power-pose.jpg"},
@@ -52,6 +53,17 @@ conn.sync({ force: true }).then(() => {
       {name: "Masa muscular" , createdBy: "Pablo Lospennato" , duration: 120, difficulty: 1, category: "Velocidad", imgUrl:"https://i.blogs.es/cd56d5/istock-905989902/1366_2000.jpeg"},
       {name: "Tonificacion" , createdBy: "Alexsandro Gomez" , duration: 90, difficulty: 5, category: "Cardio/Resistencia", imgUrl:"https://media.gq.com.mx/photos/619502fe9d62ea68964f2552/16:9/w_2560%2Cc_limit/GettyImages-1016623594.jpg"},
       {name: "Bajar de peso" , createdBy: "Jose Manuel Manrique" , duration: 60, difficulty: 3, category: "Postura", imgUrl:"https://media.revistagq.com/photos/621cd95e4d5d1943d21a6b90/16:9/w_2560%2Cc_limit/GettyImages-1265194043%2520(1).jpg"},
+    ]
+
+    const category = [
+      {name: "Cardio"},
+      {name: "Masa Muscular"},
+      {name: "Postura"},
+      {name: "Fuerza"},
+      {name: "Potencia"},
+      {name: "Velocidad"},
+      {name: "Resistencia"},
+
     ]
 
     const excercises = [
@@ -90,13 +102,13 @@ conn.sync({ force: true }).then(() => {
     ]
 
     const products = [
-      {name: "Remera Animal", price: 2500, stock: 5, description: "Remera fit con la cara del futuro del Bodybuilding Manu Casanueva", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_613482-MLA52418021813_112022-O.webp", category:"Indumentaria"},
-      {name: "Remera No Pain No Gain", price: 2500, stock: 5, description: "Remera fit", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_770558-MLA44116282496_112020-O.webp", category:"Indumentaria"},
-      {name: "Gorra Animal", price: 1500, stock: 4, description: "Gorra con visera Animal estampada regulable. Unisex", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_676233-MLA50965826480_082022-O.webp", category:"Indumentaria"},
-      {name: "Mancuerna", price: 4500, stock: 2, description: "Mancuerna de 5kg. El precio Corresponde a 1 sola Unidad", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_780600-MLA51811641970_102022-O.webp", category:"Accesorios"},
-      {name: "Soga", price: 2200, stock: 3, description: "Soga de saltar antideslizante", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_753381-MLA45466380079_042021-O.webp", category:"Accesorios"},
-      {name: "Bolsa Boxeo Guantin Vendas Cadena Soporte", price: 2200, stock: 3, description: "KIT BOXEO - BOLSA + GUANTINES + VENDAS + CADENAS + SOGA + SOPORTE", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_840990-MLA47292531552_082021-O.webp", category:"Accesorios"},
-      {name: "Suplemento proteico", price: 5000, stock: 2,description: "Suplemento en polvo ENA Sport True Made proteínas sabor vanilla ice cream en pote de 930g", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_957539-MLA50144895276_052022-O.webp", category:"Suplementos"},
+      {title: "Remera Animal", unit_price: 2500, quantity: 5, description: "Remera fit con la cara del futuro del Bodybuilding Manu Casanueva", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_613482-MLA52418021813_112022-O.webp", category:"Indumentaria"},
+      {title: "Remera No Pain No Gain", unit_price: 2500, quantity: 5, description: "Remera fit", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_770558-MLA44116282496_112020-O.webp", category:"Indumentaria"},
+      {title: "Gorra Animal", unit_price: 1500, quantity: 4, description: "Gorra con visera Animal estampada regulable. Unisex", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_676233-MLA50965826480_082022-O.webp", category:"Indumentaria"},
+      {title: "Mancuerna", unit_price: 4500, quantity: 2, description: "Mancuerna de 5kg. El precio Corresponde a 1 sola Unidad", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_780600-MLA51811641970_102022-O.webp", category:"Accesorios"},
+      {title: "Soga", unit_price: 2200, quantity: 3, description: "Soga de saltar antideslizante", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_753381-MLA45466380079_042021-O.webp", category:"Accesorios"},
+      {title: "Bolsa Boxeo Guantin Vendas Cadena Soporte", unit_price: 2200, quantity: 3, description: "KIT BOXEO - BOLSA + GUANTINES + VENDAS + CADENAS + SOGA + SOPORTE", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_840990-MLA47292531552_082021-O.webp", category:"Accesorios"},
+      {title: "Suplemento proteico", unit_price: 5000, quantity: 2,description: "Suplemento en polvo ENA Sport True Made proteínas sabor vanilla ice cream en pote de 930g", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_957539-MLA50144895276_052022-O.webp", category:"Suplementos"},
     ]
 
     const membresies = [
@@ -124,6 +136,7 @@ conn.sync({ force: true }).then(() => {
     ]
 
     User.bulkCreate(users).then(() => console.log("Users cargados"))
+    Category.bulkCreate(category).then(() => console.log("Categorias cargadas"))
     User_Routine.create({userId: 1,routineId:1})
     User_Routine.create({userId: 1,routineId:3})
     User_Routine.create({userId: 1,routineId:7})
