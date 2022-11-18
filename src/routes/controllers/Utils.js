@@ -1,6 +1,6 @@
 // const axios = require('axios');
 
-const { Class, Routine, Membresy, User, Muscle, Feedback , Excercise, User_Routine, Routine_Excercise} = require('../../db.js')
+const { Class, Routine, Membresy, User, Muscle, Feedback , Excercise, User_Routine, Routine_Excercise, Item, Sale} = require('../../db.js')
 
 
 const getClass = async () => {
@@ -173,8 +173,34 @@ const checkFavs = async (userData, id) => {
         return true
     }
 
-   
+    const createSale = async (data,id) => {
 
+        let sumaItems = 0;
+
+        const newSale = await Sale.create({
+            purchaseId:data.id,
+            userId: id
+        })
+
+        const items = data.items;
+
+        for(let i=0;i < items.length;i++){
+            
+            await Item.create({
+                title: items[i].title,
+                unit_price: items[i].unit_price,
+                quantity: items[i].quantity,
+                saleId: newSale.id
+            })
+
+            const aux = items[i].unit_price * items[i].quantity
+
+            sumaItems = sumaItems + aux
+        }
+
+        await newSale.update({totalCost: sumaItems})
+
+    }
 
   const relaciones = async () => {
 
@@ -236,5 +262,5 @@ const filterProducts = (productData,filters) => {
 
 }
 
-module.exports = { getClass, getRoutines, getMembresies, getUsers ,findUserRoutinesById, getMuscles, getFeedbacks, filterData, relaciones, checkFavs, getExcercises, createExcercises, updateExcercises, getAllProducts,filterProducts}
+module.exports = { getClass, getRoutines, getMembresies, getUsers ,findUserRoutinesById, getMuscles, getFeedbacks, filterData, relaciones, checkFavs, getExcercises, createExcercises, updateExcercises, getAllProducts,filterProducts,createSale}
 
