@@ -45,14 +45,14 @@ conn.sync({ force: true }).then(() => {
 
     const routines = [
 
-      {name: "Intensivo piernas" , createdBy: "Martin Galara" , duration: 30, difficulty: 5, category: "Cardio/Resistencia", imgUrl:"https://media.revistagq.com/photos/5ca5f0c64c7adb774d00d229/3:2/w_2118,h_1412,c_limit/como_usar_maquina_de_cardio__5188.jpg"},
-      {name: "Intensivo brazos" , createdBy: "Agustin Reynoso" , duration: 120, difficulty: 3, category: "Masa Muscular", imgUrl:"https://i.blogs.es/782fb9/exercise/1366_2000.jpg"},
-      {name: "Intensivo espalda" , createdBy: "Aron Fraga" , duration: 60, difficulty: 4, category: "Postura", imgUrl:"https://pilarfitness.com.ar/wp-content/uploads/2022/06/back-fitness-gym-power-pose.jpg"},
-      {name: "Alto rendimiento" , createdBy: "Gaston Schmitz" , duration: 90, difficulty: 1, category: "Fuerza", imgUrl:"https://media.revistagq.com/photos/5ec536e1db7478f5171ec0d1/16:9/w_2560%2Cc_limit/GettyImages-629209130.jpg"},
-      {name: "Cardio" , createdBy: "Manuel Casanueva" , duration: 30, difficulty: 2, category: "Potencia", imgUrl:"https://media.gq.com.mx/photos/6245e450863c35ccea6ab3bd/16:9/w_2560%2Cc_limit/saltar%2520la%2520cuerda.jpg"},
-      {name: "Masa muscular" , createdBy: "Pablo Lospennato" , duration: 120, difficulty: 1, category: "Velocidad", imgUrl:"https://i.blogs.es/cd56d5/istock-905989902/1366_2000.jpeg"},
-      {name: "Tonificacion" , createdBy: "Alexsandro Gomez" , duration: 90, difficulty: 5, category: "Cardio/Resistencia", imgUrl:"https://media.gq.com.mx/photos/619502fe9d62ea68964f2552/16:9/w_2560%2Cc_limit/GettyImages-1016623594.jpg"},
-      {name: "Bajar de peso" , createdBy: "Jose Manuel Manrique" , duration: 60, difficulty: 3, category: "Postura", imgUrl:"https://media.revistagq.com/photos/621cd95e4d5d1943d21a6b90/16:9/w_2560%2Cc_limit/GettyImages-1265194043%2520(1).jpg"},
+      {name: "Intensivo piernas" , createdBy: "Martin Galara" , duration: 30, difficulty: 5, categoryId: 1, imgUrl:"https://media.revistagq.com/photos/5ca5f0c64c7adb774d00d229/3:2/w_2118,h_1412,c_limit/como_usar_maquina_de_cardio__5188.jpg"},
+      {name: "Intensivo brazos" , createdBy: "Agustin Reynoso" , duration: 120, difficulty: 3, categoryId: 2, imgUrl:"https://i.blogs.es/782fb9/exercise/1366_2000.jpg"},
+      {name: "Intensivo espalda" , createdBy: "Aron Fraga" , duration: 60, difficulty: 4, categoryId: 3, imgUrl:"https://pilarfitness.com.ar/wp-content/uploads/2022/06/back-fitness-gym-power-pose.jpg"},
+      {name: "Alto rendimiento" , createdBy: "Gaston Schmitz" , duration: 90, difficulty: 1, categoryId: 4, imgUrl:"https://media.revistagq.com/photos/5ec536e1db7478f5171ec0d1/16:9/w_2560%2Cc_limit/GettyImages-629209130.jpg"},
+      {name: "Cardio" , createdBy: "Manuel Casanueva" , duration: 30, difficulty: 2, categoryId: 5, imgUrl:"https://media.gq.com.mx/photos/6245e450863c35ccea6ab3bd/16:9/w_2560%2Cc_limit/saltar%2520la%2520cuerda.jpg"},
+      {name: "Masa muscular" , createdBy: "Pablo Lospennato" , duration: 120, difficulty: 1, categoryId: 6, imgUrl:"https://i.blogs.es/cd56d5/istock-905989902/1366_2000.jpeg"},
+      {name: "Tonificacion" , createdBy: "Alexsandro Gomez" , duration: 90, difficulty: 5, categoryId: 7, imgUrl:"https://media.gq.com.mx/photos/619502fe9d62ea68964f2552/16:9/w_2560%2Cc_limit/GettyImages-1016623594.jpg"},
+      {name: "Bajar de peso" , createdBy: "Jose Manuel Manrique" , duration: 60, difficulty: 3, categoryId: 1, imgUrl:"https://media.revistagq.com/photos/621cd95e4d5d1943d21a6b90/16:9/w_2560%2Cc_limit/GettyImages-1265194043%2520(1).jpg"},
     ]
 
     const category = [

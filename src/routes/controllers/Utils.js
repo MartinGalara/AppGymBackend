@@ -1,6 +1,6 @@
 // const axios = require('axios');
 
-const { Class, Routine, Membresy, User, Muscle, Feedback , Excercise, User_Routine, Routine_Excercise, Item, Sale} = require('../../db.js')
+const { Class, Routine, Membresy, User, Muscle, Feedback , Excercise, User_Routine, Routine_Excercise, Item, Sale, Product} = require('../../db.js')
 
 
 const getClass = async () => {
