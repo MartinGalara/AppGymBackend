@@ -21,9 +21,12 @@ class PaymentController {
       }
     }
   
-    async getSubscriptionLink(req, res) {
+    async getSubscriptionLink(data,id,req, res) {
       try {
-        const subscription = await this.subscriptionService.createSubscription();
+        
+        const subscription = await this.subscriptionService.createSubscription(data);
+
+        // await createSubs(subscription,id);
   
         return res.json(subscription);
       } catch (error) {
