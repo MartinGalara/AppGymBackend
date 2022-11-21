@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
             unique:true
         },
         unit_price: {
-            type: DataTypes.DECIMAL,
+            type: DataTypes.FLOAT,
             allowNull: false,
         },
         quantity: {

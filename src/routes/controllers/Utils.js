@@ -1,6 +1,6 @@
 // const axios = require('axios');
 
-const { Class, Routine, Membresy, User, Muscle, Feedback , Excercise, User_Routine, Routine_Excercise, Item, Sale, Product} = require('../../db.js')
+const { Class, Routine, SubscriptionSale,Membresy, User, Muscle, Feedback , Excercise, User_Routine, Routine_Excercise, Item, Sale, Product} = require('../../db.js');
 
 
 const getClass = async () => {
@@ -202,6 +202,18 @@ const checkFavs = async (userData, id) => {
 
     }
 
+    const createSubs = async (data,id) => {
+
+        const newSuscription = await SubscriptionSale.create({
+            purchaseId:data.id,
+            userId: id,
+            totalCost:data.auto_recurring.transaction_amount,
+            name:data.reason,
+            expiration:data.frequency,
+
+        })
+    }
+
   const relaciones = async () => {
 
     const ej1 = await Excercise.findByPk(1)
@@ -256,11 +268,13 @@ const filterProducts = (productData,filters) => {
 
     if (filters.category) productFilter = productFilter.filter(e => filters.category.includes(e.category))
 
-    if (filters.price) productFilter = productFilter.filter(e => filters.price <= (e.price))
+    if (filters.min) productFilter = productFilter.filter(e => filters.min <= (e.unit_price))
+
+    if (filters.max) productFilter = productFilter.filter(e => filters.max >= (e.unit_price))
 
     return productFilter;
 
 }
 
-module.exports = { getClass, getRoutines, getMembresies, getUsers ,findUserRoutinesById, getMuscles, getFeedbacks, filterData, relaciones, checkFavs, getExcercises, createExcercises, updateExcercises, getAllProducts,filterProducts,createSale}
+module.exports = { createSubs,getClass, getRoutines, getMembresies, getUsers ,findUserRoutinesById, getMuscles, getFeedbacks, filterData, relaciones, checkFavs, getExcercises, createExcercises, updateExcercises, getAllProducts,filterProducts,createSale}
 

@@ -7,7 +7,7 @@ const PaymentService = require("../services/PaymentService");
 
 const PaymentInstance = new PaymentController(new PaymentService());
 
-const { Item, Sale, Product } = require('../../db.js')
+const { Item, Sale, Product , SubscriptionSale } = require('../../db.js')
 
 router.post("/payment", userExtractor, async function (req, res, next) {
 
@@ -62,8 +62,37 @@ router.put("/payment", userExtractor, async function (req, res, next) {
 
 });
 
-router.post("/subscription", function (req, res, next) {
-  PaymentInstance.getSubscriptionLink(req, res);
+router.post("/subscription",userExtractor, async function (req, res, next) {
+
+  const data = req.body;
+
+  const {id} = req.body;
+
+  PaymentInstance.getSubscriptionLink(data,id,req, res);
+});
+
+router.put("/subscription", userExtractor, async function (req, res, next) {
+
+  const { payed , purchaseId , paymentMethod} = req.body;
+
+  if( !payed || ! purchaseId || !paymentMethod) res.status(400).send("Falta info")
+
+  const sale = await SubscriptionSale.findOne({
+    where:{
+    purchaseId: purchaseId
+     },
+     include:{
+      model: Membresy
+     }
+})
+
+  await sale.update({
+    approved: payed,
+    paymentMethod,
+  })
+
+  return res.json(sale)
+
 });
 
 module.exports = router;
