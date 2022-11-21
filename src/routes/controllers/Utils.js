@@ -99,13 +99,13 @@ const filterData = (userData, filters) => {
         filtered.map(e => {
             let setAux = new Set()
             for (i = 0; i < e.excercises.length; i++) {
-                if (filters.muscles.includes(e.excercises[i].muscle.name)) setAux.add(e.excercises[i].muscle.name)
+                if (filters.muscles.includes(e.excercises[i].muscle.name))setAux.add(e.excercises[i].muscle.name)
             }
             let arrayAux = [];
             setAux.forEach(e => arrayAux.push(e))
-            if(JSON.stringify(arrayAux.reverse())==JSON.stringify(filters.muscles)) e.flag = true;
-            console.log(setAux)
-            console.log(arrayAux)
+            arrayAux.sort();
+            filters.muscles.sort();
+            if(JSON.stringify(arrayAux)==JSON.stringify(filters.muscles)) e.flag = true;
 
         })
     
