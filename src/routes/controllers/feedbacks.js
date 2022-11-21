@@ -19,7 +19,7 @@ router.get('/', userExtractor, async (req, res) => {
 
 router.post('/', userExtractor, async (req, res) => {
 
-    let { title, staff, description, score, id } = req.body;
+    let { title, staff, staffId, description, score, id } = req.body;
 
     try {
         if (!title || !description || !score) return res.status(404).json('Missing input')
@@ -31,12 +31,30 @@ router.post('/', userExtractor, async (req, res) => {
             score,
         });
 
-        const user = await User.findOne({
-            where: {
-                id,
-            }
-        })
+        const user = await User.findByPk(id)
         newFeedback.setUser(user)
+
+        if(staff){
+            const allReviews = await Feedback.findAll({
+                where:{
+                    staff: staff,
+                }
+            })
+
+            let array = []
+
+            allReviews.map(e => array.push(e.score))
+
+            const sum = array.reduce((a, b) => parseInt(a) + parseInt(b), 0);
+            const avg = (sum / array.length) || 0;
+
+            const staffUser = await User.findByPk(staffId)
+
+            await staffUser.update({
+                averageScore: avg
+            })
+
+        }
         res.status(200).json(newFeedback);
     } catch (error) {
         res.status(400).send(error.message)

@@ -23,6 +23,9 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             defaultValue: "https://wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg",
         },
+        averageScore:{
+            type: DataTypes.FLOAT,
+        }
     },
         {
             timestamps: false,
