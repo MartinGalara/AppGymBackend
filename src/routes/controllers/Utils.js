@@ -97,11 +97,19 @@ const filterData = (userData, filters) => {
 
     if (filters.muscles) {
         filtered.map(e => {
+            let setAux = new Set()
             for (i = 0; i < e.excercises.length; i++) {
-                if (filters.muscles.includes(e.excercises[i].muscle.name)) e.flag = true;
+                if (filters.muscles.includes(e.excercises[i].muscle.name)) setAux.add(e.excercises[i].muscle.name)
             }
+            let arrayAux = [];
+            setAux.forEach(e => arrayAux.push(e))
+            if(JSON.stringify(arrayAux.reverse())==JSON.stringify(filters.muscles)) e.flag = true;
+            console.log(setAux)
+            console.log(arrayAux)
+
         })
-        filtered = filtered.filter(e => e.flag === true)
+    
+    filtered = filtered.filter(e => e.flag === true)
     }
 
     if (filters.duration) filtered = filtered.filter(e => filters.duration.includes(e.duration))
