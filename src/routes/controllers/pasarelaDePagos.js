@@ -21,7 +21,7 @@ router.post("/payment", userExtractor, async function (req, res, next) {
 
   for( let i=0; i< items.length ; i++){
     const product = await Product.findOne({where:{title:items[i].title}})
-    if(items[i].quantity > product.quantity) sinStock.push(`Producto ${product.title} sin stock.`)
+    if(items[i].quantity > product.stock) sinStock.push(`Producto ${product.title} sin stock.`)
   }
 
   if(sinStock.length !==0) return res.status(400).send(sinStock)
@@ -54,8 +54,8 @@ router.put("/payment", userExtractor, async function (req, res, next) {
 
   for( let i=0; i< items.length ; i++){
     const product = await Product.findOne({where:{title:items[i].title}})
-    const quantity = product.quantity
-    await product.update({quantity: quantity-items[i].quantity})
+    const stock = product.stock
+    await product.update({stock: stock-items[i].quantity})
   }
 
   return res.json(sale)
