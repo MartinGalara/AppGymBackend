@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { User , Routine, Excercise, Muscle, Product, Membresy, Class, User_Routine, Category} = require('../../db.js');
-const { filterData, getRoutines , findUserRoutinesById, checkFavs , createExcercises, updateExcercises} = require('./Utils.js');
+const { filterData, findUserRoutinesById, checkFavs , createExcercises, updateExcercises} = require('./Utils.js');
 const userExtractor = require('../middleware/userExtractor.js')
 const { Op } = require("sequelize");
 

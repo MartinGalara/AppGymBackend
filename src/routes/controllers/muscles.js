@@ -6,7 +6,7 @@ const userExtractor = require('../middleware/userExtractor.js');
 const router = Router();
 
 router.get('/', userExtractor, async (req, res) => {
-    const allMuscles = await getMuscles();
+    const allMuscles = await Muscle.findAll();
     try {
         allMuscles.length?
         res.status(200).send(allMuscles):

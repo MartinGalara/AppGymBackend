@@ -1,6 +1,5 @@
 const { Router } = require('express')
-const { getMembresies } = require('./Utils.js');
-const { Membresy, User } = require('../../db.js')
+const { Membresy } = require('../../db.js')
 const userExtractor = require('../middleware/userExtractor.js');
 
 const router = Router();
@@ -9,11 +8,6 @@ router.get('/:id', userExtractor, async (req, res) => {
     const { id } = req.params;
     try {
         const membresySelected = await Membresy.findByPk(id, {
-            // include: [
-            //     {
-            //         model: User,
-            //     }
-            // ]
         });
         !membresySelected ?
             res.status(400).send("Membresy ID no fue encontrada") :
@@ -25,7 +19,7 @@ router.get('/:id', userExtractor, async (req, res) => {
 
 router.get('/', userExtractor, async (req, res) => {
     try {
-        let allMembresies = await getMembresies();
+        let allMembresies = await Membresy.findAll();
         allMembresies.length ?
             res.status(200).send(allMembresies) :
             res.status(404).send('Membresies not found');
@@ -45,13 +39,6 @@ router.post('/', userExtractor, async (req, res) => {
             saving,
             expiration,
         });
-        // const user = await User.findOne({
-        //     attributes: ['id', 'name'],
-        //     where: {
-        //         id: userId,
-        //     }
-        // })
-        // newMembresy.addUser(user)
         res.status(200).json(newMembresy);
     } catch (error) {
         res.status(400).send(error.message)
@@ -71,13 +58,6 @@ router.put('/:id', userExtractor, async (req, res) => {
                 saving,
                 expiration,
             });
-            // const user = await User.findOne({
-            //     attributes: ['id', 'name'],
-            //     where: {
-            //         id: id,
-            //     }
-            // })
-            // updateMembresy.addUser(user)
             return res.status(200).send({ updateMembresy });
         }
         throw new Error('Membresía inexistente')

@@ -8,7 +8,7 @@ const router = Router();
 
 router.get('/', userExtractor, async (req, res) => {
     const { role } = req.query;
-    const allUsers = await getUsers();
+    const allUsers = await User.findAll();
     try {
         if (role){
             let staff = await User.findAll({

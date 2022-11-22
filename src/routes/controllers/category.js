@@ -45,7 +45,7 @@ router.patch('/', userExtractor, async (req, res) => {
     try {
 
         const category = await Category.findOne({
-            where:{name:name}
+            where:{name:name} 
         })
 
         category.update({name:newName})

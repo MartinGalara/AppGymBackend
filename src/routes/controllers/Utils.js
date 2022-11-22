@@ -1,14 +1,12 @@
 // const axios = require('axios');
 
-const { Class, Routine, SubscriptionSale,Membresy, User, Muscle, Feedback , Excercise, User_Routine, Routine_Excercise, Item, Sale, Product} = require('../../db.js');
+const { Class, Routine, SubscriptionSale, User, Muscle, Feedback , Excercise, User_Routine, Routine_Excercise, Item, Sale } = require('../../db.js');
 
 
 const getClass = async () => {
     const classes = await Class.findAll({
         include: [{
             model: User,
-            // atributes: ["id","name", "role"],
-            // where: { userId: userId }
         }]
     })
     return classes;
@@ -28,27 +26,6 @@ const getExcercises = async () => {
     return excercises;
 }
 
-const getMembresies = async () => {
-    const membresies = await Membresy.findAll()
-    return membresies;
-}
-
-const getRoutines = async () => {
-    const routines = await Routine.findAll()
-    return routines;
-}
-
-
-const getUsers = async () => {
-    const users = await User.findAll()
-    return users;
-}
-
-const getAllProducts = async () => {
-    const products = await Product.findAll()
-    return products
-}
-
 const getFeedbacks = async () => {
     const allFeedbacks = await Feedback.findAll({
         include: [{
@@ -56,11 +33,6 @@ const getFeedbacks = async () => {
         }]
     });
     return allFeedbacks;
-}
-
-const getMuscles = async () => {
-    const muscles = await Muscle.findAll()
-    return muscles;
 }
 
 const findUserRoutinesById = async (id, name, category, duration, difficulty, imgUrl) => {
@@ -284,5 +256,5 @@ const filterProducts = (productData,filters) => {
 
 }
 
-module.exports = { createSubs,getClass, getRoutines, getMembresies, getUsers ,findUserRoutinesById, getMuscles, getFeedbacks, filterData, relaciones, checkFavs, getExcercises, createExcercises, updateExcercises, getAllProducts,filterProducts,createSale}
+module.exports = { createSubs, getClass ,findUserRoutinesById, getFeedbacks, filterData, relaciones, checkFavs, getExcercises, createExcercises, updateExcercises, filterProducts, createSale}
 
