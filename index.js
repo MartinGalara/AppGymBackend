@@ -122,7 +122,7 @@ conn.sync({ force: true }).then(() => {
       {title: "Hand Grip Regulable", unit_price: 2000, quantity: 4, description: "Hand Grip Regulable Ejercitador Mano Antebrazo 10-50 Kg.", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_614597-MLA52263952154_112022-O.webp", category:"Accesorios"},
       {title: "Banda De Suspensión", unit_price: 2200, quantity: 2, description: "Banda De Suspensión Trx Entrenamiento Fitness Crossfit Gym", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_820412-MLA52323701581_112022-O.webp", category:"Accesorios"},
       {title: "Termo 500ml", unit_price: 1900, quantity: 4, description: "Termo Con Cordón Importado Sublimable De 500ml", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_932275-MLA51457152855_092022-O.webp", category:"Accesorios"},
-      // {title: "", unit_price: 1800, quantity: 4, description: "", imgUrl:"", category:""},
+
     ]
 
     const membresies = [
