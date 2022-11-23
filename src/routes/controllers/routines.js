@@ -82,6 +82,8 @@ router.post('/filter', userExtractor, async (req, res) => {
         }
 
         dataFiltered = filterData(userData.routines,{owned:true,favourite:true})
+        
+        dataFiltered.map(e => e.favByUser= true)
 
         return res.status(200).json(dataFiltered)
     }

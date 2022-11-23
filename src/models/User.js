@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes, DATE } = require('sequelize');
 
 module.exports = (sequelize) => {
     sequelize.define('user', {
@@ -25,6 +25,12 @@ module.exports = (sequelize) => {
         },
         averageScore:{
             type: DataTypes.FLOAT,
+        },
+        membresyExpDate:{
+            type: DataTypes.STRING,
+        },
+        expiredMembresy:{
+            type: DataTypes.BOOLEAN,
         }
     },
         {
