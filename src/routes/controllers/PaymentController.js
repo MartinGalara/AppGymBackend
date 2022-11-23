@@ -1,4 +1,5 @@
 const { createSale } = require("./Utils.js")
+const {SubscriptionSale} = require("./../../db.js")
 
 class PaymentController {
     constructor(subscriptionService) {
@@ -22,12 +23,19 @@ class PaymentController {
     }
   
     async getSubscriptionLink(data,id,req, res) {
+      
       try {
+       
+        const subscription = await this.subscriptionService.createPayment(data);
         
-        const subscription = await this.subscriptionService.createSubscription(data);
+        await SubscriptionSale.create({
+          purchaseId:subscription.id,
+          userId: id,
+          totalCost:data.items[0].unit_price,
+          name:data.items[0].name,
+          daysToAdd:data.items[0].daysToAdd,
+      })
 
-        // await createSubs(subscription,id);
-  
         return res.json(subscription);
       } catch (error) {
         console.log(error);
