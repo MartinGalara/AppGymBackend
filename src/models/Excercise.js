@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
         },
         gifUrl: {
             type: DataTypes.STRING,
-            defaultValue: "https://wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg",
+            defaultValue: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/186-shoulder-press-1-1550761001.gif",
         },
     },
         {
