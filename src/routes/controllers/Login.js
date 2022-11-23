@@ -42,11 +42,15 @@ router.post('/', async (req,res) => {
         })
 
     } catch (error) {
+
+        const date = new Date( Date.now() ).toString()
+
         const newUser = await User.create({
             email,
             hashPassword : await bcrypt.hash(password,8),
             name,
-            imgUrl
+            imgUrl,
+            membresyExpDate: date
         })
     
         const userForToken = {
@@ -59,7 +63,7 @@ router.post('/', async (req,res) => {
     
         return res.status(200).send({
             token,
-            userRole: newUser.role
+            userRole: newUser.role,
         })
     }
 

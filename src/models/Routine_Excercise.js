@@ -4,7 +4,7 @@ module.exports = (sequelize) => {
     sequelize.define('Routine_Excercise', {
     },
     {
-        timestamps: false,
+        paranoid: true,
     }
     )
 }
