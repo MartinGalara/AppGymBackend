@@ -8,8 +8,9 @@ const router = Router();
 router.get('/', async (req, res) => {
     try {
         const products = await Product.findAll();
+        products?
+        res.status(400).send('Productos no encontrados'):
         res.status(200).send(products);
-        //res.status(400).send('Muscles not found')
     } catch (error) {
         res.status(400).send(error.message)
     }
