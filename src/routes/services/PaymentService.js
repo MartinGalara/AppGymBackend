@@ -14,7 +14,7 @@ class PaymentService {
     return payment.data;
   }
 
-  async createSubscription(info) {
+  /*async createSubscription(info) {
     const url = "https://api.mercadopago.com/preapproval";
     const body = info;
 
@@ -40,7 +40,7 @@ class PaymentService {
     });
 
     return subscription.data;
-  }
+  }*/
 }
 
 module.exports = PaymentService;

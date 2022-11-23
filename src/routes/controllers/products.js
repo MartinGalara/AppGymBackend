@@ -5,10 +5,10 @@ const { Product } = require('../../db.js');
 
 const router = Router();
 
-router.get('/', async (req, res) => {
+router.get('/', userExtractor,async (req, res) => {
     try {
         const products = await Product.findAll();
-        products?
+        !products?
         res.status(400).send('Productos no encontrados'):
         res.status(200).send(products);
     } catch (error) {

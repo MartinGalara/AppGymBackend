@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        expiration: {
+        daysToAdd: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },

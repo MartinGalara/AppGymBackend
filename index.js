@@ -124,10 +124,10 @@ conn.sync({ force: true }).then(() => {
     ]
 
     const membresies = [
-      {name: "Plan 6 meses", totalCost: 9899.99 , saving: 899.85, expiration: 1},
-      {name: "Plan 3 meses", totalCost: 4999.99 , saving: 400.97, expiration: 1},
-      {name: "Plan 1 mes", totalCost: 1799.99 , saving: 0, expiration: 1},
-      {name: "Trial", totalCost: 0 , expiration: 1},
+      {name: "Plan 1 mes", totalCost: 2500 , saving: 0, daysToAdd: 30},
+      {name: "Plan 3 meses", totalCost: 7000 , saving: 500, daysToAdd: 60},
+      {name: "Plan 6 meses", totalCost: 13000 , saving: 2000, daysToAdd: 180},
+      {name: "Plan 12 meses", totalCost: 25000 , saving: 5000, daysToAdd: 360},
     ]
 
     const classes = [
