@@ -131,9 +131,17 @@ conn.sync({ force: true }).then(() => {
     ]
 
     const classes = [
-      {name: "Yoga", date: 2020-15-11 },
-      {name: "Yoga2", date: 2020-18-11 },
-      {name: "Spinning", date: 2020-20-11 },
+      {name: "Yoga", date: 2020-15-11,hour:'h08/h11',day:'mon' },
+      {name: "Aerobico", date: 2020-18-11,hour:'h08/h11',day:'tue' },
+      {name: "Spinning", date: 2020-20-11,hour:'h08/h11',day:'wed' },
+      {name: "Zumba", date: 2020-15-11,hour:'h08/h11',day:'thu' },
+      {name: "Pilates", date: 2020-18-11,hour:'h08/h11',day:'fri' },
+      {name: "Boxeo", date: 2020-20-11,hour:'h08/h11',day:'sat' },
+      {name: "Yoga", date: 2020-15-11,hour:'h16/h18',day:'wed' },
+      {name: "Aerobico", date: 2020-18-11,hour:'h16/h18',day:'thu' },
+      {name: "Spinning", date: 2020-20-11,hour:'h16/h18',day:'fri' },
+      {name: "Zumba", date: 2020-15-11,hour:'h16/h18',day:'mon' },
+      {name: "Pilates", date: 2020-18-11,hour:'h16/h18',day:'tue' },
     ]
 
     const feedbacks = [
