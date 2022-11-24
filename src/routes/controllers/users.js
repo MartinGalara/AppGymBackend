@@ -1,15 +1,16 @@
 const { Router } = require('express');
 const { User } = require('../../db.js');
-const { getUsers } = require('./Utils.js');
 const { Op } = require("sequelize");
+const { filterUsers } = require('./Utils');
 const userExtractor = require('../middleware/userExtractor.js');
 
 const router = Router();
 
 router.get('/', userExtractor, async (req, res) => {
     const { role } = req.query;
-    const allUsers = await User.findAll();
+    let allUsers;
     try {
+        allUsers = await User.findAll();
         if (role){
             let staff = await User.findAll({
                 where: ({
@@ -25,6 +26,19 @@ router.get('/', userExtractor, async (req, res) => {
             res.status(404).send('Users not found');
         }
     } catch {
+        res.status(404).send(error.message);
+    }
+})
+
+router.get('/filter', userExtractor, async (req, res) => {
+    const { filters } =req.body;
+    let allUsers;
+    let finalFilter;
+    try {
+        allUsers = await User.findAll();
+        finalFilter = filterUsers(allUsers, filters)
+        res.status(200).send(finalFilter)
+    } catch (error) {
         res.status(404).send(error.message);
     }
 })

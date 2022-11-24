@@ -243,6 +243,25 @@ const filterProducts = (productData,filters) => {
     if (filters.max) productFilter = productFilter.filter(e => filters.max >= (e.dataValues.unit_price))
 
     return productFilter;
+}
+
+const expiredMembresyUpdate = async (allUsers) => {
+    const localDate = new Date();
+    
+    for (let i = 0; i < allUsers.length; i++) {
+        let userExpDate = new Date(Date.parse(allUsers[i].membresyExpDate))
+        if(userExpDate < localDate) allUsers[i].update({expiredMembresy: true})
+        else allUsers[i].update({expiredMembresy: false})}
+}
+
+const filterUsers = (allUsers, filters) => {
+    expiredMembresyUpdate(allUsers)
+    
+    let result = allUsers;
+
+    if (filters.expiredMembresy===true || filters.expiredMembresy===false) result = result.filter(e => filters.expiredMembresy === e.expiredMembresy)
+    
+    return result
 
 }
 
@@ -273,5 +292,6 @@ const addDaysToUser = async (id,days) => {
     userData.update({membresyExpDate: dateToString})
 }
 
-module.exports = { getPagingData, getPagination, addDaysToUser, getClass ,findUserRoutinesById, getFeedbacks, filterData, relaciones, checkFavs, getExcercises, createExcercises, updateExcercises, filterProducts, createSale}
+module.exports = { getPagingData, getPagination, addDaysToUser, getClass ,findUserRoutinesById, getFeedbacks, filterData, relaciones, checkFavs, getExcercises, createExcercises, updateExcercises, filterProducts, createSale, filterUsers }
+
 
