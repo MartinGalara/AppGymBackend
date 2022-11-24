@@ -1,16 +1,21 @@
 const { Router } = require('express');
-const { filterProducts } = require('./Utils');
+const { filterProducts,getPagination,getPagingData} = require('./Utils');
 const userExtractor = require('../middleware/userExtractor.js');
 const { Product } = require('../../db.js');
 
 const router = Router();
 
-router.get('/', userExtractor,async (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        const products = await Product.findAll();
-        !products?
-        res.status(400).send('Productos no encontrados'):
-        res.status(200).send(products);
+
+        const page = parseInt(req.query.page, 10)
+        const size = parseInt(req.query.size, 10)
+
+        const { limit, offset } = getPagination(page, size);
+        const products = await Product.findAndCountAll({offset: offset, limit: limit});
+        const finalres = getPagingData(products, page, limit);
+        res.status(200).send(finalres);
+
     } catch (error) {
         res.status(400).send(error.message)
     }
@@ -19,13 +24,19 @@ router.get('/', userExtractor,async (req, res) => {
 router.post('/filter', userExtractor, async (req, res) => {
 
     const { id , filters } = req.body;
+    
+    const page = parseInt(req.query.page, 10)
+    const size = parseInt(req.query.size, 10)
 
     let productData;
     let finalfilter;
 
         try {
-            productData = await Product.findAll()
-            finalfilter = filterProducts(productData,filters)
+
+            const { limit, offset } = getPagination(page, size);
+            const productData = await Product.findAndCountAll({offset: offset, limit: limit});
+            const finalres = getPagingData(productData, page, limit);
+            finalfilter = filterProducts(finalres,filters)
             res.status(200).send(finalfilter)
         } catch (error) {
             res.status(400).send(error.message)
