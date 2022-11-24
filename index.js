@@ -30,29 +30,28 @@ conn.sync({ force: true }).then(() => {
   server.listen(PORT, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
     const users = [
-      {name: "Martin Galara", email: "mgalara@gmail.com", hashPassword: "$2b$08$/DFujLqVmZYc2qHWRdf.EuXZTLOlf2NzuL5ihfcJ0xkR/5vH7Fk/e",role: "User"},      //123
-      {name: "Tony Traliche", email: "tony@gmail.com", hashPassword: "$2b$08$THIWbid7F5iySlIs2yxPlOracC44cyVT.hWI0Z1k88h4/G8r9awae",role: "User"},           //asd123
-      {name: "Martin Galara", email: "martin@gmail.com", hashPassword: "$2b$08$xA9tnzZIUM63bn3dvIRPae2vZCaUk4VPQE.fuGg2MAuQ9OEqPyypG",role: "Staff",imgUrl:"https://media.gettyimages.com/id/1292567082/es/foto/male-personal-trainer-sitting-on-weight-bench-after-training-client-finish-in-a-gym.jpg?s=2048x2048&w=gi&k=20&c=R9YVEJQyRcLTFX8sQsGpYwaOWzAcP1Z8D7iKv0Oxktc="},       //hola
-      {name: "Agustin Reynoso", email: "areynoso@gmail.com", hashPassword: "$2b$08$4BS.P3G/uI0moDVQ2LWOYuOAaO7.eeR80buWk5Yq3z54Eg9WW4kE2",role: "Staff",imgUrl:"https://media.gettyimages.com/id/1265090289/es/foto/el-personal-que-usa-una-toallita-h%C3%BAmeda-y-un-desinfectante-azul-de-la-botella-para-limpiar-la.jpg?s=2048x2048&w=gi&k=20&c=PttbdoekEaLCLw0ADbi46TocS3xnu0coEnd-ikewXXk="},    //quetal
-      {name: "Aron Fraga", email: "aronfraga@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",role: "Staff",imgUrl:"https://media.gettyimages.com/id/1319635095/es/foto/despu%C3%A9s-de-terminar-con-el-uso-de-equipos-de-ejercicio-en-el-gimnasio-moderno-el-atleta-y-el.jpg?s=2048x2048&w=gi&k=20&c=S_S2Q65ekxuy1mlmadVYawIm0VqABDTGlAh5mWdJKbo="},    //auth0|636d38848ad399282c11fafa
-      {name: "Manuel Casanueva", email: "manucasanueva@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",role: "Staff",imgUrl:"https://media.gettyimages.com/id/615883260/es/foto/dif%C3%ADcil-no-significa-imposible.jpg?s=1024x1024&w=gi&k=20&c=A4t-maeefZ_B0wDZH2AZxFaVW-cidudFpMCICIRByPI="},    //auth0|636d38848ad399282c11fafa
-      {name: "Pablo Lospennato", email: "pol@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",role: "Staff",imgUrl:"https://media.gettyimages.com/id/1311330212/es/foto/estoy-mejorando-d%C3%ADa-a-d%C3%ADa.jpg?s=1024x1024&w=gi&k=20&c=mv-7rC5VB8Ehy_8ucRs11jwhUDNRB_d_jXbMAe70vCw="},    //auth0|636d38848ad399282c11fafa
-      {name: "Alexsandro Gomez", email: "alex@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",role: "Staff",imgUrl:"https://media.gettyimages.com/id/1084251084/es/foto/entrenamiento-personal-en-el-gimnasio.jpg?s=1024x1024&w=gi&k=20&c=aNQ7_4FwYLPd4RxFAO-_pWuOZDx1hGMYpQn9r1Rp8gk="},    //auth0|636d38848ad399282c11fafa
-      {name: "Jose Manuel Manrique", email: "jmm@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",role: "Staff",imgUrl:"https://media.gettyimages.com/id/909416522/es/foto/hombre-mayor-activo-teniendo-fuerza-ejercicios-con-barra-en-un-gimnasio.jpg?s=1024x1024&w=gi&k=20&c=Ryxs9wzbVTy35mYc77vrZclg7GgccFO8fn2SRxQf13k="},    //auth0|636d38848ad399282c11fafa
-      {name: "Gaston Schmitz", email: "gaston@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",role: "Staff",imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa      
-      {name: "Gaston Schmitz", email: "1@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",role: "Staff",imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa      
+      {name: "Martin Galara", email: "mgalara@gmail.com", hashPassword: "$2b$08$/DFujLqVmZYc2qHWRdf.EuXZTLOlf2NzuL5ihfcJ0xkR/5vH7Fk/e",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)",role: "User", imgUrl:"https://media.gettyimages.com/id/1292567082/es/foto/male-personal-trainer-sitting-on-weight-bench-after-training-client-finish-in-a-gym.jpg?s=2048x2048&w=gi&k=20&c=R9YVEJQyRcLTFX8sQsGpYwaOWzAcP1Z8D7iKv0Oxktc="},      //123
+      {name: "Tony Traliche", email: "tony@gmail.com", hashPassword: "$2b$08$THIWbid7F5iySlIs2yxPlOracC44cyVT.hWI0Z1k88h4/G8r9awae",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)",role: "Admin", imgUrl:"https://media.gettyimages.com/id/1319635095/es/foto/despu%C3%A9s-de-terminar-con-el-uso-de-equipos-de-ejercicio-en-el-gimnasio-moderno-el-atleta-y-el.jpg?s=2048x2048&w=gi&k=20&c=S_S2Q65ekxuy1mlmadVYawIm0VqABDTGlAh5mWdJKbo="},           //asd123
+      {name: "Martin Galara", email: "martin@gmail.com", hashPassword: "$2b$08$xA9tnzZIUM63bn3dvIRPae2vZCaUk4VPQE.fuGg2MAuQ9OEqPyypG",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)",role: "Staff", imgUrl:"https://media.gettyimages.com/id/1292567082/es/foto/male-personal-trainer-sitting-on-weight-bench-after-training-client-finish-in-a-gym.jpg?s=2048x2048&w=gi&k=20&c=R9YVEJQyRcLTFX8sQsGpYwaOWzAcP1Z8D7iKv0Oxktc="},       //hola
+      {name: "Agustin Reynoso", email: "areynoso@gmail.com", hashPassword: "$2b$08$4BS.P3G/uI0moDVQ2LWOYuOAaO7.eeR80buWk5Yq3z54Eg9WW4kE2",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)",role: "Staff", imgUrl:"https://media.gettyimages.com/id/1265090289/es/foto/el-personal-que-usa-una-toallita-h%C3%BAmeda-y-un-desinfectante-azul-de-la-botella-para-limpiar-la.jpg?s=2048x2048&w=gi&k=20&c=PttbdoekEaLCLw0ADbi46TocS3xnu0coEnd-ikewXXk="},    //quetal
+      {name: "Aron Fraga", email: "aronfraga@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)",role: "Staff", imgUrl:"https://media.gettyimages.com/id/1319635095/es/foto/despu%C3%A9s-de-terminar-con-el-uso-de-equipos-de-ejercicio-en-el-gimnasio-moderno-el-atleta-y-el.jpg?s=2048x2048&w=gi&k=20&c=S_S2Q65ekxuy1mlmadVYawIm0VqABDTGlAh5mWdJKbo="},    //auth0|636d38848ad399282c11fafa
+      {name: "Manuel Casanueva", email: "manucasanueva@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)",role: "Staff", imgUrl:"https://media.gettyimages.com/id/615883260/es/foto/dif%C3%ADcil-no-significa-imposible.jpg?s=1024x1024&w=gi&k=20&c=A4t-maeefZ_B0wDZH2AZxFaVW-cidudFpMCICIRByPI="},    //auth0|636d38848ad399282c11fafa
+      {name: "Pablo Lospennato", email: "pol@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)",role: "Staff", imgUrl:"https://media.gettyimages.com/id/1311330212/es/foto/estoy-mejorando-d%C3%ADa-a-d%C3%ADa.jpg?s=1024x1024&w=gi&k=20&c=mv-7rC5VB8Ehy_8ucRs11jwhUDNRB_d_jXbMAe70vCw="},    //auth0|636d38848ad399282c11fafa
+      {name: "Alexsandro Gomez", email: "alex@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)",role: "Staff", imgUrl:"https://media.gettyimages.com/id/1084251084/es/foto/entrenamiento-personal-en-el-gimnasio.jpg?s=1024x1024&w=gi&k=20&c=aNQ7_4FwYLPd4RxFAO-_pWuOZDx1hGMYpQn9r1Rp8gk="},    //auth0|636d38848ad399282c11fafa
+      {name: "Jose Manuel Manrique", email: "jmm@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)",role: "Staff", imgUrl:"https://media.gettyimages.com/id/909416522/es/foto/hombre-mayor-activo-teniendo-fuerza-ejercicios-con-barra-en-un-gimnasio.jpg?s=1024x1024&w=gi&k=20&c=Ryxs9wzbVTy35mYc77vrZclg7GgccFO8fn2SRxQf13k="},    //auth0|636d38848ad399282c11fafa
+      {name: "Gaston Schmitz", email: "gaston@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)",role: "Staff", imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa
     ]
 
     const routines = [
 
       {name: "Intensivo piernas" , createdBy: "Martin Galara" , duration: 30, difficulty: 5, categoryId: 1, imgUrl:"https://media.revistagq.com/photos/5ca5f0c64c7adb774d00d229/3:2/w_2118,h_1412,c_limit/como_usar_maquina_de_cardio__5188.jpg"},
-      {name: "Intensivo brazos" , createdBy: "Agustin Reynoso" , duration: 120, difficulty: 3, categoryId: 2, imgUrl:"https://i.blogs.es/782fb9/exercise/1366_2000.jpg"},
-      {name: "Intensivo espalda" , createdBy: "Aron Fraga" , duration: 60, difficulty: 4, categoryId: 3, imgUrl:"https://pilarfitness.com.ar/wp-content/uploads/2022/06/back-fitness-gym-power-pose.jpg"},
-      {name: "Alto rendimiento" , createdBy: "Gaston Schmitz" , duration: 90, difficulty: 1, categoryId: 4, imgUrl:"https://media.revistagq.com/photos/5ec536e1db7478f5171ec0d1/16:9/w_2560%2Cc_limit/GettyImages-629209130.jpg"},
+      {name: "Intensivo brazos" , createdBy: "Agustin Reynoso" , duration: 120, difficulty: 3, categoryId: 2, imgUrl:"https://tumejorfisico.com/wp-content/uploads/2020/10/entrenamiento-femenino.jpg"},
+      {name: "Intensivo espalda" , createdBy: "Aron Fraga" , duration: 60, difficulty: 4, categoryId: 3, imgUrl:"https://guiafitness.com/wp-content/uploads/conseguir-espalda-ancha-1200x675.jpg"},
+      {name: "Alto rendimiento" , createdBy: "Gaston Schmitz" , duration: 90, difficulty: 1, categoryId: 4, imgUrl:"https://cdn.static.aptavs.com/imagenes/ejercicios-basicos-de-gimnasio-cuales-son-y-su-importancia/ejercicios-basicos-de-gimnasio.jpg"},
       {name: "Cardio" , createdBy: "Manuel Casanueva" , duration: 30, difficulty: 2, categoryId: 5, imgUrl:"https://media.gq.com.mx/photos/6245e450863c35ccea6ab3bd/16:9/w_2560%2Cc_limit/saltar%2520la%2520cuerda.jpg"},
+      {name: "Tonificacion" , createdBy: "Alexsandro Gomez" , duration: 90, difficulty: 5, categoryId: 7, imgUrl:"https://ironsalfer.com/wp-content/uploads/2018/11/tonificacion.jpg"},
       {name: "Masa muscular" , createdBy: "Pablo Lospennato" , duration: 120, difficulty: 1, categoryId: 6, imgUrl:"https://i.blogs.es/cd56d5/istock-905989902/1366_2000.jpeg"},
-      {name: "Tonificacion" , createdBy: "Alexsandro Gomez" , duration: 90, difficulty: 5, categoryId: 7, imgUrl:"https://media.gq.com.mx/photos/619502fe9d62ea68964f2552/16:9/w_2560%2Cc_limit/GettyImages-1016623594.jpg"},
-      {name: "Bajar de peso" , createdBy: "Jose Manuel Manrique" , duration: 60, difficulty: 3, categoryId: 1, imgUrl:"https://media.revistagq.com/photos/621cd95e4d5d1943d21a6b90/16:9/w_2560%2Cc_limit/GettyImages-1265194043%2520(1).jpg"},
+      {name: "Bajar de peso" , createdBy: "Jose Manuel Manrique" , duration: 60, difficulty: 3, categoryId: 1, imgUrl:"https://i.pinimg.com/originals/93/35/d6/9335d661b18bb95d120ba575ae6aad29.jpg"},
     ]
 
     const category = [
@@ -68,19 +67,19 @@ conn.sync({ force: true }).then(() => {
 
     const excercises = [
       {day: 1, name: "Press de banca", series: 4, repetitions:10, gifUrl:"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/bench-press-1568117208.gif"},
-      {day: 1, name: "Apertura sobre banco", series: 4, repetitions:12, gifUrl:"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/workouts/2016/03/dumbbellbenchpress-1457043820.gif"},
-      {day: 1, name: "Sentadillas", series: 4, repetitions:10, gifUrl:"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/bench-press-1568117208.gif"},
+      {day: 1, name: "Apertura sobre banco", series: 4, repetitions:12, gifUrl:"https://www.deportrainer.com/img/cms/Post%20de%20blog/press_banca_inclinado/como-hacer-el-ejercicio-press-inclinado-con-mancuernas-en-banco.gif"},
+      {day: 1, name: "Sentadillas", series: 4, repetitions:10, gifUrl:"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/36-body-weight-squat-1550754357.gif"},
       {day: 1, name: "Abdominales Superiores", series: 4, repetitions:12, gifUrl:"https://www.foodspring.es/magazine/wp-content/uploads/2020/11/Crunches-Giannis.gif"},
       {day: 1, name: "Triceps", series: 4, repetitions:10, gifUrl:"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/triceps-mancuernas-1552913823.gif"},
       {day: 1, name: "Mancuernas", series: 4, repetitions:12, gifUrl:"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/curl-mancuernas-1573207148.gif"},
       {day: 1, name: "Abdominales Laterales", series: 4, repetitions:10, gifUrl:"https://www.yomeentreno.com/wp-content/uploads/2017/01/rotaci%C3%B3n-de-tronco.gif"},
-      {day: 1, name: "Plancha", series: 4, repetitions:12, gifUrl:"https://www.yomeentreno.com/wp-content/uploads/2017/05/01.gif"},
-      {day: 1, name: "Abdomianles bajos", series: 4, repetitions:10, gifUrl:"http://medspine.es/wp-content/uploads/2018/03/giphy.gif"},
+      {day: 1, name: "Plancha", series: 4, repetitions:12, gifUrl:"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/178-renegade-rows-each-side-1-1550760998.gif"},
+      {day: 1, name: "Abdomianles bajos", series: 4, repetitions:10, gifUrl:"http://creatucuerpo.com/wp-content/uploads/2019/05/giphy-min-7.gif"},
       {day: 1, name: "Apertura de hombro", series: 4, repetitions:12, gifUrl:"https://adelgazarencasa.co/wp-content/uploads/2019/04/Qmpzczz.gif"},
-      {day: 2, name: "Flexiones de suelo", series: 4, repetitions:10, gifUrl:"https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/fingertip-press-up.gif"},
+      {day: 2, name: "Flexiones de suelo", series: 4, repetitions:10, gifUrl:"https://www.fmdos.cl/wp-content/uploads/2017/06/Flexiones-gif.gif"},
       {day: 2, name: "Patada trasera mancuerna", series: 4, repetitions:10, gifUrl:"https://www.okchicas.com/wp-content/uploads/2016/02/7-ejercicios-para-gl%C3%BAteos-perfectos-1.gif"},
       {day: 2, name: "Burpees", series: 3, repetitions:10, gifUrl:"https://hips.hearstapps.com/hmg-prod/images/workouts/2016/03/burpee-1457045324.gif"},
-      {day: 2, name: "Peso muerto", series: 4, repetitions:15, gifUrl:"https://i.gifer.com/MGuF.gif"},
+      {day: 2, name: "Peso muerto", series: 4, repetitions:15, gifUrl:"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/43-romanian-dumbbell-deadlift-ps-2-1548400930.gif"},
       {day: 2, name: "Fondo sobre banco", series: 3, repetitions:10, gifUrl:"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/fondos-en-banco-1621951812.gif"},
       {day: 2, name: "Biceps", series: 4, repetitions:15, gifUrl:"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/curl-mancuernas-1573207148.gif"},
       {day: 3, name: "Gemelos", series: 4, repetitions:15, gifUrl:"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/sentadillas-1601979375.gif"},
@@ -125,10 +124,10 @@ conn.sync({ force: true }).then(() => {
     ]
 
     const membresies = [
-      {name: "Plan 6 meses", totalCost: 9899.99 , saving: 899.85, expiration: 1},
-      {name: "Plan 3 meses", totalCost: 4999.99 , saving: 400.97, expiration: 1},
-      {name: "Plan 1 mes", totalCost: 1799.99 , saving: 0, expiration: 1},
-      {name: "Trial", totalCost: 0 , expiration: 1},
+      {name: "Plan 1 mes", totalCost: 2500 , saving: 0, daysToAdd: 30},
+      {name: "Plan 3 meses", totalCost: 7000 , saving: 500, daysToAdd: 60},
+      {name: "Plan 6 meses", totalCost: 13000 , saving: 2000, daysToAdd: 180},
+      {name: "Plan 12 meses", totalCost: 25000 , saving: 5000, daysToAdd: 360},
     ]
 
     const classes = [

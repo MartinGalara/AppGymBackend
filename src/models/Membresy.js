@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
             type: DataTypes.FLOAT,
             validate: { min: 0 },
         },
-        expiration: {
+        daysToAdd: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },

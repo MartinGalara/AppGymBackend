@@ -1,5 +1,4 @@
 const { Router } = require('express');
-const { getMuscles } = require('./Utils.js');
 const { Muscle, Excercise } = require('../../db.js')
 const userExtractor = require('../middleware/userExtractor.js');
 

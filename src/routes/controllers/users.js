@@ -29,10 +29,18 @@ router.get('/', userExtractor, async (req, res) => {
     }
 })
 
-router.get('/:id', userExtractor, async (req, res) => {
+router.get('/profile', userExtractor, async (req, res) => {
     try {
-        const { id } = req.params;
+        const { id } = req.body;
         const selectedUser = await User.findByPk(id)
+        
+        let userExpDate = new Date(Date.parse(selectedUser.membresyExpDate))
+    
+        const localDate = new Date();
+  
+        if(userExpDate < localDate) await selectedUser.update({expiredMembresy: true})
+        else await selectedUser.update({expiredMembresy: false})
+
         res.status(200).send(selectedUser)
     } catch (error) {
         res.status(400).send('User not found')

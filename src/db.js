@@ -86,9 +86,6 @@ Sale.belongsTo(User);
 Sale.hasMany(Item);
 Item.belongsTo(Sale);
 
-Membresy.hasMany(User);
-User.belongsTo(Membresy);
-
 User.hasOne(SubscriptionSale);
 SubscriptionSale.belongsTo(User);
 

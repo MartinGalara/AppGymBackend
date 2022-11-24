@@ -182,18 +182,6 @@ const checkFavs = async (userData, id) => {
 
     }
 
-    const createSubs = async (data,id) => {
-
-        const newSuscription = await SubscriptionSale.create({
-            purchaseId:data.id,
-            userId: id,
-            totalCost:data.auto_recurring.transaction_amount,
-            name:data.reason,
-            expiration:data.frequency,
-
-        })
-    }
-
   const relaciones = async () => {
 
     const ej1 = await Excercise.findByPk(1)
@@ -272,5 +260,18 @@ const getPagingData = (data, page, limit) => {
     return { limit, offset };
   };
 
-module.exports = { createSubs,getPagingData,getPagination, getClass ,findUserRoutinesById, getFeedbacks, filterData, relaciones, checkFavs, getExcercises, createExcercises, updateExcercises, filterProducts, createSale}
+const addDaysToUser = async (id,days) => {
+    
+    const userData = await User.findByPk(id)
+
+    const newDate = new Date(Date.parse(userData.membresyExpDate))
+   
+    newDate.setDate(newDate.getDate() + days);
+
+    const dateToString = newDate.toString()
+
+    userData.update({membresyExpDate: dateToString})
+}
+
+module.exports = { getPagingData, getPagination, addDaysToUser, getClass ,findUserRoutinesById, getFeedbacks, filterData, relaciones, checkFavs, getExcercises, createExcercises, updateExcercises, filterProducts, createSale}
 
