@@ -10,6 +10,14 @@ module.exports = (sequelize) => {
             type: DataTypes.DATEONLY,
             allowNull: false,
         },
+        hour: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        day: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
     },
         {
             paranoid: true,
