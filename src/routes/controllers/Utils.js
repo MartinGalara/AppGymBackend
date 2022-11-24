@@ -232,17 +232,33 @@ const checkFavs = async (userData, id) => {
 
 const filterProducts = (productData,filters) => {
 
-    let productFilter = productData;
+    let productFilter = productData.products;
+    console.log(productFilter);
 
-    if (filters.category) productFilter = productFilter.filter(e => filters.category.includes(e.category))
 
-    if (filters.min) productFilter = productFilter.filter(e => filters.min <= (e.unit_price))
+    if (filters.category) productFilter = productFilter.filter(e => filters.category.includes(e.dataValues.category))
 
-    if (filters.max) productFilter = productFilter.filter(e => filters.max >= (e.unit_price))
+    if (filters.min) productFilter = productFilter.filter(e => filters.min <= (e.dataValues.unit_price))
+
+    if (filters.max) productFilter = productFilter.filter(e => filters.max >= (e.dataValues.unit_price))
 
     return productFilter;
 
 }
+
+const getPagingData = (data, page, limit) => {
+    const { count: totalItems, rows: products } = data;
+    const currentPage = page ? +page : 0;
+    const totalPages = Math.ceil(totalItems / limit);
+  
+    return { totalItems, products, totalPages, currentPage };
+  };
+
+  const getPagination = (page, size) => {
+    const limit = size ? +size : 5;
+    const offset = page ? page * limit : 0;
+    return { limit, offset };
+  };
 
 const addDaysToUser = async (id,days) => {
     
@@ -257,5 +273,5 @@ const addDaysToUser = async (id,days) => {
     userData.update({membresyExpDate: dateToString})
 }
 
-module.exports = { addDaysToUser, getClass ,findUserRoutinesById, getFeedbacks, filterData, relaciones, checkFavs, getExcercises, createExcercises, updateExcercises, filterProducts, createSale}
+module.exports = { getPagingData, getPagination, addDaysToUser, getClass ,findUserRoutinesById, getFeedbacks, filterData, relaciones, checkFavs, getExcercises, createExcercises, updateExcercises, filterProducts, createSale}
 
