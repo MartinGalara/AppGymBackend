@@ -2,6 +2,7 @@ const { Router } = require('express');
 const { filterProducts,getPagination,getPagingData} = require('./Utils');
 const userExtractor = require('../middleware/userExtractor.js');
 const { Product } = require('../../db.js');
+const { Op, literal } = require("sequelize");
 
 const router = Router();
 
@@ -33,11 +34,20 @@ router.post('/filter', userExtractor, async (req, res) => {
 
         try {
 
+            
+
             const { limit, offset } = getPagination(page, size);
-            const productData = await Product.findAndCountAll({offset: offset, limit: limit});
+            const productData = await Product.findAndCountAll({where:
+                {category:filters.category?filters.category:{[Op.not]:'cloudinary'},
+
+                unit_price:(filters.max&&filters.min)?{[Op.between]:[filters.min, filters.max]}:filters.max?{[Op.lte]:filters.max}:filters.min?{[Op.gte]:filters.min}:{[Op.not]:"cloudinary"}}},
+
+                {offset: offset, limit: limit}
+                );
+             
             const finalres = getPagingData(productData, page, limit);
-            finalfilter = filterProducts(finalres,filters)
-            res.status(200).send(finalfilter)
+
+            res.status(200).send(finalres)
         } catch (error) {
             res.status(400).send(error.message)
         }

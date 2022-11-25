@@ -233,7 +233,6 @@ const checkFavs = async (userData, id) => {
 const filterProducts = (productData,filters) => {
 
     let productFilter = productData.products;
-    console.log(productFilter);
 
 
     if (filters.category) productFilter = productFilter.filter(e => filters.category.includes(e.dataValues.category))
