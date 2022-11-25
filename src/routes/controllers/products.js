@@ -40,9 +40,9 @@ router.post('/filter', userExtractor, async (req, res) => {
             const productData = await Product.findAndCountAll({where:
                 {category:filters.category?filters.category:{[Op.not]:'cloudinary'},
 
-                unit_price:(filters.max&&filters.min)?{[Op.between]:[filters.min, filters.max]}:filters.max?{[Op.lte]:filters.max}:filters.min?{[Op.gte]:filters.min}:{[Op.not]:"cloudinary"}}},
+                unit_price:(filters.max&&filters.min)?{[Op.between]:[filters.min, filters.max]}:filters.max?{[Op.lte]:filters.max}:filters.min?{[Op.gte]:filters.min}:{[Op.not]:"cloudinary"}},offset: offset, limit: limit}
 
-                {offset: offset, limit: limit}
+                
                 );
              
             const finalres = getPagingData(productData, page, limit);
