@@ -43,8 +43,9 @@ conn.sync({ force: true }).then(() => {
     ]
 
     const routines = [
+
       {name: "Intensivo piernas" , createdBy: "Martin Galara" , duration: 30, difficulty: 5, categoryId: 1, imgUrl:"https://media.revistagq.com/photos/5ca5f0c64c7adb774d00d229/3:2/w_2118,h_1412,c_limit/como_usar_maquina_de_cardio__5188.jpg"},
-      {name: "Intensivo brazos" , createdBy: "Agustin Reynoso" , duration: 120, difficulty: 3, categoryId: 2, imgUrl:"https://media.revistagq.com/photos/5f7c5d7f2a130933be879c6a/16:9/w_2560%2Cc_limit/ejercicios-mancuernas-brazos-hombros-espalda-pectorales.jpg"},
+      {name: "Intensivo brazos" , createdBy: "Agustin Reynoso" , duration: 120, difficulty: 3, categoryId: 2, imgUrl:"https://tumejorfisico.com/wp-content/uploads/2020/10/entrenamiento-femenino.jpg"},
       {name: "Intensivo espalda" , createdBy: "Aron Fraga" , duration: 60, difficulty: 4, categoryId: 3, imgUrl:"https://guiafitness.com/wp-content/uploads/conseguir-espalda-ancha-1200x675.jpg"},
       {name: "Alto rendimiento" , createdBy: "Gaston Schmitz" , duration: 90, difficulty: 1, categoryId: 4, imgUrl:"https://cdn.static.aptavs.com/imagenes/ejercicios-basicos-de-gimnasio-cuales-son-y-su-importancia/ejercicios-basicos-de-gimnasio.jpg"},
       {name: "Cardio" , createdBy: "Manuel Casanueva" , duration: 30, difficulty: 2, categoryId: 5, imgUrl:"https://media.gq.com.mx/photos/6245e450863c35ccea6ab3bd/16:9/w_2560%2Cc_limit/saltar%2520la%2520cuerda.jpg"},
@@ -130,18 +131,17 @@ conn.sync({ force: true }).then(() => {
     ]
 
     const classes = [
-      {name: "Yoga", date: 2020-15-11, hour:'h08/h10', day:'mon'},
-      {name: "Zumba", date: 2020-15-11, hour:'h16/h18', day:'mon'},
-      {name: "Aerobico", date: 2020-18-11, hour:'h12/h14', day:'tue'},
-      {name: "Pilates", date: 2020-18-11, hour:'h20/h22', day:'tue'},
-      {name: "Spinning", date: 2020-20-11, hour:'h07/h09', day:'wed'},
-      {name: "Yoga", date: 2020-15-11, hour:'h19/h21', day:'wed'},
-      {name: "Zumba", date: 2020-15-11, hour:'h09/h11', day:'thu'},
-      {name: "Aerobico", date: 2020-18-11, hour:'h17/h18', day:'thu'},
-      {name: "Spinning", date: 2020-20-11, hour:'h07/h09', day:'fri'},
-      {name: "Pilates", date: 2020-18-11, hour:'h10/h12', day:'fri'},
-      {name: "Spinning", date: 2020-20-11, hour:'h18/h20', day:'fri'},
-      {name: "Boxeo", date: 2020-20-11, hour:'h09/h11', day:'sat'},
+      {name: "Yoga", date: 2020-15-11,hour:'h08/h11',day:'mon' },
+      {name: "Aerobico", date: 2020-18-11,hour:'h08/h11',day:'tue' },
+      {name: "Spinning", date: 2020-20-11,hour:'h08/h11',day:'wed' },
+      {name: "Zumba", date: 2020-15-11,hour:'h08/h11',day:'thu' },
+      {name: "Pilates", date: 2020-18-11,hour:'h08/h11',day:'fri' },
+      {name: "Boxeo", date: 2020-20-11,hour:'h08/h11',day:'sat' },
+      {name: "Yoga", date: 2020-15-11,hour:'h16/h18',day:'wed' },
+      {name: "Aerobico", date: 2020-18-11,hour:'h16/h18',day:'thu' },
+      {name: "Spinning", date: 2020-20-11,hour:'h16/h18',day:'fri' },
+      {name: "Zumba", date: 2020-15-11,hour:'h16/h18',day:'mon' },
+      {name: "Pilates", date: 2020-18-11,hour:'h16/h18',day:'tue' },
     ]
 
     const feedbacks = [
