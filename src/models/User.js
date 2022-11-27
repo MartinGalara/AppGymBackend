@@ -25,6 +25,7 @@ module.exports = (sequelize) => {
         },
         averageScore:{
             type: DataTypes.FLOAT,
+            defaultValue: 4,
         },
         membresyExpDate:{
             type: DataTypes.STRING,

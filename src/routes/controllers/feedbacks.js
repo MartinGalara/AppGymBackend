@@ -1,16 +1,28 @@
 const { Router } = require('express');
-const { getFeedbacks } = require('./Utils.js');
 const { Feedback, User } = require('../../db.js');
 const userExtractor = require('../middleware/userExtractor.js');
 
 const router = Router();
 
-
 router.get('/', userExtractor, async (req, res) => {
     try {
-        const allFeedbacks = await getFeedbacks();
+        const allFeedbacks = await Feedback.findAll({
+            attributes:{ exclude: ["createdAt", "updatedAt", "deletedAt"]},
+            include:{
+                model: User,
+            }
+        });
+        let staffScore = {}
+        for (let i = 0; i < allFeedbacks.length; i++) {
+            let score = allFeedbacks[i].score
+            let name = allFeedbacks[i].staff
+            if(!staffScore[name]) staffScore[name]=[];
+            staffScore[name].push(score)
+        }
+        allFeedbacks.staffScore = staffScore;
+        
         allFeedbacks.length ?
-            res.status(200).send(allFeedbacks) :
+            res.status(200).send(staffScore) :
             res.status(404).send('Feedbacks not found');
     } catch (error) {
         res.status(404).send(error.message)
@@ -47,7 +59,7 @@ router.post('/', userExtractor, async (req, res) => {
 
             const sum = array.reduce((a, b) => parseInt(a) + parseInt(b), 0);
             const avg = (sum / array.length) || 0;
-
+            console.log(avg);
             const staffUser = await User.findByPk(staffId)
 
             await staffUser.update({

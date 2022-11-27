@@ -10,6 +10,9 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: true,
         },
+        staffId: {
+            type: DataTypes.INTEGER,
+        },
         description: {
             type: DataTypes.TEXT,
             allowNull: false,
@@ -17,10 +20,6 @@ module.exports = (sequelize) => {
         score:{
             type: DataTypes.DECIMAL,
             allowNull: false,
-        },
-        disabled: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false,
         },
     },
     {
