@@ -31,12 +31,14 @@ router.get('/', userExtractor, async (req, res) => {
 
 router.post('/', userExtractor, async (req, res) => {
     try {
-        let { name, date, id } = req.body;
-        if (!name || !date) return res.status(400).json('Missing inputs')
+        let { name, date, id, hour,day } = req.body;
+        if (!name || !date || !hour || !day) return res.status(400).json('Missing inputs')
 
         const newClass = await Class.create({
             name,
             date,
+            hour,
+            day,
             // id,
         });
 
