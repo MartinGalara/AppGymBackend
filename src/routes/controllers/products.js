@@ -6,6 +6,20 @@ const { Op, literal } = require("sequelize");
 
 const router = Router();
 
+router.get('/:productId', async (req, res) => {
+
+    const { productId} = req.params;
+    try {
+
+        const product = await Product.findByPk(productId)
+
+        return res.status(200).json(product)
+
+    } catch (error) {
+        res.status(400).send(error.message)
+    }
+})
+
 router.get('/', async (req, res) => {
     try {
 
