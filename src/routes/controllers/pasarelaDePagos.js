@@ -49,6 +49,8 @@ router.put("/payment", userExtractor, async function (req, res, next) {
   await sale.update({
     approved: payed,
     paymentMethod,
+    year:new Date(sale.updatedAt).getFullYear(),
+    month:new Date(sale.updatedAt).getMonth()+1,
   })
 
   const items = sale.items
