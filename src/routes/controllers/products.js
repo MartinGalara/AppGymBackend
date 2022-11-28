@@ -6,7 +6,6 @@ const { Op, literal,Sequelize } = require("sequelize");
 
 const router = Router();
 
-
 router.get('/:id', userExtractor, async (req, res) => {
     const { id } = req.params;
     try {
