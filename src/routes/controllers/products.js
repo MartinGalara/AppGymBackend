@@ -6,6 +6,18 @@ const { Op, literal } = require("sequelize");
 
 const router = Router();
 
+router.get('/:id', userExtractor, async (req, res) => {
+    const { id } = req.params;
+    try {
+        const productSelected = await Product.findByPk(id);
+        !productSelected ?
+        res.status(400).send("El ID del producto no fue encontrado") :
+        res.status(200).send(productSelected)
+    } catch (error) {
+        res.status(400).send(error.message)
+    }
+})
+
 router.get('/', async (req, res) => {
     try {
 
