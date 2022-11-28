@@ -1,10 +1,27 @@
 const { Router } = require('express');
 const { Feedback, User } = require('../../db.js');
 const userExtractor = require('../middleware/userExtractor.js');
+const { getPagination, getPagingData } = require('../controllers/Utils.js')
 
 const router = Router();
 
-router.get('/', userExtractor, async (req, res) => {
+
+router.get('/', async (req, res) => {
+    try {
+        const page = parseInt(req.query.page, 10)
+        const size = parseInt(req.query.size, 10)
+
+        const { limit, offset } = getPagination(page, size);
+        const feedbacks = await Feedback.findAndCountAll({offset: offset, limit: limit});
+        const finalResult = getPagingData(feedbacks, page, limit);
+        res.status(200).send(finalResult);
+
+    } catch (error) {
+        res.status(400).send(error.message)
+    }
+})
+
+router.get('/staffscore', userExtractor, async (req, res) => {
     try {
         const allFeedbacks = await Feedback.findAll({
             attributes:{ exclude: ["createdAt", "updatedAt", "deletedAt"]},

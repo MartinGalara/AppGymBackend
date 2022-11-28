@@ -15,7 +15,14 @@ module.exports = (sequelize) => {
         },
         paymentMethod:{
             type: DataTypes.STRING,
-        }
+        },
+        month:{
+            type: DataTypes.INTEGER,
+        },
+        year:{
+            type: DataTypes.INTEGER,
+        },
+        
     },
     {
         paranoid: true,

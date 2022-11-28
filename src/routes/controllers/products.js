@@ -1,20 +1,19 @@
 const { Router } = require('express');
 const { filterProducts,getPagination,getPagingData} = require('./Utils');
 const userExtractor = require('../middleware/userExtractor.js');
-const { Product } = require('../../db.js');
-const { Op, literal } = require("sequelize");
+const { Product ,Sale,Item} = require('../../db.js');
+const { Op, literal,Sequelize } = require("sequelize");
 
 const router = Router();
 
-router.get('/:productId', async (req, res) => {
 
-    const { productId} = req.params;
+router.get('/:id', userExtractor, async (req, res) => {
+    const { id } = req.params;
     try {
-
-        const product = await Product.findByPk(productId)
-
-        return res.status(200).json(product)
-
+        const productSelected = await Product.findByPk(id);
+        !productSelected ?
+        res.status(400).send("El ID del producto no fue encontrado") :
+        res.status(200).send(productSelected)
     } catch (error) {
         res.status(400).send(error.message)
     }
@@ -83,5 +82,26 @@ router.delete('/:id', userExtractor, async (req, res) => {
         res.status(400).send(error.message)
     }
 })
+
+router.post('/filter/admin', userExtractor, async (req, res) => {
+
+    const { id , filters } = req.body;
+
+        try {
+
+            const productData = await Sale.findAll({
+                where:{year:filters.year,approved:true},
+                attributes: ['month', [Sequelize.fn('SUM', Sequelize.col('totalCost')), 'sum']],
+                group: ['month']
+              });
+
+            console.log(productData);
+            res.status(200).send(productData)
+        } catch (error) {
+            res.status(400).send(error.message)
+        }
+})
+
+
 
 module.exports = router;
