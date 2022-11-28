@@ -283,6 +283,32 @@ const addDaysToUser = async (id,days) => {
     userData.update({membresyExpDate: dateToString})
 }
 
-module.exports = { getPagingData, getPagination, addDaysToUser, getClass ,findUserRoutinesById, filterData, relaciones, checkFavs, getExcercises, createExcercises, updateExcercises, filterProducts, createSale, filterUsers }
+const expiredUsers = async () => {
+
+    let expiredUsers = []
+
+    const allUsers = await User.findAll()
+
+    allUsers.map(e => {
+
+        const userExpDate = new Date(Date.parse(e.membresyExpDate))
+
+        const actualDate = new Date()
+
+        if(userExpDate < actualDate){
+
+            expiredUsers.push({
+                name: e.name,
+                email: e.email,
+                membresyExpDate: userExpDate
+            })
+        }
+    })
+
+    return expiredUsers
+
+}
+
+module.exports = { expiredUsers, getPagingData, getPagination, addDaysToUser, getClass ,findUserRoutinesById, filterData, relaciones, checkFavs, getExcercises, createExcercises, updateExcercises, filterProducts, createSale, filterUsers }
 
 

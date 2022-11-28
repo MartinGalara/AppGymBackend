@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { User } = require('../../db.js');
 const { Op } = require("sequelize");
-const { filterUsers } = require('./Utils');
+const { filterUsers, expiredUsers } = require('./Utils');
 const userExtractor = require('../middleware/userExtractor.js');
 
 const router = Router();
@@ -27,6 +27,47 @@ router.get('/', userExtractor, async (req, res) => {
         }
     } catch {
         res.status(404).send(error.message);
+    }
+})
+
+router.get('/expirations', userExtractor, async (req, res) => {
+
+    const { expired } = req.query;
+
+    try {
+
+        if(expired) {
+            const expired = await expiredUsers()
+            return res.status(200).json(expired)
+        }
+        const allUsers = await User.findAll();
+
+        let usersToExpire = []
+
+        allUsers.map( e => {
+
+        const userExpDate = new Date(Date.parse(e.membresyExpDate))
+
+        const actualDate = new Date()
+
+        const miliseconds = Math.abs(userExpDate - actualDate);
+
+        const days = miliseconds / 1000 / 60 / 60 / 24
+
+        if(userExpDate > actualDate && days < 5){
+
+            usersToExpire.push({
+                name: e.name,
+                email: e.email,
+                daysToExpire: Math.round(days)
+            })
+        }
+        })
+
+        return res.status(200).json(usersToExpire)
+
+    } catch(error) {
+      console.log(error.message)
     }
 })
 
