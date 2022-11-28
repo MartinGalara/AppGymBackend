@@ -7,6 +7,7 @@ const getClass = async () => {
     const classes = await Class.findAll({
         include: [{
             model: User,
+            attributes: ["imgUrl"],
         }]
     })
     return classes;
