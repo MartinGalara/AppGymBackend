@@ -26,15 +26,6 @@ const getExcercises = async () => {
     return excercises;
 }
 
-const getFeedbacks = async () => {
-    const allFeedbacks = await Feedback.findAll({
-        include: [{
-            model: User,
-        }]
-    });
-    return allFeedbacks;
-}
-
 const findUserRoutinesById = async (id, name, category, duration, difficulty, imgUrl) => {
     const usersModel = await User.findAll({
         include: [
@@ -291,6 +282,6 @@ const addDaysToUser = async (id,days) => {
     userData.update({membresyExpDate: dateToString})
 }
 
-module.exports = { getPagingData, getPagination, addDaysToUser, getClass ,findUserRoutinesById, getFeedbacks, filterData, relaciones, checkFavs, getExcercises, createExcercises, updateExcercises, filterProducts, createSale, filterUsers }
+module.exports = { getPagingData, getPagination, addDaysToUser, getClass ,findUserRoutinesById, filterData, relaciones, checkFavs, getExcercises, createExcercises, updateExcercises, filterProducts, createSale, filterUsers }
 
 

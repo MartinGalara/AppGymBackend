@@ -30,7 +30,7 @@ conn.sync({ force: true }).then(() => {
   server.listen(PORT, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
     const users = [
-      {name: "Martin Galara", email: "mgalara@gmail.com", hashPassword: "$2b$08$/DFujLqVmZYc2qHWRdf.EuXZTLOlf2NzuL5ihfcJ0xkR/5vH7Fk/e",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "User", imgUrl:"https://media.gettyimages.com/id/1292567082/es/foto/male-personal-trainer-sitting-on-weight-bench-after-training-client-finish-in-a-gym.jpg?s=2048x2048&w=gi&k=20&c=R9YVEJQyRcLTFX8sQsGpYwaOWzAcP1Z8D7iKv0Oxktc="},      //123
+      {name: "Martin Galara", email: "mgalara@gmail.com", hashPassword: "$2b$08$/DFujLqVmZYc2qHWRdf.EuXZTLOlf2NzuL5ihfcJ0xkR/5vH7Fk/e",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Admin", imgUrl:"https://media.gettyimages.com/id/1292567082/es/foto/male-personal-trainer-sitting-on-weight-bench-after-training-client-finish-in-a-gym.jpg?s=2048x2048&w=gi&k=20&c=R9YVEJQyRcLTFX8sQsGpYwaOWzAcP1Z8D7iKv0Oxktc="},      //123
       {name: "Tony Traliche", email: "tony@gmail.com", hashPassword: "$2b$08$THIWbid7F5iySlIs2yxPlOracC44cyVT.hWI0Z1k88h4/G8r9awae",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Admin", imgUrl:"https://media.gettyimages.com/id/1319635095/es/foto/despu%C3%A9s-de-terminar-con-el-uso-de-equipos-de-ejercicio-en-el-gimnasio-moderno-el-atleta-y-el.jpg?s=2048x2048&w=gi&k=20&c=S_S2Q65ekxuy1mlmadVYawIm0VqABDTGlAh5mWdJKbo="},           //asd123
       {name: "Martin Galara", email: "martin@gmail.com", hashPassword: "$2b$08$xA9tnzZIUM63bn3dvIRPae2vZCaUk4VPQE.fuGg2MAuQ9OEqPyypG",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/1292567082/es/foto/male-personal-trainer-sitting-on-weight-bench-after-training-client-finish-in-a-gym.jpg?s=2048x2048&w=gi&k=20&c=R9YVEJQyRcLTFX8sQsGpYwaOWzAcP1Z8D7iKv0Oxktc="},       //hola
       {name: "Agustin Reynoso", email: "areynoso@gmail.com", hashPassword: "$2b$08$4BS.P3G/uI0moDVQ2LWOYuOAaO7.eeR80buWk5Yq3z54Eg9WW4kE2",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/1265090289/es/foto/el-personal-que-usa-una-toallita-h%C3%BAmeda-y-un-desinfectante-azul-de-la-botella-para-limpiar-la.jpg?s=2048x2048&w=gi&k=20&c=PttbdoekEaLCLw0ADbi46TocS3xnu0coEnd-ikewXXk="},    //quetal
@@ -38,8 +38,11 @@ conn.sync({ force: true }).then(() => {
       {name: "Manuel Casanueva", email: "manucasanueva@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/615883260/es/foto/dif%C3%ADcil-no-significa-imposible.jpg?s=1024x1024&w=gi&k=20&c=A4t-maeefZ_B0wDZH2AZxFaVW-cidudFpMCICIRByPI="},    //auth0|636d38848ad399282c11fafa
       {name: "Pablo Lospennato", email: "pol@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/1311330212/es/foto/estoy-mejorando-d%C3%ADa-a-d%C3%ADa.jpg?s=1024x1024&w=gi&k=20&c=mv-7rC5VB8Ehy_8ucRs11jwhUDNRB_d_jXbMAe70vCw="},    //auth0|636d38848ad399282c11fafa
       {name: "Alexsandro Gomez", email: "alex@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/1084251084/es/foto/entrenamiento-personal-en-el-gimnasio.jpg?s=1024x1024&w=gi&k=20&c=aNQ7_4FwYLPd4RxFAO-_pWuOZDx1hGMYpQn9r1Rp8gk="},    //auth0|636d38848ad399282c11fafa
-      {name: "Jose Manuel Manrique", email: "jmm@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2023 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/909416522/es/foto/hombre-mayor-activo-teniendo-fuerza-ejercicios-con-barra-en-un-gimnasio.jpg?s=1024x1024&w=gi&k=20&c=Ryxs9wzbVTy35mYc77vrZclg7GgccFO8fn2SRxQf13k="},    //auth0|636d38848ad399282c11fafa
-      {name: "Gaston Schmitz", email: "gaston@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2023 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa
+      {name: "Jose Manuel Manrique", email: "jmm@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/909416522/es/foto/hombre-mayor-activo-teniendo-fuerza-ejercicios-con-barra-en-un-gimnasio.jpg?s=1024x1024&w=gi&k=20&c=Ryxs9wzbVTy35mYc77vrZclg7GgccFO8fn2SRxQf13k="},    //auth0|636d38848ad399282c11fafa
+      {name: "Gaston Schmitz", email: "gaston@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa
+      {name: "Cosme Fulanito", email: "cful@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 30 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "User", imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa
+      {name: "Piero Dellafrancesca", email: "piero@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Dec 30 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "User", imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa
+      {name: "Fulano Mengano", email: "fmperez@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Dec 30 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "User", imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa
     ]
 
     const routines = [
@@ -108,7 +111,8 @@ conn.sync({ force: true }).then(() => {
       {title: "Mancuerna Fundición 10kg", unit_price: 6500, stock: 4, description: "Mancuerna de 10kg. El precio Corresponde a 1 sola Unidad", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_886990-MLA44318271543_122020-O.webp", category:"Accesorios"},
       {title: "Soga", unit_price: 2200, stock: 3, description: "Soga de saltar antideslizante", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_753381-MLA45466380079_042021-O.webp", category:"Accesorios"},
       {title: "Bolsa Boxeo Guantin Vendas Cadena Soporte", unit_price: 2200, stock: 3, description: "KIT BOXEO - BOLSA + GUANTINES + VENDAS + CADENAS + SOGA + SOPORTE", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_840990-MLA47292531552_082021-O.webp", category:"Accesorios"},
-      {title: "Suplemento proteico", unit_price: 5000, stock: 2,description: "Suplemento en polvo ENA Sport True Made proteínas sabor vanilla ice cream en pote de 930g", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_957539-MLA50144895276_052022-O.webp", category:"Suplementos"},
+      {title: "Suplemento proteico 930gr", unit_price: 6000, stock: 2,description: "Suplemento en polvo ENA Sport True Made proteínas sabor vanilla ice cream en pote de 930g", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_957539-MLA50144895276_052022-O.webp", category:"Suplementos"},
+      {title: "Suplemento proteico 453gr", unit_price: 4300, stock: 2,description: "Suplemento deportivo whey protein sabor cookies & cream 453 gr", imgUrl:"https://farmaonline.vteximg.com.br/arquivos/ids/385054-0-0/8034773_0.jpg?v=637995577018170000", category:"Suplementos"},
       {title: "Protectores Bucales", unit_price: 500, stock: 10,description: "Con una gran variedad de colores, estos protectores bucales termomoldeables brindan una protección efectiva contra distintos tipos de lesiones maxilofaciales.", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_717073-MLA47060480013_082021-O.webp", category:"Accesorios"},
       {title: "Tobillera Deportiva Elastica Airsport", unit_price: 1800, stock: 4,description: "Tobillera Elástica Spandex Air Sport - Profit PTM Oficial", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_713310-MLA48744119560_012022-O.webp", category:"Indumentaria"},
       {title: "Conjunto Deportivo Mujer", unit_price: 1800, stock: 4, description: "Calza Chupin + Top Sublimado Gym", imgUrl:"https://http2.mlstatic.com/D_NQ_NP_868021-MLA45177005781_032021-O.webp", category:"Indumentaria"},
@@ -130,29 +134,29 @@ conn.sync({ force: true }).then(() => {
     ]
 
     const classes = [
-      {name: "Yoga", date: 2020-15-11, hour:'h08/h10', day:'mon'},
-      {name: "Zumba", date: 2020-15-11, hour:'h16/h18', day:'mon'},
-      {name: "Aerobico", date: 2020-18-11, hour:'h12/h14', day:'tue'},
-      {name: "Pilates", date: 2020-18-11, hour:'h20/h22', day:'tue'},
-      {name: "Spinning", date: 2020-20-11, hour:'h07/h09', day:'wed'},
-      {name: "Yoga", date: 2020-15-11, hour:'h19/h21', day:'wed'},
-      {name: "Zumba", date: 2020-15-11, hour:'h09/h11', day:'thu'},
-      {name: "Aerobico", date: 2020-18-11, hour:'h17/h18', day:'thu'},
-      {name: "Spinning", date: 2020-20-11, hour:'h07/h09', day:'fri'},
-      {name: "Pilates", date: 2020-18-11, hour:'h10/h12', day:'fri'},
-      {name: "Spinning", date: 2020-20-11, hour:'h18/h20', day:'fri'},
-      {name: "Boxeo", date: 2020-20-11, hour:'h09/h11', day:'sat'},
+      {name: "Yoga", date: 2020-15-11, hour:'h08/h10', day:'mon', userId:1},
+      {name: "Zumba", date: 2020-15-11, hour:'h16/h18', day:'mon', userId:4},
+      {name: "Aerobico", date: 2020-18-11, hour:'h12/h14', day:'tue', userId:3},
+      {name: "Pilates", date: 2020-18-11, hour:'h20/h22', day:'tue', userId:6},
+      {name: "Spinning", date: 2020-20-11, hour:'h07/h09', day:'wed', userId:5},
+      {name: "Yoga", date: 2020-15-11, hour:'h19/h21', day:'wed', userId:1},
+      {name: "Zumba", date: 2020-15-11, hour:'h09/h11', day:'thu', userId:4},
+      {name: "Aerobico", date: 2020-18-11, hour:'h17/h18', day:'thu', userId:3},
+      {name: "Spinning", date: 2020-20-11, hour:'h07/h09', day:'fri', userId:5},
+      {name: "Pilates", date: 2020-18-11, hour:'h10/h12', day:'fri', userId:6},
+      {name: "Spinning", date: 2020-20-11, hour:'h18/h20', day:'fri', userId:5},
+      {name: "Boxeo", date: 2020-20-11, hour:'h09/h11', day:'sat', userId:7},
     ]
 
     const feedbacks = [
-      {title:"Vuestro gym huele",
-      description:"Me comunico con ustedes para elevar la sieguiente queja: su gimnasio tiene aromas humanos en cantidades superiores a las tolerables.",
-      score:"3",
-      userId:1},
-      {title:"Tralari tralari",
-      description:"Holis. Zoi feliz.",
-      score:"5",
-      userId:2}
+      {title: "Excelso!", staff: "Martin Galara", staffId: 1, description: "Le debo todo", score: 5},
+      {title: "Grosso!", staff: "Martin Galara", staffId: 1, description: "Gran profe!", score: 4},
+      {title: "Bien!", staff: "Martin Galara", staffId: 1, description: "Meh", score: 3},
+      {title: "Impecable", staff: "Pablo Lospennato", staffId: 7, description: "Clases sublimes", score: 5},
+      {title: "Gracias", staff: "Pablo Lospennato", staffId: 7, description: "Se copa bastante", score: 4},
+      {title: "Keseyó", staff: "Pablo Lospennato", staffId: 7, description: "Tiene sus días", score: 3},
+      {title: "tengo una keja", staff: "Pablo Lospennato", staffId: 7, description: "Flojardo", score: 2},
+      {title: "Es malardo", staff: "Pablo Lospennato", staffId: 7, description: "soy hater, un grinch", score: 1},
     ]
 
     User.bulkCreate(users).then(() => console.log("Users cargados"))
