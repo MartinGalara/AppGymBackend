@@ -48,7 +48,7 @@ router.patch('/', userExtractor, async (req, res) => {
             where:{name:name} 
         })
 
-        category.update({name:newName})
+        await category.update({name:newName})
     
         return res.status(200).json(category)
         

@@ -1,5 +1,4 @@
 const { Router } = require("express");
-// const { Excercise , Muscle, Product, Routine, User, Class } = require("../db.js");
 const { Op } = require("sequelize");
 const classes = require ('./controllers/classes.js')
 const routines = require ('./controllers/routines.js')

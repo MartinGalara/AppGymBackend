@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
         },
         gifUrl: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             defaultValue: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/186-shoulder-press-1-1550761001.gif",
         },
     },

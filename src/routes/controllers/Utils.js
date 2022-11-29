@@ -1,6 +1,6 @@
 // const axios = require('axios');
 
-const { Class, Routine, SubscriptionSale, User, Muscle, Feedback , Excercise, User_Routine, Routine_Excercise, Item, Sale } = require('../../db.js');
+const { Class, Routine, User, Muscle, Excercise, User_Routine, Routine_Excercise, Item, Sale } = require('../../db.js');
 
 
 const getClass = async () => {
@@ -265,7 +265,7 @@ const getPagingData = (data, page, limit) => {
   };
 
   const getPagination = (page, size) => {
-    const limit = size ? +size : 5;
+    const limit = size ? size : 10;
     const offset = page ? page * limit : 0;
     return { limit, offset };
   };

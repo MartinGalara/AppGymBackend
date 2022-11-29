@@ -1,4 +1,4 @@
-const { DataTypes, DATE } = require('sequelize');
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
     sequelize.define('user', {
@@ -20,15 +20,18 @@ module.exports = (sequelize) => {
             defaultValue: "User",
         },
         imgUrl:{
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             defaultValue: "https://wellesleysocietyofartists.org/wp-content/uploads/2015/11/image-not-found.jpg",
         },
         averageScore:{
             type: DataTypes.FLOAT,
-            defaultValue: 4,
         },
         membresyExpDate:{
             type: DataTypes.STRING,
+            get(){
+                const stringToDate = new Date(Date.parse(this.getDataValue('membresyExpDate')))
+                return stringToDate
+            }
         },
         expiredMembresy:{
             type: DataTypes.BOOLEAN,

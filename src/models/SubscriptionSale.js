@@ -24,6 +24,12 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+        month:{
+            type: DataTypes.INTEGER,
+        },
+        year:{
+            type: DataTypes.INTEGER,
+        },
     },
     {
         paranoid: true,

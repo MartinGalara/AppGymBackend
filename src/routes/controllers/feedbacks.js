@@ -60,8 +60,8 @@ router.post('/', userExtractor, async (req, res) => {
             score,
         });
 
-        const user = await User.findByPk(id)
-        newFeedback.setUser(user)
+        const user = await User.findByPk(staffId)
+        await newFeedback.setUser(user)
 
         if(staff){
             const allReviews = await Feedback.findAll({
@@ -76,7 +76,6 @@ router.post('/', userExtractor, async (req, res) => {
 
             const sum = array.reduce((a, b) => parseInt(a) + parseInt(b), 0);
             const avg = (sum / array.length) || 0;
-            console.log(avg);
             const staffUser = await User.findByPk(staffId)
 
             await staffUser.update({

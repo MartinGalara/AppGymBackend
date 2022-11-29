@@ -30,16 +30,16 @@ router.get('/', userExtractor, async (req, res) => {
 
 router.post('/', userExtractor, async (req, res) => {
     try {
-        let { name, totalCost, saving, expiration, userId } = req.body;
-        if ( !name || !totalCost || !expiration ) return res.status(400).json('Missing inputs')
+        const { name, totalCost, saving, daysToAdd } = req.body;
+        if ( !name || !totalCost || !daysToAdd ) return res.status(400).json('Missing inputs')
 
-        let newMembresy = await Membresy.create({
+        const newMembresy = await Membresy.create({
             name,
             totalCost,
             saving,
-            expiration,
+            daysToAdd,
         });
-        res.status(200).json(newMembresy);
+        return res.status(200).json(newMembresy);
     } catch (error) {
         res.status(400).send(error.message)
     }
@@ -49,20 +49,19 @@ router.post('/', userExtractor, async (req, res) => {
 router.put('/:id', userExtractor, async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, totalCost, saving, expiration } = req.body
+        const { name, totalCost, saving, daysToAdd } = req.body
         let membresyUpdated = await Membresy.findByPk(id);
         if (membresyUpdated) {
             const updateMembresy = await membresyUpdated.update({
                 name,
                 totalCost,
                 saving,
-                expiration,
+                daysToAdd,
             });
             return res.status(200).send({ updateMembresy });
         }
-        throw new Error('Membresía inexistente')
     } catch (error) {
-        res.status(400).send(error.message)
+        res.status(400).send("Membresía inexistente")
     }
 })
 
@@ -72,15 +71,11 @@ router.delete('/:id', userExtractor, async (req, res) => {
         const { id } = req.params;
         const membresyToDelete = await Membresy.findByPk(id);
         if (membresyToDelete) {
-            await Membresy.destroy({
-                where: {
-                    id: id
-                }
-            })
-            res.status(200).send(`La membresía de id ${id} fue borrada con éxito`)
-        } else { res.status(400).send('No se encontró la membresía solicitada') }
+            await membresyToDelete.destroy()
+            return res.status(200).send(`La membresía de id ${id} fue borrada con éxito`)
+        } 
     } catch (error) {
-        res.status(400).send(error.message)
+        res.status(400).send('No se encontró la membresía solicitada')
     }
 })
 

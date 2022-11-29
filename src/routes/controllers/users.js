@@ -8,11 +8,9 @@ const router = Router();
 
 router.get('/', userExtractor, async (req, res) => {
     const { role } = req.query;
-    let allUsers;
     try {
-        allUsers = await User.findAll();
         if (role){
-            let staff = await User.findAll({
+            const staff = await User.findAll({
                 where: ({
                     role:{[Op.iLike]: role}
                 })
@@ -21,6 +19,7 @@ router.get('/', userExtractor, async (req, res) => {
             res.status(200).send(staff):
             res.status(404).send('Role not found');
         } else {
+            const allUsers = await User.findAll();
             allUsers.length?
             res.status(200).send(allUsers):
             res.status(404).send('Users not found');
@@ -71,32 +70,19 @@ router.get('/expirations', userExtractor, async (req, res) => {
     }
 })
 
-router.get('/filter', userExtractor, async (req, res) => {
-    const { filters } =req.body;
-    let allUsers;
-    let finalFilter;
-    try {
-        allUsers = await User.findAll();
-        finalFilter = filterUsers(allUsers, filters)
-        res.status(200).send(finalFilter)
-    } catch (error) {
-        res.status(404).send(error.message);
-    }
-})
-
 router.get('/profile', userExtractor, async (req, res) => {
     try {
         const { id } = req.body;
         const selectedUser = await User.findByPk(id)
         
-        let userExpDate = new Date(Date.parse(selectedUser.membresyExpDate))
+        const userExpDate = new Date(Date.parse(selectedUser.membresyExpDate))
     
         const localDate = new Date();
   
         if(userExpDate < localDate) await selectedUser.update({expiredMembresy: true})
         else await selectedUser.update({expiredMembresy: false})
 
-        res.status(200).send(selectedUser)
+        return res.status(200).send(selectedUser)
     } catch (error) {
         res.status(400).send('User not found')
     }
