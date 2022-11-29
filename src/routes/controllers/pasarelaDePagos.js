@@ -89,6 +89,8 @@ router.put("/subscription", userExtractor, async function (req, res, next) {
   await subscription.update({
     approved: payed,
     paymentMethod,
+    year:new Date(subscription.updatedAt).getFullYear(),
+    month:new Date(subscription.updatedAt).getMonth()+1,
   })
 
   addDaysToUser(id,subscription.daysToAdd)

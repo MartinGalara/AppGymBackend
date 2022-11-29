@@ -1,8 +1,8 @@
 const { Router } = require('express');
-const { filterProducts,getPagination,getPagingData} = require('./Utils');
+const { getPagination,getPagingData} = require('./Utils');
 const userExtractor = require('../middleware/userExtractor.js');
-const { Product ,Sale,Item} = require('../../db.js');
-const { Op, literal,Sequelize } = require("sequelize");
+const { Product ,Sale} = require('../../db.js');
+const { Op, Sequelize } = require("sequelize");
 
 const router = Router();
 
@@ -36,23 +36,19 @@ router.get('/', async (req, res) => {
 
 router.post('/filter', userExtractor, async (req, res) => {
 
-    const { id , filters } = req.body;
+    const { filters } = req.body;
     
     const page = parseInt(req.query.page, 10)
     const size = parseInt(req.query.size, 10)
 
-    let productData;
-    let finalfilter;
-
         try {
-
-            
 
             const { limit, offset } = getPagination(page, size);
             const productData = await Product.findAndCountAll({where:
                 {category:filters.category?filters.category:{[Op.not]:'cloudinary'},
 
-                unit_price:(filters.max&&filters.min)?{[Op.between]:[filters.min, filters.max]}:filters.max?{[Op.lte]:filters.max}:filters.min?{[Op.gte]:filters.min}:{[Op.not]:"cloudinary"}},offset: offset, limit: limit}
+                unit_price:(filters.max&&filters.min)?{[Op.between]:[filters.min, filters.max]}:filters.max?{[Op.lte]:filters.max}:filters.min?{[Op.gte]:filters.min}:{[Op.not]:"cloudinary"}},
+                offset: offset, limit: limit}
 
                 
                 );
@@ -70,13 +66,56 @@ router.delete('/:id', userExtractor, async (req, res) => {
         const { id } = req.params;
         const productToDelete = await Product.findByPk(id);
         if (productToDelete) {
-            await Product.destroy({
-                where: {
-                    id: id
-                }
-            })
+            await productToDelete.destroy()
             res.status(200).send(`El producto de id ${id} fue borrado con éxito`)
-        } else { res.status(400).send('No se encontró el producto requerido') }
+        }
+    } catch (error) {
+        res.status(400).send(error.message)
+    }
+})
+
+router.post('/', userExtractor, async (req, res) => {
+
+    const { title , unit_price , stock , category , description , imgUrl} = req.body;
+
+    if(!title || !unit_price || !stock) return res.status(400).send("Faltan datos")
+
+    try {
+
+        const newProduct = await Product.create({
+            title,
+            unit_price,
+            stock,
+            category,
+            description,
+            imgUrl
+        })
+
+        return res.status(200).json(newProduct)
+       
+    } catch (error) {
+        res.status(400).send(error.message)
+    }
+})
+
+router.put('/:id', userExtractor, async (req, res) => {
+
+    const { id } = req.params 
+
+    const changes = {}
+
+    for (const property in req.body) {
+        if(property !== "id" && property !== "userRole" && property !== "userName") changes[property] = req.body[property]
+      }
+    
+    try {
+
+        const product = await Product.findByPk(id)
+    
+        await product.update(changes)
+    
+        return res.status(200).json(product)
+       
     } catch (error) {
         res.status(400).send(error.message)
     }

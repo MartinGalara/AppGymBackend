@@ -40,12 +40,8 @@ router.post('/', userExtractor, async (req, res) => {
             day,
         });
 
-        const user = await User.findOne({
-            where: {
-                id: id,
-            }
-        })
-        newClass.setUser(user)
+        const user = await User.findByPk(id)
+        await newClass.setUser(user)
         res.status(200).json(newClass);
     } catch (error) {
         res.status(400).send(error.message)
@@ -55,20 +51,17 @@ router.post('/', userExtractor, async (req, res) => {
 router.put('/:id', userExtractor, async (req, res) => {
     try {
         let { id } = req.params;
-        console.log(id); 
         const {name, date} = req.body
-        let updated = await Class.findByPk(id);
-        if (updated) {
-            console.log('acata');
-            const updateClass = await updated.update({ 
+        let classToUpdate = await Class.findByPk(id);
+        if (classToUpdate) {
+            const updateClass = await classToUpdate.update({ 
                 name: name, 
-                date: date, 
-                userId: 2});//HARCODEADO ==>> USER EXTRACTOR
-            return res.status(200).send({ updateClass });
+                date: date
+            });
+            return res.status(200).send(updateClass);
         }
-        throw new Error('Class not found')
     } catch (error) {
-        res.status(400).send(error.message)
+        res.status(400).send("Class not found")
     }
 })
 
@@ -77,15 +70,11 @@ router.delete('/:id', userExtractor, async (req, res) => {
         const { id } = req.params;
         const classD = await Class.findByPk(id);
         if (classD) {
-            await Class.destroy({
-                where: {
-                    id: id
-                }
-            })
+            await classD.destroy()
             res.status(200).send(`La clase de id ${id} fue borrada con éxito`)
-        } else { res.status(400).send('No se encontró la clase requerida') }
+        }
     } catch (error) {
-        res.status(400).send(error.message)
+        res.status(400).send('No se encontró la clase requerida')
     }
 })
 
