@@ -20,7 +20,7 @@
 const {relaciones} = require('./src/routes/controllers/Utils.js')
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const { User , Routine , Excercise, Muscle, Product, Membresy, Class, Feedback, User_Routine, Routine_Excercise, Category} = require('./src/db.js')
+const { User , Routine , Excercise, Muscle, Product, Membresy, Class, Feedback, User_Routine, Routine_Excercise, Category,Sale} = require('./src/db.js')
 
 require('dotenv').config();
 const { PORT } = process.env;
@@ -37,7 +37,7 @@ conn.sync({ force: true }).then(() => {
       {name: "Aron Fraga", email: "aronfraga@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/1319635095/es/foto/despu%C3%A9s-de-terminar-con-el-uso-de-equipos-de-ejercicio-en-el-gimnasio-moderno-el-atleta-y-el.jpg?s=2048x2048&w=gi&k=20&c=S_S2Q65ekxuy1mlmadVYawIm0VqABDTGlAh5mWdJKbo="},    //auth0|636d38848ad399282c11fafa
       {name: "Manuel Casanueva", email: "manucasanueva@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/615883260/es/foto/dif%C3%ADcil-no-significa-imposible.jpg?s=1024x1024&w=gi&k=20&c=A4t-maeefZ_B0wDZH2AZxFaVW-cidudFpMCICIRByPI="},    //auth0|636d38848ad399282c11fafa
       {name: "Pablo Lospennato", email: "pol@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/1311330212/es/foto/estoy-mejorando-d%C3%ADa-a-d%C3%ADa.jpg?s=1024x1024&w=gi&k=20&c=mv-7rC5VB8Ehy_8ucRs11jwhUDNRB_d_jXbMAe70vCw="},    //auth0|636d38848ad399282c11fafa
-      {name: "Alexsandro Gomez", email: "alex@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/1084251084/es/foto/entrenamiento-personal-en-el-gimnasio.jpg?s=1024x1024&w=gi&k=20&c=aNQ7_4FwYLPd4RxFAO-_pWuOZDx1hGMYpQn9r1Rp8gk="},    //auth0|636d38848ad399282c11fafa
+      {name: "Alexsandro Gomez", email: "agomezf@pucp.edu.pe", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Admin", imgUrl:"https://media.gettyimages.com/id/1084251084/es/foto/entrenamiento-personal-en-el-gimnasio.jpg?s=1024x1024&w=gi&k=20&c=aNQ7_4FwYLPd4RxFAO-_pWuOZDx1hGMYpQn9r1Rp8gk="},    //auth0|636d38848ad399282c11fafa
       {name: "Jose Manuel Manrique", email: "jmm@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/909416522/es/foto/hombre-mayor-activo-teniendo-fuerza-ejercicios-con-barra-en-un-gimnasio.jpg?s=1024x1024&w=gi&k=20&c=Ryxs9wzbVTy35mYc77vrZclg7GgccFO8fn2SRxQf13k="},    //auth0|636d38848ad399282c11fafa
       {name: "Gaston Schmitz", email: "gaston@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa
       {name: "Cosme Fulanito", email: "cful@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 30 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "User", imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa
@@ -174,6 +174,45 @@ conn.sync({ force: true }).then(() => {
       {title: "Es malardo", staff: "Gaston Schmitz", staffId: 10, description: "soy hater, un grinch", score: 1},
     ]
 
+    const salesPrueba = [
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:1,year:2022},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:2,year:2022},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:3,year:2022},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:4,year:2022},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:5,year:2022},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2022},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2022},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2022},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2022},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2022},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:7,year:2022},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:8,year:2022},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:1,year:2022},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:9,year:2022},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:10,year:2022},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:11,year:2022},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:12,year:2022},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:11,year:2022},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:1,year:2021},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:2,year:2021},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:3,year:2021},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:4,year:2021},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:5,year:2021},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2021},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2022},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2021},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2021},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2021},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:7,year:2021},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:8,year:2021},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:1,year:2021},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:9,year:2021},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:10,year:2021},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:11,year:2021},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:12,year:2021},
+      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:11,year:2021},
+    ]
+
     User.bulkCreate(users).then(() => console.log("Users cargados"))
     Category.bulkCreate(category).then(() => console.log("Categorias cargadas"))
     User_Routine.create({userId: 1,routineId:1})
@@ -254,5 +293,6 @@ conn.sync({ force: true }).then(() => {
     Class.bulkCreate(classes).then(() => console.log("Classes cargados"))
     Feedback.bulkCreate(feedbacks).then(() => console.log("Feedbacks cargados"))
     Membresy.bulkCreate(membresies).then(() => console.log("Membresies cargadas"))
+    Sale.bulkCreate(salesPrueba).then(() => console.log("Sales cargadas"))
   });
 });
