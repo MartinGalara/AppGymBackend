@@ -6,10 +6,6 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        date: {
-            type: DataTypes.DATEONLY,
-            allowNull: false,
-        },
         hour: {
             type: DataTypes.STRING,
             allowNull: false,
