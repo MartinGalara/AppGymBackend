@@ -2,6 +2,8 @@
 
 const { Class, Routine, User, Muscle, Excercise, User_Routine, Routine_Excercise, Item, Sale } = require('../../db.js');
 
+const nodemailer = require("nodemailer")
+
 
 const getClass = async () => {
     const classes = await Class.findAll({
@@ -309,6 +311,40 @@ const expiredUsers = async () => {
 
 }
 
-module.exports = { expiredUsers, getPagingData, getPagination, addDaysToUser, getClass ,findUserRoutinesById, filterData, relaciones, checkFavs, getExcercises, createExcercises, updateExcercises, filterProducts, createSale, filterUsers }
+const sendEmail = async (sale,buyer) => {
+
+    const url = "https://app-gym-frontend.vercel.app/feedback"
+
+    let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true, // true for 465, false for other ports
+        auth: {
+          user: "mgalara@gmail.com", // generated ethereal user
+          pass: "ydtdjiidhgpkupal", // generated ethereal password
+        },
+      });
+    
+      await transporter.sendMail({
+        from: '"Gym Fit" <mgalara@gmail.com>', // sender address
+        to: `${buyer.userEmail}`, // list of receivers
+        subject: "Gracias por tu compra!", // Subject line
+        text: "Muchas gracias por tu compra, te dejamos el detalle de la misma y por cualquier sugerencia un link para que des tu feedback", // plain text body
+        html: `
+        <div>
+        <p>Muchas gracias por tu compra, te dejamos el detalle de la misma y por cualquier sugerencia un link para que des tu feedback</p>
+        <p>Total comprado: ${sale.totalCost}</p>
+        <p>Metodo de pago: ${sale.paymentMethod}</p>
+        <p>Items comprados: ${sale.items? sale.items.length : sale.name}</p>
+        <br></br>
+        <p>Para dejar tu feedback dirigete a:</p>
+        <a href=${url}>=> Feedback <=</a>
+        <div/>
+        `, // html body
+      });
+
+}
+
+module.exports = { sendEmail, expiredUsers, getPagingData, getPagination, addDaysToUser, getClass ,findUserRoutinesById, filterData, relaciones, checkFavs, getExcercises, createExcercises, updateExcercises, filterProducts, createSale, filterUsers }
 
 

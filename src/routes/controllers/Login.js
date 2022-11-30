@@ -32,6 +32,7 @@ router.post('/', async (req,res) => {
             id: checkingUser.id,
             userRole: checkingUser.role,
             userName: checkingUser.name,
+            userEmail: checkingUser.email
         }
     
         const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: 60 * 60 * 24 * 7})
@@ -57,6 +58,7 @@ router.post('/', async (req,res) => {
             id: newUser.id,
             userRole: newUser.role,
             userName: newUser.name,
+            userEmail: newUser.email
         }
     
         const token = jwt.sign(userForToken, process.env.SECRET, { expiresIn: 60 * 60 * 24 * 7})
