@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { getPagination,getPagingData} = require('./Utils');
 const userExtractor = require('../middleware/userExtractor.js');
-const { Product ,Sale} = require('../../db.js');
+const { Product ,Sale, Item} = require('../../db.js');
 const { Op, Sequelize } = require("sequelize");
 
 const router = Router();
@@ -121,7 +121,7 @@ router.put('/:id', userExtractor, async (req, res) => {
     }
 })
 
-router.post('/filter/admin', userExtractor, async (req, res) => {
+router.post('/admdashboard/monthsales', userExtractor, async (req, res) => {
 
     const { id , filters } = req.body;
 
@@ -137,6 +137,55 @@ router.post('/filter/admin', userExtractor, async (req, res) => {
             res.status(200).send(productData)
         } catch (error) {
             res.status(400).send(error.message)
+        }
+})
+
+router.post('/admdashboard/monthproducts', userExtractor, async (req, res) => {
+
+    const { filters } = req.body;
+
+        try {
+
+            const productData = await Sale.findAll({
+                where:{year:filters.year},
+                include:{
+                    model: Item
+                }
+              });
+
+        let setOfProducts = {
+            1:{},
+            2:{},
+            3:{},
+            4:{},
+            5:{},
+            6:{},
+            7:{},
+            8:{},
+            9:{},
+            10:{},
+            11:{},
+            12:{},
+        }
+
+        productData.map( p => {
+            const mes = p.month;
+            p.items.map(i => {
+                if(setOfProducts[mes].hasOwnProperty(i.title)) {
+                    const title = i.title
+                    const total = setOfProducts[mes][title]
+                    setOfProducts[mes][title] = total + i.quantity
+                }else{
+                    const title = i.title
+                    setOfProducts[mes][title] = i.quantity
+                }
+            })
+           
+        })
+
+        return res.status(200).send(setOfProducts)
+        } catch (error) {
+        res.status(400).send(error.message)
         }
 })
 
