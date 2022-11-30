@@ -8,7 +8,7 @@ const PaymentService = require("../services/PaymentService");
 const PaymentInstance = new PaymentController(new PaymentService());
 
 const { Item, Sale, Product , SubscriptionSale } = require('../../db.js')
-const { addDaysToUser} = require("./Utils.js")
+const { addDaysToUser, sendEmail} = require("./Utils.js")
 
 router.post("/payment", userExtractor, async function (req, res, next) {
 
@@ -61,6 +61,8 @@ router.put("/payment", userExtractor, async function (req, res, next) {
     await product.update({stock: stock-items[i].quantity})
   }
 
+  await sendEmail(sale,req.body)
+
   return res.json(sale)
 
 });
@@ -94,6 +96,8 @@ router.put("/subscription", userExtractor, async function (req, res, next) {
   })
 
   addDaysToUser(id,subscription.daysToAdd)
+
+  await sendEmail(subscription,req.body)
 
   return res.json(subscription)
 
