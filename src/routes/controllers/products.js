@@ -123,7 +123,7 @@ router.put('/:id', userExtractor, async (req, res) => {
 
 router.post('/admdashboard/monthsales', userExtractor, async (req, res) => {
 
-    const { id , filters } = req.body;
+    const { filters } = req.body;
 
         try {
 
@@ -133,7 +133,6 @@ router.post('/admdashboard/monthsales', userExtractor, async (req, res) => {
                 group: ['month']
               });
 
-            console.log(productData);
             res.status(200).send(productData)
         } catch (error) {
             res.status(400).send(error.message)

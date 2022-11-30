@@ -1,6 +1,7 @@
 const { Router } = require('express')
-const { Membresy } = require('../../db.js')
+const { Membresy,SubscriptionSale } = require('../../db.js')
 const userExtractor = require('../middleware/userExtractor.js');
+const { Sequelize } = require("sequelize");
 
 const router = Router();
 
@@ -77,6 +78,23 @@ router.delete('/:id', userExtractor, async (req, res) => {
     } catch (error) {
         res.status(400).send('No se encontró la membresía solicitada')
     }
+})
+
+router.post('/admdashboard/monthsales', userExtractor, async (req, res) => {
+    const { filters } = req.body;
+
+        try {
+
+            const membresiesData = await SubscriptionSale.findAll({
+                where:{year:filters.year,approved:true},
+                attributes: ['month', [Sequelize.fn('SUM', Sequelize.col('totalCost')), 'sum']],
+                group: ['month']
+              });
+
+            res.status(200).send(membresiesData)
+        } catch (error) {
+            res.status(400).send(error.message)
+        }
 })
 
 module.exports = router;

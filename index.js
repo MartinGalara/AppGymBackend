@@ -20,7 +20,7 @@
 const {relaciones} = require('./src/routes/controllers/Utils.js')
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const { User , Routine , Excercise, Muscle, Product, Membresy, Class, Feedback, User_Routine, Routine_Excercise, Category,Sale,Item} = require('./src/db.js')
+const { User , Routine , Excercise, Muscle, Product, Membresy, Class, Feedback, User_Routine, Routine_Excercise, Category,Sale,Item, SubscriptionSale} = require('./src/db.js')
 
 require('dotenv').config();
 const { PORT } = process.env;
@@ -226,6 +226,26 @@ conn.sync({ force: true }).then(() => {
       {title: "Suplemento proteico 930g", unit_price: 6000, quantity: 1,saleId: 18},
     ]
 
+    const salesMembresias = [
+      {name: "Plan 3 meses", purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:1,year:2022,daysToAdd:90},
+      {name: "Plan 1 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:2,year:2022,daysToAdd:90},
+      {name: "Plan 3 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:3,year:2022,daysToAdd:90},
+      {name: "Plan 1 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:4,year:2022,daysToAdd:90},
+      {name: "Plan 6 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:5,year:2022,daysToAdd:90},
+      {name: "Plan 3 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2022,daysToAdd:90},
+      {name: "Plan 6 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2022,daysToAdd:90},
+      {name: "Plan 3 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2022,daysToAdd:90},
+      {name: "Plan 12 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:12,year:2022,daysToAdd:90},
+      {name: "Plan 3 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:11,year:2022,daysToAdd:90},
+      {name: "Plan 12 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:1,year:2021,daysToAdd:90},
+      {name: "Plan 12 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:2,year:2021,daysToAdd:90},
+      {name: "Plan 3 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:3,year:2021,daysToAdd:90},
+      {name: "Plan 3 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:4,year:2021,daysToAdd:90},
+      {name: "Plan 12 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:5,year:2021,daysToAdd:90},
+      {name: "Plan 3 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2021,daysToAdd:90},
+      {name: "Plan 12 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2022,daysToAdd:90},
+    ]
+
     User.bulkCreate(users).then(() => console.log("Users cargados"))
     Category.bulkCreate(category).then(() => console.log("Categorias cargadas"))
     User_Routine.create({userId: 1,routineId:1})
@@ -308,5 +328,6 @@ conn.sync({ force: true }).then(() => {
     Membresy.bulkCreate(membresies).then(() => console.log("Membresies cargadas"))
     Sale.bulkCreate(salesPrueba).then(() => console.log("Sales cargadas"))
     Item.bulkCreate(items).then(() => console.log("Items cargados"))
+    SubscriptionSale.bulkCreate(salesMembresias).then(() => console.log("Sales cargadas"))
   });
 });
