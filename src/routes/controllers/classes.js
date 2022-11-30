@@ -48,16 +48,24 @@ router.post('/', userExtractor, async (req, res) => {
     }
 })
 
-router.put('/:id', userExtractor, async (req, res) => {
+router.put('/', userExtractor, async (req, res) => {
     try {
-        let { id } = req.params;
-        const {name, date} = req.body
+
+        let { name, staffId, hour,day,id } = req.body;
+        if (!name || !hour || !day || !staffId) return res.status(400).json('Missing inputs')
+
+        // let { id } = req.params;
+        // const {name, date} = req.body
         let classToUpdate = await Class.findByPk(id);
         if (classToUpdate) {
             const updateClass = await classToUpdate.update({ 
-                name: name, 
-                date: date
+                name,
+                hour,
+                day,
+                id,
             });
+            const user = await User.findByPk(staffId)
+            await updateClass.setUser(user)
             return res.status(200).send(updateClass);
         }
     } catch (error) {
