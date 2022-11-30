@@ -215,16 +215,16 @@ conn.sync({ force: true }).then(() => {
     ]
 
     const items = [
-      {title: "Remera Animal", unit_price: 2500, quantity: 2, saleId:2},
+      {title: "Remera Animal", unit_price: 2500, quantity: 2, saleId:1},
       {title: "Remera No Pain No Gain", unit_price: 2500, quantity: 1, saleId: 2},
       {title: "Gorra Animal", unit_price: 1500, quantity: 2, saleId: 3},
-      {title: "Mancuerna Recubierta de Goma 2Kg", unit_price: 3000, quantity: 2, saleId: 3},
-      {title: "Mancuerna Fundición 5kg", unit_price: 4500, quantity: 1, saleId: 1},
-      {title: "Mancuerna Fundición 10kg", unit_price: 6500, quantity: 1, saleId: 4},
-      {title: "Soga De Saltar Ruleman", unit_price: 1600, quantity: 1, saleId: 5},
-      {title: "Soga De Saltar Aluminio", unit_price: 3800, quantity: 2, saleId: 3},
-      {title: "Bolsa Boxeo Guantin Vendas Cadena Soporte", unit_price: 2200, quantity: 1, saleId: 18},
-      {title: "Suplemento proteico 930g", unit_price: 6000, quantity: 1,saleId: 18},
+      {title: "Mancuerna Recubierta de Goma 2Kg", unit_price: 3000, quantity: 2, saleId: 4},
+      {title: "Mancuerna Fundición 5kg", unit_price: 4500, quantity: 1, saleId: 5},
+      {title: "Mancuerna Fundición 10kg", unit_price: 6500, quantity: 1, saleId: 6},
+      {title: "Soga De Saltar Ruleman", unit_price: 1600, quantity: 1, saleId: 7},
+      {title: "Soga De Saltar Aluminio", unit_price: 3800, quantity: 2, saleId: 8},
+      {title: "Bolsa Boxeo Guantin Vendas Cadena Soporte", unit_price: 2200, quantity: 1, saleId: 9},
+      {title: "Suplemento proteico 930g", unit_price: 6000, quantity: 1,saleId: 10},
     ]
 
     const salesMembresias = [
