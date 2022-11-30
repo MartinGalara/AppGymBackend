@@ -276,6 +276,18 @@ const addDaysToUser = async (id,days) => {
     
     const userData = await User.findByPk(id)
 
+    const localDate = new Date();
+
+    if(userData.membresyExpDate < localDate){
+
+    localDate.setDate(localDate.getDate() + days)
+
+    const dateToString = localDate.toString()
+
+    userData.update({membresyExpDate: dateToString})
+
+    }else{
+
     const newDate = new Date(Date.parse(userData.membresyExpDate))
    
     newDate.setDate(newDate.getDate() + days);
@@ -283,6 +295,10 @@ const addDaysToUser = async (id,days) => {
     const dateToString = newDate.toString()
 
     userData.update({membresyExpDate: dateToString})
+
+    }
+
+    
 }
 
 const expiredUsers = async () => {
