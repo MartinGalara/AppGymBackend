@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const { Membresy,SubscriptionSale } = require('../../db.js')
 const userExtractor = require('../middleware/userExtractor.js');
-const { Op, Sequelize } = require("sequelize");
+const { Sequelize } = require("sequelize");
 
 const router = Router();
 
