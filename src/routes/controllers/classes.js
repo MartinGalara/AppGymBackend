@@ -31,8 +31,8 @@ router.get('/', userExtractor, async (req, res) => {
 
 router.post('/', userExtractor, async (req, res) => {
     try {
-        let { name, id, hour,day } = req.body;
-        if (!name || !hour || !day) return res.status(400).json('Missing inputs')
+        let { name, staffId, hour,day } = req.body;
+        if (!name || !hour || !day || !staffId) return res.status(400).json('Missing inputs')
 
         const newClass = await Class.create({
             name,
@@ -40,7 +40,7 @@ router.post('/', userExtractor, async (req, res) => {
             day,
         });
 
-        const user = await User.findByPk(id)
+        const user = await User.findByPk(staffId)
         await newClass.setUser(user)
         res.status(200).json(newClass);
     } catch (error) {
