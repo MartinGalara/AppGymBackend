@@ -33,7 +33,7 @@ class PaymentController {
           userId: id,
           totalCost:data.items[0].unit_price,
           name:data.items[0].title,
-          daysToAdd:data.items[0].quantity,
+          daysToAdd:data.items[0].days,
       })
 
         return res.json(subscription);
