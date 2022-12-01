@@ -91,7 +91,7 @@ router.delete('/', userExtractor, async (req, res) => {
 
 })
 
-router.get('/asd', async (req, res) => {
+/*router.get('/asd', async (req, res) => {
     const users = [
         {name: "Martin Galara", email: "mgalara@gmail.com", hashPassword: "$2b$08$/DFujLqVmZYc2qHWRdf.EuXZTLOlf2NzuL5ihfcJ0xkR/5vH7Fk/e",membresyExpDate:"Wed Dec 5 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Admin", imgUrl:"https://media.gettyimages.com/id/1292567082/es/foto/male-personal-trainer-sitting-on-weight-bench-after-training-client-finish-in-a-gym.jpg?s=2048x2048&w=gi&k=20&c=R9YVEJQyRcLTFX8sQsGpYwaOWzAcP1Z8D7iKv0Oxktc="},      //123
         {name: "Gaston Schmitz", email: "gastonschmitz0@gmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Admin", imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa
@@ -402,6 +402,6 @@ router.get('/asd', async (req, res) => {
       SubscriptionSale.bulkCreate(salesMembresias).then(() => console.log("Sales cargadas"))
 
       return res.send("listo")
-})
+})*/
 
 module.exports = router;
