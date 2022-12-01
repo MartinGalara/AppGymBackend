@@ -182,7 +182,8 @@ router.post('/admdashboard/monthproducts', userExtractor, async (req, res) => {
            
         })
 
-        return res.status(200).send(setOfProducts)
+        const final = Object.values(setOfProducts)
+        return res.status(200).send(final)
         } catch (error) {
         res.status(400).send(error.message)
         }
