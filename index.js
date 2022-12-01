@@ -31,19 +31,20 @@ conn.sync({ force: true }).then(() => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
     const users = [
       {name: "Martin Galara", email: "mgalara@gmail.com", hashPassword: "$2b$08$/DFujLqVmZYc2qHWRdf.EuXZTLOlf2NzuL5ihfcJ0xkR/5vH7Fk/e",membresyExpDate:"Wed Dec 5 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Admin", imgUrl:"https://media.gettyimages.com/id/1292567082/es/foto/male-personal-trainer-sitting-on-weight-bench-after-training-client-finish-in-a-gym.jpg?s=2048x2048&w=gi&k=20&c=R9YVEJQyRcLTFX8sQsGpYwaOWzAcP1Z8D7iKv0Oxktc="},      //123
-      {name: "Tony Traliche", email: "tony@gmail.com", hashPassword: "$2b$08$THIWbid7F5iySlIs2yxPlOracC44cyVT.hWI0Z1k88h4/G8r9awae",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Admin", imgUrl:"https://media.gettyimages.com/id/1319635095/es/foto/despu%C3%A9s-de-terminar-con-el-uso-de-equipos-de-ejercicio-en-el-gimnasio-moderno-el-atleta-y-el.jpg?s=2048x2048&w=gi&k=20&c=S_S2Q65ekxuy1mlmadVYawIm0VqABDTGlAh5mWdJKbo="},           //asd123
-      {name: "Martin Galara", email: "martin@gmail.com", hashPassword: "$2b$08$xA9tnzZIUM63bn3dvIRPae2vZCaUk4VPQE.fuGg2MAuQ9OEqPyypG",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Admin", imgUrl:"https://media.gettyimages.com/id/1292567082/es/foto/male-personal-trainer-sitting-on-weight-bench-after-training-client-finish-in-a-gym.jpg?s=2048x2048&w=gi&k=20&c=R9YVEJQyRcLTFX8sQsGpYwaOWzAcP1Z8D7iKv0Oxktc="},       //hola
-      {name: "Agustin Reynoso", email: "agureynoso96@gmail.com", hashPassword: "$2b$08$4BS.P3G/uI0moDVQ2LWOYuOAaO7.eeR80buWk5Yq3z54Eg9WW4kE2",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Admin", imgUrl:"https://media.gettyimages.com/id/1265090289/es/foto/el-personal-que-usa-una-toallita-h%C3%BAmeda-y-un-desinfectante-azul-de-la-botella-para-limpiar-la.jpg?s=2048x2048&w=gi&k=20&c=PttbdoekEaLCLw0ADbi46TocS3xnu0coEnd-ikewXXk="},    //quetal
-      {name: "Agustin Reynoso2", email: "agureynoso96+1@gmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/1319635095/es/foto/despu%C3%A9s-de-terminar-con-el-uso-de-equipos-de-ejercicio-en-el-gimnasio-moderno-el-atleta-y-el.jpg?s=2048x2048&w=gi&k=20&c=S_S2Q65ekxuy1mlmadVYawIm0VqABDTGlAh5mWdJKbo="},    //auth0|636d38848ad399282c11fafa
-      {name: "Manuel Casanueva", email: "manucasanueva3@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Admin", imgUrl:"https://media.gettyimages.com/id/615883260/es/foto/dif%C3%ADcil-no-significa-imposible.jpg?s=1024x1024&w=gi&k=20&c=A4t-maeefZ_B0wDZH2AZxFaVW-cidudFpMCICIRByPI="},    //auth0|636d38848ad399282c11fafa
-      {name: "Pablo Lospennato", email: "pol@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Admin", imgUrl:"https://media.gettyimages.com/id/1311330212/es/foto/estoy-mejorando-d%C3%ADa-a-d%C3%ADa.jpg?s=1024x1024&w=gi&k=20&c=mv-7rC5VB8Ehy_8ucRs11jwhUDNRB_d_jXbMAe70vCw="},    //auth0|636d38848ad399282c11fafa
-      {name: "Alexsandro Gomez", email: "agomezf@pucp.edu.pe", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Admin", imgUrl:"https://media.gettyimages.com/id/1084251084/es/foto/entrenamiento-personal-en-el-gimnasio.jpg?s=1024x1024&w=gi&k=20&c=aNQ7_4FwYLPd4RxFAO-_pWuOZDx1hGMYpQn9r1Rp8gk="},  
-      {name: "Alexsandro Gomez", email: "agomezfdsadsad@pucp.edu.pe", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/1084251084/es/foto/entrenamiento-personal-en-el-gimnasio.jpg?s=1024x1024&w=gi&k=20&c=aNQ7_4FwYLPd4RxFAO-_pWuOZDx1hGMYpQn9r1Rp8gk="},  //auth0|636d38848ad399282c11fafa
-      {name: "Jose Manuel Manrique", email: "josed3h@gmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Admin", imgUrl:"https://media.gettyimages.com/id/909416522/es/foto/hombre-mayor-activo-teniendo-fuerza-ejercicios-con-barra-en-un-gimnasio.jpg?s=1024x1024&w=gi&k=20&c=Ryxs9wzbVTy35mYc77vrZclg7GgccFO8fn2SRxQf13k="},    //auth0|636d38848ad399282c11fafa
       {name: "Gaston Schmitz", email: "gastonschmitz0@gmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Admin", imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa
-      {name: "Cosme Fulanito", email: "cful@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 30 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Admin", imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa
-      {name: "Piero Dellafrancesca", email: "piero@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Dec 30 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Admin", imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa
-      {name: "Fulano Mengano", email: "aronfraga@gmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Dec 30 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Admin", imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa
+      {name: "Tony Traliche", email: "tony@gmail.com", hashPassword: "$2b$08$THIWbid7F5iySlIs2yxPlOracC44cyVT.hWI0Z1k88h4/G8r9awae",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/1319635095/es/foto/despu%C3%A9s-de-terminar-con-el-uso-de-equipos-de-ejercicio-en-el-gimnasio-moderno-el-atleta-y-el.jpg?s=2048x2048&w=gi&k=20&c=S_S2Q65ekxuy1mlmadVYawIm0VqABDTGlAh5mWdJKbo="},           //asd123
+      {name: "Martin Galara", email: "martin@gmail.com", hashPassword: "$2b$08$xA9tnzZIUM63bn3dvIRPae2vZCaUk4VPQE.fuGg2MAuQ9OEqPyypG",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/1292567082/es/foto/male-personal-trainer-sitting-on-weight-bench-after-training-client-finish-in-a-gym.jpg?s=2048x2048&w=gi&k=20&c=R9YVEJQyRcLTFX8sQsGpYwaOWzAcP1Z8D7iKv0Oxktc="},       //hola
+      {name: "Agustin Reynoso", email: "agureynoso96@gmail.com", hashPassword: "$2b$08$4BS.P3G/uI0moDVQ2LWOYuOAaO7.eeR80buWk5Yq3z54Eg9WW4kE2",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/1265090289/es/foto/el-personal-que-usa-una-toallita-h%C3%BAmeda-y-un-desinfectante-azul-de-la-botella-para-limpiar-la.jpg?s=2048x2048&w=gi&k=20&c=PttbdoekEaLCLw0ADbi46TocS3xnu0coEnd-ikewXXk="},    //quetal
+      {name: "Jorge Perez", email: "agureynoso96+1@gmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/1319635095/es/foto/despu%C3%A9s-de-terminar-con-el-uso-de-equipos-de-ejercicio-en-el-gimnasio-moderno-el-atleta-y-el.jpg?s=2048x2048&w=gi&k=20&c=S_S2Q65ekxuy1mlmadVYawIm0VqABDTGlAh5mWdJKbo="},    //auth0|636d38848ad399282c11fafa
+      {name: "Manuel Casanueva", email: "manucasanueva3@gmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/615883260/es/foto/dif%C3%ADcil-no-significa-imposible.jpg?s=1024x1024&w=gi&k=20&c=A4t-maeefZ_B0wDZH2AZxFaVW-cidudFpMCICIRByPI="},    //auth0|636d38848ad399282c11fafa
+      {name: "Pablo Lospennato", email: "yosoypxl@gmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/1311330212/es/foto/estoy-mejorando-d%C3%ADa-a-d%C3%ADa.jpg?s=1024x1024&w=gi&k=20&c=mv-7rC5VB8Ehy_8ucRs11jwhUDNRB_d_jXbMAe70vCw="},    //auth0|636d38848ad399282c11fafa
+      {name: "Alexsandro Gomez", email: "agomezf@pucp.edu.pe", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/1084251084/es/foto/entrenamiento-personal-en-el-gimnasio.jpg?s=1024x1024&w=gi&k=20&c=aNQ7_4FwYLPd4RxFAO-_pWuOZDx1hGMYpQn9r1Rp8gk="},  
+      {name: "Pedro Salinas", email: "agozfdsadsad@pucp.edu.pe", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "Staff", imgUrl:"https://media.gettyimages.com/id/1084251084/es/foto/entrenamiento-personal-en-el-gimnasio.jpg?s=1024x1024&w=gi&k=20&c=aNQ7_4FwYLPd4RxFAO-_pWuOZDx1hGMYpQn9r1Rp8gk="},  //auth0|636d38848ad399282c11fafa
+      {name: "Jose Manuel Manrique", email: "josed3h@gmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 23 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "User", imgUrl:"https://media.gettyimages.com/id/909416522/es/foto/hombre-mayor-activo-teniendo-fuerza-ejercicios-con-barra-en-un-gimnasio.jpg?s=1024x1024&w=gi&k=20&c=Ryxs9wzbVTy35mYc77vrZclg7GgccFO8fn2SRxQf13k="},    //auth0|636d38848ad399282c11fafa
+      {name: "Aaron Fraga", email: "aronfraga@gmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Dec 30 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "User", imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa
+      {name: "Cosme Fulanito", email: "cful3@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 30 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "User", imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa
+      {name: "Jorge Gomez", email: "jgom2@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Nov 30 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "User", imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa
+      {name: "Piero Dellafrancesca", email: "piero1@hotmail.com", hashPassword: "$2b$08$GgPmXQW77Z0AmWTKKN9T.ekHgjq/oVKWiqLtSvrM8AmLlJ3FUIify",membresyExpDate:"Wed Dec 30 2022 11:49:18 GMT-0300 (hora estándar de Argentina)", role: "User", imgUrl:"https://media.gettyimages.com/id/1347836469/es/foto/foto-de-un-apuesto-hombre-maduro-de-pie-con-los-brazos-cruzados-despu%C3%A9s-de-su-entrenamiento-en.jpg?s=2048x2048&w=gi&k=20&c=RSR3O-mDycSua1jsu4ZnOimx4UDYa2px77xvA9feVn4="},    //auth0|636d38848ad399282c11fafa
     ]
 
     const routines = [
@@ -65,7 +66,6 @@ conn.sync({ force: true }).then(() => {
       {name: "Potencia"},
       {name: "Velocidad"},
       {name: "Resistencia"},
-
     ]
 
     const excercises = [
@@ -147,7 +147,7 @@ conn.sync({ force: true }).then(() => {
     const classes = [
       {name: "Yoga",  hour:'h08/h10', day:'mon', userId:1},
       {name: "Zumba",  hour:'h16/h18', day:'mon', userId:4},
-      {name: "Aerobico",  hour:'h12/h14', day:'tue', userId:3},
+      {name: "Aerobico",  hour:'h12/h13', day:'tue', userId:3},
       {name: "Pilates",  hour:'h20/h22', day:'tue', userId:6},
       {name: "Spinning",  hour:'h07/h09', day:'wed', userId:5},
       {name: "Yoga",  hour:'h19/h21', day:'wed', userId:1},
@@ -173,49 +173,54 @@ conn.sync({ force: true }).then(() => {
       {title: "Keseyó", staff: "Gaston Schmitz", userId: 10, description: "Tiene sus días", score: 3},
       {title: "tengo una keja", staff: "Gaston Schmitz", userId: 10, description: "Flojardo", score: 2},
       {title: "Es malardo", staff: "Gaston Schmitz", userId: 10, description: "soy hater, un grinch", score: 1},
+      {title: "Capo", staff: "Manuel Casanueva", userId: 10, description: "Clases sublimes", score: 5},
+      {title: "Crack", staff: "Manuel Casanueva", userId: 10, description: "Se copa bastante", score: 4},
+      {title: "Bien Ahí", staff: "Manuel Casanueva", userId: 10, description: "Tiene sus días", score: 3},
+      {title: "tengo una keja", staff: "Manuel Casanueva", userId: 10, description: "Flojardo, se distrae en las clases.", score: 2},
+      {title: "Me plantó", staff: "Manuel Casanueva", userId: 10, description: "soy hater, un grinch", score: 1},
     ]
 
     const salesPrueba = [
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:1,year:2022},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:2,year:2022},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:3,year:2022},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:4,year:2022},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:5,year:2022},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2022},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2022},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2022},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2022},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2022},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:7,year:2022},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:8,year:2022},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:1,year:2022},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:9,year:2022},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:10,year:2022},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:11,year:2022},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:12,year:2022},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:11,year:2022},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:1,year:2021},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:2,year:2021},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:3,year:2021},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:4,year:2021},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:5,year:2021},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2021},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2022},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2021},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2021},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2021},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:7,year:2021},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:8,year:2021},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:1,year:2021},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:9,year:2021},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:10,year:2021},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:11,year:2021},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:12,year:2021},
-      {purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:11,year:2021},
+      {purchaseId: 11, totalCost: 5000, approved: true, paymentMethod: 'visa', month: 1, year: 2022},
+      {purchaseId: 12, totalCost: 2500, approved: true, paymentMethod: 'visa', month: 2, year: 2022},
+      {purchaseId: 13, totalCost: 3000, approved: true, paymentMethod: 'visa', month: 3, year: 2022},
+      {purchaseId: 14, totalCost: 6000, approved: true, paymentMethod: 'visa', month: 4, year: 2022},
+      {purchaseId: 15, totalCost: 4500, approved: true, paymentMethod: 'visa', month: 5, year: 2022},
+      {purchaseId: 16, totalCost: 6500, approved: true, paymentMethod: 'visa', month: 6, year: 2022},
+      {purchaseId: 17, totalCost: 1600, approved: true, paymentMethod: 'visa', month: 6, year: 2022},
+      {purchaseId: 18, totalCost: 7600, approved: true, paymentMethod: 'visa', month: 6, year: 2022},
+      {purchaseId: 19, totalCost: 2200, approved: true, paymentMethod: 'visa', month: 6, year: 2022},
+      {purchaseId: 20, totalCost: 6000, approved: true, paymentMethod: 'visa', month: 6, year: 2022},
+      {purchaseId: 21, totalCost: 2200, approved: true, paymentMethod: 'visa', month: 7, year: 2022},
+      {purchaseId: 22, totalCost: 1900, approved: true, paymentMethod: 'visa', month: 8, year: 2022},
+      {purchaseId: 23, totalCost: 4400, approved: true, paymentMethod: 'visa', month: 1, year: 2022},
+      {purchaseId: 24, totalCost: 500, approved: true, paymentMethod: 'visa', month: 9, year: 2022},
+      {purchaseId: 25, totalCost: 1800, approved: true, paymentMethod: 'visa', month: 10, year: 2022},
+      {purchaseId: 26, totalCost: 1800, approved: true, paymentMethod: 'visa', month: 11, year: 2022},
+      {purchaseId: 27, totalCost: 4600, approved: true, paymentMethod: 'visa', month: 12, year: 2022},
+      {purchaseId: 28, totalCost: 2200, approved: true, paymentMethod: 'visa', month: 11, year: 2022},
+      {purchaseId: 29, totalCost: 6000, approved: true, paymentMethod: 'visa', month: 1, year: 2021},
+      {purchaseId: 30, totalCost: 4300, approved: true, paymentMethod: 'visa', month: 2, year: 2021},
+      {purchaseId: 31, totalCost: 6500, approved: true, paymentMethod: 'visa', month: 3, year: 2021},
+      {purchaseId: 32, totalCost: 1600, approved: true, paymentMethod: 'visa', month: 4, year: 2021},
+      {purchaseId: 33, totalCost: 3800, approved: true, paymentMethod: 'visa', month: 5, year: 2021},
+      {purchaseId: 34, totalCost: 1750, approved: true, paymentMethod: 'visa', month: 6, year: 2021},
+      {purchaseId: 35, totalCost: 6700, approved: true, paymentMethod: 'visa', month: 6, year: 2022},
+      {purchaseId: 36, totalCost: 4200, approved: true, paymentMethod: 'visa', month: 6, year: 2021},
+      {purchaseId: 37, totalCost: 4400, approved: true, paymentMethod: 'visa', month: 6, year: 2021},
+      {purchaseId: 38, totalCost: 2600, approved: true, paymentMethod: 'visa', month: 6, year: 2021},
+      {purchaseId: 39, totalCost: 1700, approved: true, paymentMethod: 'visa', month: 7, year: 2021},
+      {purchaseId: 40, totalCost: 3100, approved: true, paymentMethod: 'visa', month: 8, year: 2021},
+      {purchaseId: 41, totalCost: 3000, approved: true, paymentMethod: 'visa', month: 1, year: 2021},
+      {purchaseId: 42, totalCost: 2900, approved: true, paymentMethod: 'visa', month: 9, year: 2021},
+      {purchaseId: 43, totalCost: 500, approved: true, paymentMethod: 'visa', month: 10, year: 2021},
+      {purchaseId: 44, totalCost: 1800, approved: true, paymentMethod: 'visa', month: 11, year: 2021},
+      {purchaseId: 45, totalCost: 1800, approved: true, paymentMethod: 'visa', month: 12, year: 2021},
+      {purchaseId: 46, totalCost: 4600, approved: true, paymentMethod: 'visa', month: 11, year: 2021},
     ]
 
     const items = [
-      {title: "Remera Animal", unit_price: 2500, quantity: 2, saleId:1},
+      {title: "Remera Animal", unit_price: 2500, quantity: 2, saleId: 1},
       {title: "Remera No Pain No Gain", unit_price: 2500, quantity: 1, saleId: 2},
       {title: "Gorra Animal", unit_price: 1500, quantity: 2, saleId: 3},
       {title: "Mancuerna Recubierta de Goma 2Kg", unit_price: 3000, quantity: 2, saleId: 4},
@@ -225,26 +230,52 @@ conn.sync({ force: true }).then(() => {
       {title: "Soga De Saltar Aluminio", unit_price: 3800, quantity: 2, saleId: 8},
       {title: "Bolsa Boxeo Guantin Vendas Cadena Soporte", unit_price: 2200, quantity: 1, saleId: 9},
       {title: "Suplemento proteico 930g", unit_price: 6000, quantity: 1,saleId: 10},
+      {title: "Banda De Suspensión", unit_price: 2200, quantity: 1, saleId: 11},
+      {title: "Termo 500ml", unit_price: 1900, quantity: 1, saleId: 12},
+      {title: "Colchoneta Gimnasia", unit_price: 2200, quantity: 2, saleId: 13},
+      {title: "Protectores Bucales", unit_price: 500, quantity: 1, saleId: 14},
+      {title: "Tobillera Deportiva Elastica Airsport", unit_price: 1800, quantity: 1, saleId: 15},
+      {title: "Conjunto Deportivo Mujer", unit_price: 1800, quantity: 1, saleId: 16},
+      {title: "Bolso Deportivo Viajero", unit_price: 4600, quantity: 1, saleId: 17},
+      {title: "Bolsa Boxeo Guantin Vendas Cadena Soporte", unit_price: 2200, quantity: 1, saleId: 18},
+      {title: "Suplemento proteico 930g", unit_price: 6000, quantity: 1, saleId: 19},
+      {title: "Suplemento proteico 453g", unit_price: 4300, quantity: 1, saleId: 20},
+      {title: "Mancuerna Fundición 10kg", unit_price: 6500, quantity: 1, saleId: 21},
+      {title: "Soga De Saltar Ruleman", unit_price: 1600, quantity: 1, saleId: 22},
+      {title: "Soga De Saltar Aluminio", unit_price: 3800, quantity: 1, saleId: 23},
+      {title: "Mangas Compresión Diadora", unit_price: 1750, quantity: 1, saleId: 24},
+      {title: "Top Sosten Aqua", unit_price: 6700, quantity: 1, saleId: 25},
+      {title: "Pesa Rusa Kettlebell 6Kg", unit_price: 2100, quantity: 2, saleId: 26},
+      {title: "Colchoneta Gimnasia", unit_price: 2200, quantity: 2, saleId: 27},
+      {title: "Colchoneta Mat Athletic 7mm", unit_price: 2600, quantity: 1, saleId: 28},
+      {title: "Colchoneta Plegable Oferta", unit_price: 1700, quantity: 1, saleId: 29},
+      {title: "Muñequeras Crossfit 35cm", unit_price: 3100, quantity: 1, saleId: 30},
+      {title: "Muñequeras Crossfit ajustable", unit_price: 1500, quantity: 2, saleId: 31},
+      {title: "Suplemento proteico 480g", unit_price: 2900, quantity: 1, saleId: 32},
+      {title: "Protectores Bucales", unit_price: 500, quantity: 1, saleId: 33},
+      {title: "Tobillera Deportiva Elastica Airsport", unit_price: 1800, quantity: 1, saleId: 34},
+      {title: "Conjunto Deportivo Mujer", unit_price: 1800, quantity: 1, saleId: 35},
+      {title: "Bolso Deportivo Viajero", unit_price: 4600, quantity: 1, saleId: 36},
     ]
 
     const salesMembresias = [
-      {name: "Plan 3 meses", purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:1,year:2022,daysToAdd:90},
-      {name: "Plan 1 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:2,year:2022,daysToAdd:90},
-      {name: "Plan 3 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:3,year:2022,daysToAdd:90},
-      {name: "Plan 1 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:4,year:2022,daysToAdd:90},
-      {name: "Plan 6 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:5,year:2022,daysToAdd:90},
-      {name: "Plan 3 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2022,daysToAdd:90},
-      {name: "Plan 6 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2022,daysToAdd:90},
-      {name: "Plan 3 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2022,daysToAdd:90},
-      {name: "Plan 12 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:12,year:2022,daysToAdd:90},
-      {name: "Plan 3 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:11,year:2022,daysToAdd:90},
-      {name: "Plan 12 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:1,year:2021,daysToAdd:90},
-      {name: "Plan 12 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:2,year:2021,daysToAdd:90},
-      {name: "Plan 3 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:3,year:2021,daysToAdd:90},
-      {name: "Plan 3 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:4,year:2021,daysToAdd:90},
-      {name: "Plan 12 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:5,year:2021,daysToAdd:90},
-      {name: "Plan 3 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2021,daysToAdd:90},
-      {name: "Plan 12 meses",purchaseId:2313,totalCost:1304,approved:true,paymentMethod:'visa',month:6,year:2022,daysToAdd:90},
+      {name: "Plan 3 meses", purchaseId: 1, totalCost: 7000, approved: true, paymentMethod: 'visa', month: 1, year: 2022, daysToAdd: 90},
+      {name: "Plan 1 mes", purchaseId: 2, totalCost: 2500, approved: true, paymentMethod: 'visa', month: 2, year: 2022, daysToAdd: 30},
+      {name: "Plan 3 meses", purchaseId: 3, totalCost: 7000, approved: true, paymentMethod: 'visa', month: 3, year: 2022, daysToAdd: 90},
+      {name: "Plan 1 mes", purchaseId: 4, totalCost: 1304, approved: true, paymentMethod: 'visa', month: 4, year: 2022, daysToAdd: 90},
+      {name: "Plan 6 meses", purchaseId: 5, totalCost: 13000, approved: true, paymentMethod: 'visa', month: 5, year: 2022, daysToAdd: 180},
+      {name: "Plan 3 meses", purchaseId: 6, totalCost: 7000, approved: true, paymentMethod: 'visa', month: 6, year: 2022, daysToAdd: 90},
+      {name: "Plan 6 meses", purchaseId: 7, totalCost: 13000, approved: true, paymentMethod: 'visa', month: 6, year: 2022, daysToAdd: 180},
+      {name: "Plan 3 meses", purchaseId: 8, totalCost: 7000, approved: true, paymentMethod: 'visa', month: 6, year: 2022, daysToAdd: 90},
+      {name: "Plan 12 meses", purchaseId: 9, totalCost: 25000, approved: true, paymentMethod: 'visa', month: 12 ,year :2022 ,daysToAdd: 360},
+      {name: "Plan 3 meses", purchaseId: 10, totalCost: 7000, approved: true, paymentMethod: 'visa', month: 11 ,year :2022 ,daysToAdd: 90},
+      {name: "Plan 12 meses", purchaseId: 11, totalCost: 25000, approved: true, paymentMethod: 'visa', month: 1, year: 2021, daysToAdd: 360},
+      {name: "Plan 12 meses", purchaseId: 12, totalCost: 25000, approved: true, paymentMethod: 'visa', month: 2, year: 2021, daysToAdd: 360},
+      {name: "Plan 3 meses", purchaseId: 13, totalCost: 7000, approved: true, paymentMethod: 'visa', month: 3, year: 2021, daysToAdd: 90},
+      {name: "Plan 3 meses", purchaseId: 14, totalCost: 7000, approved: true, paymentMethod: 'visa', month: 4, year: 2021, daysToAdd: 90},
+      {name: "Plan 12 meses", purchaseId: 15, totalCost: 25000, approved: true, paymentMethod: 'visa', month: 5, year: 2021, daysToAdd: 360},
+      {name: "Plan 3 meses", purchaseId: 16, totalCost: 7000, approved: true, paymentMethod: 'visa', month: 6, year: 2021, daysToAdd: 90},
+      {name: "Plan 12 meses", purchaseId: 17, totalCost: 25000, approved: true, paymentMethod: 'visa', month: 6, year: 2022, daysToAdd: 360},
     ]
 
     User.bulkCreate(users).then(() => console.log("Users cargados"))
