@@ -146,44 +146,22 @@ router.post('/admdashboard/monthproducts', userExtractor, async (req, res) => {
         try {
 
             const productData = await Sale.findAll({
-                where:{year:filters.year},
+                where:{year:filters.year, month:filters.month},
                 include:{
                     model: Item
                 }
               });
 
-        let setOfProducts = {
-            1:{},
-            2:{},
-            3:{},
-            4:{},
-            5:{},
-            6:{},
-            7:{},
-            8:{},
-            9:{},
-            10:{},
-            11:{},
-            12:{},
-        }
+        let setOfProducts = []
 
         productData.map( p => {
-            const mes = p.month;
             p.items.map(i => {
-                if(setOfProducts[mes].hasOwnProperty(i.title)) {
-                    const title = i.title
-                    const total = setOfProducts[mes][title]
-                    setOfProducts[mes][title] = total + i.quantity
-                }else{
-                    const title = i.title
-                    setOfProducts[mes][title] = i.quantity
-                }
+                setOfProducts.push(i)
             })
            
         })
 
-        const final = Object.values(setOfProducts)
-        return res.status(200).send(final)
+        return res.status(200).send(setOfProducts)
         } catch (error) {
         res.status(400).send(error.message)
         }
