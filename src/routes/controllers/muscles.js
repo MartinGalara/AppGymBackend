@@ -317,15 +317,15 @@ router.get('/asd', async (req, res) => {
         {name: "Plan 12 meses", purchaseId: 17, totalCost: 25000, approved: true, paymentMethod: 'visa', month: 6, year: 2022, daysToAdd: 360},
       ]
   
-      await User.bulkCreate(users).then(() => console.log("Users cargados"))
-      await Category.bulkCreate(category).then(() => console.log("Categorias cargadas"))
+      //await User.bulkCreate(users).then(() => console.log("Users cargados"))
+      //await Category.bulkCreate(category).then(() => console.log("Categorias cargadas"))
+      await Routine.bulkCreate(routines).then(() => console.log("Routines cargadas"))
       await User_Routine.create({userId: 1,routineId:1})
       await User_Routine.create({userId: 1,routineId:3})
       await User_Routine.create({userId: 1,routineId:7})
       await User_Routine.create({userId: 2,routineId:2})
       await User_Routine.create({userId: 2,routineId:4})
       await User_Routine.create({userId: 2,routineId:6})
-      await Routine.bulkCreate(routines).then(() => console.log("Routines cargadas"))
       await Routine_Excercise.create({routineId: 1,excerciseId: 5})
       await Routine_Excercise.create({routineId: 1,excerciseId: 7})
       await Routine_Excercise.create({routineId: 1,excerciseId: 10})
