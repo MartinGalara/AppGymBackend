@@ -326,6 +326,15 @@ router.get('/asd', async (req, res) => {
       await User_Routine.create({userId: 2,routineId:2})
       await User_Routine.create({userId: 2,routineId:4})
       await User_Routine.create({userId: 2,routineId:6})
+      await Excercise.bulkCreate(excercises)
+      await Muscle.bulkCreate(muscles)
+      await Product.bulkCreate(products)
+      await Class.bulkCreate(classes)
+      await Feedback.bulkCreate(feedbacks)
+      await Membresy.bulkCreate(membresies)
+      await Sale.bulkCreate(salesPrueba)
+      await Item.bulkCreate(items)
+      await SubscriptionSale.bulkCreate(salesMembresias)
       await Routine_Excercise.create({routineId: 1,excerciseId: 5})
       await Routine_Excercise.create({routineId: 1,excerciseId: 7})
       await Routine_Excercise.create({routineId: 1,excerciseId: 10})
@@ -391,16 +400,7 @@ router.get('/asd', async (req, res) => {
       await Routine_Excercise.create({routineId: 8,excerciseId: 12})
       await Routine_Excercise.create({routineId: 8,excerciseId: 11})
       relaciones();
-      await Excercise.bulkCreate(excercises)
-      await Muscle.bulkCreate(muscles)
-      await Product.bulkCreate(products)
-      await Class.bulkCreate(classes)
-      await Feedback.bulkCreate(feedbacks)
-      await Membresy.bulkCreate(membresies)
-      await Sale.bulkCreate(salesPrueba)
-      await Item.bulkCreate(items)
-      await SubscriptionSale.bulkCreate(salesMembresias)
-
+      
       return res.send("listo")
 })
 
